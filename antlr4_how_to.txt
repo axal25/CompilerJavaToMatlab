@@ -1,0 +1,1 @@
+java -jar ~/Downloads/antlr-4.7.1-complete.jar JavaGrammar.g4
