@@ -1,3 +1,59 @@
+/*
+ * [The "BSD license"]
+ *  Copyright (c) 2014 Terence Parr
+ *  Copyright (c) 2014 Sam Harwell
+ *  All rights reserved.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *  2. Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ *  3. The name of the author may not be used to endorse or promote products
+ *     derived from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ *  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ *  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ *  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * A Java 8 grammar for ANTLR 4 derived from the Java Language Specification
+ * chapter 19.
+ *
+ * NOTE: This grammar results in a generated parser that is much slower
+ *       than the Java 7 grammar in the grammars-v4/java directory. This
+ *     one is, however, extremely close to the spec.
+ *
+ * You can test with
+ *
+ *  $ antlr4 Java8.g4
+ *  $ javac *.java
+ *  $ grun Java8 compilationUnit *.java
+ *
+ * Or,
+~/antlr/code/grammars-v4/java8 $ java Test .
+/Users/parrt/antlr/code/grammars-v4/java8/./Java8BaseListener.java
+/Users/parrt/antlr/code/grammars-v4/java8/./Java8Lexer.java
+/Users/parrt/antlr/code/grammars-v4/java8/./Java8Listener.java
+/Users/parrt/antlr/code/grammars-v4/java8/./Java8Parser.java
+/Users/parrt/antlr/code/grammars-v4/java8/./Test.java
+Total lexer+parser time 30844ms.
+ */
+
+/* Modified by axal25 */
+
 grammar JavaGrammar;
 
 @header{
@@ -9,6 +65,94 @@ grammar JavaGrammar;
 compilationUnit:
 				method* ;
                 // packageDeclaration? importDeclaration* typeDeclaration* EOF;
+
+typeDeclaration:
+		  classDeclaration
+		  //|	interfaceDeclaration
+		  |	SEPARATORS_PUNCTUATORS_SEMICOLON ;
+		  
+classDeclaration:	
+		  classPermissionModifier? classTypeModifier? KEYWORDS_CLASS IDENTIFIERS /* TypeParameters */ 
+		  /*(KEYWORDS_EXTENDS classType)?*/ /*(KEYWORDS_IMPLEMENTS interfaceTypeList)?*/ 
+		  classBody ;
+		  //|	enumDeclaration ;
+		  
+classPermissionModifier:
+		/*annotation*/
+		|	KEYWORDS_PUBLIC
+		|	KEYWORDS_PROTECTED
+		|	KEYWORDS_PUBLIC ;
+		
+classTypeModifier:
+		|	KEYWORDS_ABSTRACT
+		|	KEYWORDS_STATIC
+		|	KEYWORDS_FINAL
+		|	KEYWORDS_STRICTFP ;
+
+classBody:
+		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET classBodyDeclaration* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
+		
+classBodyDeclaration: ;
+//		classMemberDeclaration
+//		|	block
+//		|	KEYWORDS_STATIC block
+//		|	constructorModifier* 
+//		typeParameters? simpleTypeName SEPARATORS_DELIMITERS_LEFTPARENTHESIS formalParameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+//		(KEYWORDS_THROWS exceptionTypeList)? constructorBody ;
+		
+classMemberDeclaration: ;	
+//		fieldDeclaration
+//		|	methodDeclaration
+//		|	classDeclaration
+//		|	interfaceDeclaration
+//		|	SEPARATORS_PUNCTUATORS_SEMICOLON ;
+
+
+/*
+classType:
+		classOrInterfaceType '.' *//*annotation**//* IDENTIFIERS typeArguments? ;
+		
+classOrInterfaceType:
+		(	classType_lfno_classOrInterfaceType
+		|	interfaceType_lfno_classOrInterfaceType
+		)
+		(	classType_lf_classOrInterfaceType
+		|	interfaceType_lf_classOrInterfaceType
+		)* ;
+*/
+/*
+interfaceTypeList:
+			interfaceType (',' interfaceType)* ;
+			
+interfaceType:	
+			classType; */
+			
+//classType:
+//		  /* annotation* */ IDENTIFIERS typeArguments?
+//		  |	/* classOrInterfaceType '.' */ /* annotation* */ IDENTIFIERS typeArguments? ;
+//		  
+//typeArguments
+//	:	'<' typeArgumentList '>'
+//	;
+//
+//typeArgumentList
+//	:	typeArgument (',' typeArgument)*
+//	;
+//
+//typeArgument
+//	:	referenceType
+//	|	wildcard
+//	;
+//
+//wildcard
+//	:	annotation* '?' wildcardBounds?
+//	;
+//
+//wildcardBounds
+//	:	'extends' referenceType
+//	|	'super' referenceType
+//;
+
 
 method:
         /*annotation*/ methodPermissionModifier? methodTypeModifier? methodReturnType IDENTIFIERS
@@ -40,7 +184,7 @@ variableDeclaration:
                      ;
 
 statement:
-          variableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON
+          statementWithoutTrailingSubStatement
           | ifStatement
           | whileDoStatement
           | doWhileStatement
@@ -48,6 +192,47 @@ statement:
           | enhancedForStatement
           | returnStatement 
           ;
+		  
+statementWithoutTrailingSubStatement:
+		  | block
+		  |	SEPARATORS_PUNCTUATORS_SEMICOLON
+		  |	expressionStatement SEPARATORS_PUNCTUATORS_SEMICOLON
+		  |	switchStatement
+		  |	KEYWORDS_DO statement 
+		  		KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS 
+		  			expression
+		  		SEPARATORS_DELIMITERS_RIGHTPARENTHESIS SEPARATORS_PUNCTUATORS_SEMICOLON
+		  |	breakStatement
+		  |	continueStatement
+		  |	returnStatement
+		  |	KEYWORDS_SYNCHRONIZED KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS block
+		  |	KEYWORDS_THROWS expression SEPARATORS_PUNCTUATORS_SEMICOLON ;
+//		  |	tryStatement ;
+		
+expressionStatement:
+		  assignment
+		  |	preIncrementExpression
+		  |	preDecrementExpression
+		  |	postIncrementExpression
+		  |	postDecrementExpression
+		  |	methodInvocation
+		  |	classInstanceCreationExpression ;
+
+switchStatement:	
+			KEYWORDS_SWITCH SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS 
+			SEPARATORS_DELIMITERS_LEFTCURLYBRACKET 
+				( (switchLabel switchLabel) blockStatement+ )* switchLabel* 
+			SEPARATORS_DELIMITERS_LEFTCURLYBRACKET ;
+			
+switchLabel:
+		  KEYWORDS_CASE expression OPERATORS_ELSE
+		  |	KEYWORDS_CASE IDENTIFIERS OPERATORS_ELSE
+		  |	KEYWORDS_DEFAULT OPERATORS_ELSE ;
+
+blockStatement:
+		  localVariableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON 
+	      |	classDeclaration
+		  |	statement ;
 
 loopStatment:
                 statement
@@ -108,9 +293,9 @@ logicalExpression:
      | logicalEquivalent
      ;
 
-block:
-      SEPARATORS_DELIMITERS_LEFTCURLYBRACKET statement* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET
-      ;
+block: 
+		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET (blockStatement+)? SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
+		
 loopBlock:
       SEPARATORS_DELIMITERS_LEFTCURLYBRACKET loopStatment* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET
       ;
@@ -441,7 +626,7 @@ KEYWORDS_CLASS_LONG:					'Long';
 KEYWORDS_CLASS_STRING:					'String';
 
 KEYWORDS_ABSTRACT:				        'abstract'; //nie obsluzone
-KEYWORDS_ASSERT:				        'assert'; //nie obsluzone
+KEYWORDS_ASSERT:				        'assert'; //nie obsluzone - Nie bede uzywac
 KEYWORDS_BOOLEAN:				        'boolean';
 KEYWORDS_BREAK: 						'break';
 KEYWORDS_BYTE: 							'byte';
