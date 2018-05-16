@@ -221,7 +221,7 @@ expressionBitwise:
         ;
 
 stringNullAssignment:
-        KEYWORDS_STRING IDENTIFIERS OPERATORS_ASSIGNMENT LITERALS_REFERENCE_NULL 
+        KEYWORDS_CLASS_STRING IDENTIFIERS OPERATORS_ASSIGNMENT LITERALS_REFERENCE_NULL 
         ;
 
 preIncrementationExpression:
@@ -253,7 +253,8 @@ keywordsType:
       | KEYWORDS_LONG
       | KEYWORDS_FLOAT
       | KEYWORDS_DOUBLE 
-      | KEYWORDS_STRING ;
+      | KEYWORDS_CLASS_STRING
+      | KEYWORDS_CLASS_LONG ;
  
 // Lexer Rules-------------------------------------------------------------------------------------------
 
@@ -436,6 +437,9 @@ fragment UPPERCASE_LETTER:
 ADDITIONAL_LITERAL_AT:					'@'; //zmiana
 ADDITIONAL_LITERAL_ELLIPSIS:			'...'; //zmiana
 
+KEYWORDS_CLASS_LONG:					'Long';
+KEYWORDS_CLASS_STRING:					'String';
+
 KEYWORDS_ABSTRACT:				        'abstract'; //nie obsluzone
 KEYWORDS_ASSERT:				        'assert'; //nie obsluzone
 KEYWORDS_BOOLEAN:				        'boolean';
@@ -474,7 +478,6 @@ KEYWORDS_RETURN:						'return';
 KEYWORDS_SHORT:							'short';
 KEYWORDS_STATIC:				        'static'; //nie obsluzone
 KEYWORDS_STRICTFP:  		            'strictfp'; //nie obsluzone
-KEYWORDS_STRING:						'String';
 KEYWORDS_SUPER:				            'super'; //nie obsluzone
 KEYWORDS_SYNCHRONIZED:		            'synchronized'; //nie obsluzone
 KEYWORDS_SWITCH:						'switch';

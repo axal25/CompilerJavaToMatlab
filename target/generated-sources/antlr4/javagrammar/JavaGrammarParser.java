@@ -20,40 +20,41 @@ public class JavaGrammarParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		WHITE_SPACES=1, LINE_COMMENT=2, NEW_LINE=3, COMMENTS_BLOCK=4, UNTERMINATED_STRING=5, 
-		ADDITIONAL_LITERAL_AT=6, ADDITIONAL_LITERAL_ELLIPSIS=7, KEYWORDS_ABSTRACT=8, 
-		KEYWORDS_ASSERT=9, KEYWORDS_BOOLEAN=10, KEYWORDS_BREAK=11, KEYWORDS_BYTE=12, 
-		KEYWORDS_CASE=13, KEYWORDS_CATCH=14, KEYWORDS_CHAR=15, KEYWORDS_CLASS=16, 
-		KEYWORDS_CONST=17, KEYWORDS_CONTINUE=18, KEYWORDS_DEFAULT=19, KEYWORDS_DO=20, 
-		KEYWORDS_DOUBLE=21, KEYWORDS_ELSE=22, KEYWORDS_EXTENDS=23, KEYWORDS_FINAL=24, 
-		KEYWORDS_FINALLY=25, KEYWORDS_FLOAT=26, KEYWORDS_FOR=27, KEYWORDS_GOTO=28, 
-		KEYWORDS_IF=29, KEYWORDS_IMPLEMENTS=30, KEYWORDS_IMPORT=31, KEYWORDS_INSTANCEOF=32, 
-		KEYWORDS_INT=33, KEYWORDS_INTERFACE=34, KEYWORDS_LONG=35, KEYWORDS_NATIVE=36, 
-		KEYWORDS_NEW=37, KEYWORDS_PACKAGE=38, KEYWORDS_PRIVATE=39, KEYWORDS_PROTECTED=40, 
-		KEYWORDS_PUBLIC=41, KEYWORDS_RETURN=42, KEYWORDS_SHORT=43, KEYWORDS_STATIC=44, 
-		KEYWORDS_STRICTFP=45, KEYWORDS_STRING=46, KEYWORDS_SUPER=47, KEYWORDS_SYNCHRONIZED=48, 
-		KEYWORDS_SWITCH=49, KEYWORDS_THIS=50, KEYWORDS_THROW=51, KEYWORDS_THROWS=52, 
-		KEYWORDS_TRANSIENT=53, KEYWORDS_TRY=54, KEYWORDS_VOID=55, KEYWORDS_VOLATILE=56, 
-		KEYWORDS_WHILE=57, IDENTIFIERS=58, LITERALS_NUMERIC_INT=59, LITERALS_NUMERIC_DOUBLE=60, 
-		LITERALS_LOGICAL_BOOLEAN=61, LITERALS_TEXTUAL_CHAR=62, LITERALS_TEXTUAL_STRING=63, 
-		LITERALS_REFERENCE_NULL=64, OPERATORS_IF=65, OPERATORS_ELSE=66, OPERATORS_ASSIGNMENT=67, 
-		OPERATORS_GREATERTHAN=68, OPERATORS_LESSTHAN=69, OPERATORS_LOGICALNOT=70, 
-		OPERATORS_LESSTHANOREQUAL=71, OPERATORS_GREATERTHANOREQUAL=72, OPERATORS_LOGICALEQUAL=73, 
-		OPERATORS_LOGICALNOTEQUAL=74, OPERATORS_LOGICALAND=75, OPERATORS_LOGICALOR=76, 
-		OPERATORS_INCREMENT=77, OPERATORS_DECREMENT=78, OPERATORS_ADDITION=79, 
-		OPERATORS_SUBTRACTION=80, OPERATORS_MULTIPLICATION=81, OPERATORS_DIVISION=82, 
-		OPERATORS_MODULO=83, OPERATORS_ADDITIONANDASSIGNMENT=84, OPERATORS_SUBTRACTIONANDASSIGNMENT=85, 
-		OPERATORS_MULTIPLICATIONANDASSIGNMENT=86, OPERATORS_DIVISIONANDASSIGNMENT=87, 
-		OPERATORS_MODULOANDASSIGMENT=88, OPERATORS_LOGICALANDASSIGNMENT=89, OPERATORS_BITWISENOT=90, 
-		OPERATORS_BITWISEAND=91, OPERATORS_BITWISEOR=92, OPERATORS_BITWISEXOR=93, 
-		OPERATORS_BITWISEANDASSIGNMENT=94, OPERATORS_BITWISEXORASSIGNMENT=95, 
-		OPERATORS_BITWISEORASSIGNMENT=96, OPERATORS_SHIFTLEFT=97, OPERATORS_SHIFTRIGHT=98, 
-		OPERATORS_SHIFTRIGHTUNSIGNED=99, OPERATORS_SHIFTLEFTASSIGNMENT=100, OPERATORS_SHIFTRIGHTASSIGNMENT=101, 
-		OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT=102, SEPARATORS_PUNCTUATORS_SEMICOLON=103, 
-		SEPARATORS_PUNCTUATORS_COMMA=104, SEPARATORS_PUNCTUATORS_DOT=105, SEPARATORS_PUNCTUATORS_ESCAPECHARACTER=106, 
-		SEPARATORS_DELIMITERS_LEFTPARENTHESIS=107, SEPARATORS_DELIMITERS_RIGHTPARENTHESIS=108, 
-		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET=109, SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET=110, 
-		SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET=111, SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET=112, 
-		COMMENTS_LINE=113, COMMENTS_BLOCK_OPENING=114, COMMENTS_BLOCK_CLOSING=115;
+		ADDITIONAL_LITERAL_AT=6, ADDITIONAL_LITERAL_ELLIPSIS=7, KEYWORDS_CLASS_LONG=8, 
+		KEYWORDS_CLASS_STRING=9, KEYWORDS_ABSTRACT=10, KEYWORDS_ASSERT=11, KEYWORDS_BOOLEAN=12, 
+		KEYWORDS_BREAK=13, KEYWORDS_BYTE=14, KEYWORDS_CASE=15, KEYWORDS_CATCH=16, 
+		KEYWORDS_CHAR=17, KEYWORDS_CLASS=18, KEYWORDS_CONST=19, KEYWORDS_CONTINUE=20, 
+		KEYWORDS_DEFAULT=21, KEYWORDS_DO=22, KEYWORDS_DOUBLE=23, KEYWORDS_ELSE=24, 
+		KEYWORDS_EXTENDS=25, KEYWORDS_FINAL=26, KEYWORDS_FINALLY=27, KEYWORDS_FLOAT=28, 
+		KEYWORDS_FOR=29, KEYWORDS_GOTO=30, KEYWORDS_IF=31, KEYWORDS_IMPLEMENTS=32, 
+		KEYWORDS_IMPORT=33, KEYWORDS_INSTANCEOF=34, KEYWORDS_INT=35, KEYWORDS_INTERFACE=36, 
+		KEYWORDS_LONG=37, KEYWORDS_NATIVE=38, KEYWORDS_NEW=39, KEYWORDS_PACKAGE=40, 
+		KEYWORDS_PRIVATE=41, KEYWORDS_PROTECTED=42, KEYWORDS_PUBLIC=43, KEYWORDS_RETURN=44, 
+		KEYWORDS_SHORT=45, KEYWORDS_STATIC=46, KEYWORDS_STRICTFP=47, KEYWORDS_SUPER=48, 
+		KEYWORDS_SYNCHRONIZED=49, KEYWORDS_SWITCH=50, KEYWORDS_THIS=51, KEYWORDS_THROW=52, 
+		KEYWORDS_THROWS=53, KEYWORDS_TRANSIENT=54, KEYWORDS_TRY=55, KEYWORDS_VOID=56, 
+		KEYWORDS_VOLATILE=57, KEYWORDS_WHILE=58, IDENTIFIERS=59, LITERALS_NUMERIC_INT=60, 
+		LITERALS_NUMERIC_DOUBLE=61, LITERALS_LOGICAL_BOOLEAN=62, LITERALS_TEXTUAL_CHAR=63, 
+		LITERALS_TEXTUAL_STRING=64, LITERALS_REFERENCE_NULL=65, OPERATORS_IF=66, 
+		OPERATORS_ELSE=67, OPERATORS_ASSIGNMENT=68, OPERATORS_GREATERTHAN=69, 
+		OPERATORS_LESSTHAN=70, OPERATORS_LOGICALNOT=71, OPERATORS_LESSTHANOREQUAL=72, 
+		OPERATORS_GREATERTHANOREQUAL=73, OPERATORS_LOGICALEQUAL=74, OPERATORS_LOGICALNOTEQUAL=75, 
+		OPERATORS_LOGICALAND=76, OPERATORS_LOGICALOR=77, OPERATORS_INCREMENT=78, 
+		OPERATORS_DECREMENT=79, OPERATORS_ADDITION=80, OPERATORS_SUBTRACTION=81, 
+		OPERATORS_MULTIPLICATION=82, OPERATORS_DIVISION=83, OPERATORS_MODULO=84, 
+		OPERATORS_ADDITIONANDASSIGNMENT=85, OPERATORS_SUBTRACTIONANDASSIGNMENT=86, 
+		OPERATORS_MULTIPLICATIONANDASSIGNMENT=87, OPERATORS_DIVISIONANDASSIGNMENT=88, 
+		OPERATORS_MODULOANDASSIGMENT=89, OPERATORS_LOGICALANDASSIGNMENT=90, OPERATORS_BITWISENOT=91, 
+		OPERATORS_BITWISEAND=92, OPERATORS_BITWISEOR=93, OPERATORS_BITWISEXOR=94, 
+		OPERATORS_BITWISEANDASSIGNMENT=95, OPERATORS_BITWISEXORASSIGNMENT=96, 
+		OPERATORS_BITWISEORASSIGNMENT=97, OPERATORS_SHIFTLEFT=98, OPERATORS_SHIFTRIGHT=99, 
+		OPERATORS_SHIFTRIGHTUNSIGNED=100, OPERATORS_SHIFTLEFTASSIGNMENT=101, OPERATORS_SHIFTRIGHTASSIGNMENT=102, 
+		OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT=103, SEPARATORS_PUNCTUATORS_SEMICOLON=104, 
+		SEPARATORS_PUNCTUATORS_COMMA=105, SEPARATORS_PUNCTUATORS_DOT=106, SEPARATORS_PUNCTUATORS_ESCAPECHARACTER=107, 
+		SEPARATORS_DELIMITERS_LEFTPARENTHESIS=108, SEPARATORS_DELIMITERS_RIGHTPARENTHESIS=109, 
+		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET=110, SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET=111, 
+		SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET=112, SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET=113, 
+		COMMENTS_LINE=114, COMMENTS_BLOCK_OPENING=115, COMMENTS_BLOCK_CLOSING=116;
 	public static final int
 		RULE_compilationUnit = 0, RULE_method = 1, RULE_methodPermissionModifier = 2, 
 		RULE_methodTypeModifier = 3, RULE_methodReturnType = 4, RULE_variableDeclaration = 5, 
@@ -84,46 +85,46 @@ public class JavaGrammarParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, null, null, null, null, null, "'@'", "'...'", "'abstract'", "'assert'", 
-		"'boolean'", "'break'", "'byte'", "'case'", "'catch'", "'char'", "'class'", 
-		"'const'", "'continue'", "'default'", "'do'", "'double'", "'else'", "'extends'", 
-		"'final'", "'finally'", "'float'", "'for'", "'goto'", "'if'", "'implements'", 
-		"'import'", "'instanceof'", "'int'", "'interface'", "'long'", "'native'", 
-		"'new'", "'package'", "'private'", "'protected'", "'public'", "'return'", 
-		"'short'", "'static'", "'strictfp'", "'String'", "'super'", "'synchronized'", 
-		"'switch'", "'this'", "'throw'", "'throws'", "'transient'", "'try'", "'void'", 
-		"'volatile'", "'while'", null, null, null, null, null, null, "'null'", 
-		"'?'", "':'", "'='", "'>'", "'<'", "'!'", "'<='", "'>='", "'=='", "'!='", 
-		"'&&'", "'||'", "'++'", "'--'", "'+'", "'-'", "'*'", "'/'", "'%'", "'+='", 
-		"'-='", "'*='", "'/='", "'%='", "'&&='", "'~'", "'&'", "'|'", "'^'", "'&='", 
-		"'^='", "'|='", "'<<'", "'>>'", "'>>>'", "'<<='", "'>>='", "'>>>='", "';'", 
-		"','", "'.'", "'\\'", "'('", "')'", "'{'", "'}'", "'['", "']'", "'//'", 
-		"'/*'", "'*/'"
+		null, null, null, null, null, null, "'@'", "'...'", "'Long'", "'String'", 
+		"'abstract'", "'assert'", "'boolean'", "'break'", "'byte'", "'case'", 
+		"'catch'", "'char'", "'class'", "'const'", "'continue'", "'default'", 
+		"'do'", "'double'", "'else'", "'extends'", "'final'", "'finally'", "'float'", 
+		"'for'", "'goto'", "'if'", "'implements'", "'import'", "'instanceof'", 
+		"'int'", "'interface'", "'long'", "'native'", "'new'", "'package'", "'private'", 
+		"'protected'", "'public'", "'return'", "'short'", "'static'", "'strictfp'", 
+		"'super'", "'synchronized'", "'switch'", "'this'", "'throw'", "'throws'", 
+		"'transient'", "'try'", "'void'", "'volatile'", "'while'", null, null, 
+		null, null, null, null, "'null'", "'?'", "':'", "'='", "'>'", "'<'", "'!'", 
+		"'<='", "'>='", "'=='", "'!='", "'&&'", "'||'", "'++'", "'--'", "'+'", 
+		"'-'", "'*'", "'/'", "'%'", "'+='", "'-='", "'*='", "'/='", "'%='", "'&&='", 
+		"'~'", "'&'", "'|'", "'^'", "'&='", "'^='", "'|='", "'<<'", "'>>'", "'>>>'", 
+		"'<<='", "'>>='", "'>>>='", "';'", "','", "'.'", "'\\'", "'('", "')'", 
+		"'{'", "'}'", "'['", "']'", "'//'", "'/*'", "'*/'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "WHITE_SPACES", "LINE_COMMENT", "NEW_LINE", "COMMENTS_BLOCK", "UNTERMINATED_STRING", 
-		"ADDITIONAL_LITERAL_AT", "ADDITIONAL_LITERAL_ELLIPSIS", "KEYWORDS_ABSTRACT", 
-		"KEYWORDS_ASSERT", "KEYWORDS_BOOLEAN", "KEYWORDS_BREAK", "KEYWORDS_BYTE", 
-		"KEYWORDS_CASE", "KEYWORDS_CATCH", "KEYWORDS_CHAR", "KEYWORDS_CLASS", 
-		"KEYWORDS_CONST", "KEYWORDS_CONTINUE", "KEYWORDS_DEFAULT", "KEYWORDS_DO", 
-		"KEYWORDS_DOUBLE", "KEYWORDS_ELSE", "KEYWORDS_EXTENDS", "KEYWORDS_FINAL", 
-		"KEYWORDS_FINALLY", "KEYWORDS_FLOAT", "KEYWORDS_FOR", "KEYWORDS_GOTO", 
-		"KEYWORDS_IF", "KEYWORDS_IMPLEMENTS", "KEYWORDS_IMPORT", "KEYWORDS_INSTANCEOF", 
-		"KEYWORDS_INT", "KEYWORDS_INTERFACE", "KEYWORDS_LONG", "KEYWORDS_NATIVE", 
-		"KEYWORDS_NEW", "KEYWORDS_PACKAGE", "KEYWORDS_PRIVATE", "KEYWORDS_PROTECTED", 
-		"KEYWORDS_PUBLIC", "KEYWORDS_RETURN", "KEYWORDS_SHORT", "KEYWORDS_STATIC", 
-		"KEYWORDS_STRICTFP", "KEYWORDS_STRING", "KEYWORDS_SUPER", "KEYWORDS_SYNCHRONIZED", 
-		"KEYWORDS_SWITCH", "KEYWORDS_THIS", "KEYWORDS_THROW", "KEYWORDS_THROWS", 
-		"KEYWORDS_TRANSIENT", "KEYWORDS_TRY", "KEYWORDS_VOID", "KEYWORDS_VOLATILE", 
-		"KEYWORDS_WHILE", "IDENTIFIERS", "LITERALS_NUMERIC_INT", "LITERALS_NUMERIC_DOUBLE", 
-		"LITERALS_LOGICAL_BOOLEAN", "LITERALS_TEXTUAL_CHAR", "LITERALS_TEXTUAL_STRING", 
-		"LITERALS_REFERENCE_NULL", "OPERATORS_IF", "OPERATORS_ELSE", "OPERATORS_ASSIGNMENT", 
-		"OPERATORS_GREATERTHAN", "OPERATORS_LESSTHAN", "OPERATORS_LOGICALNOT", 
-		"OPERATORS_LESSTHANOREQUAL", "OPERATORS_GREATERTHANOREQUAL", "OPERATORS_LOGICALEQUAL", 
-		"OPERATORS_LOGICALNOTEQUAL", "OPERATORS_LOGICALAND", "OPERATORS_LOGICALOR", 
-		"OPERATORS_INCREMENT", "OPERATORS_DECREMENT", "OPERATORS_ADDITION", "OPERATORS_SUBTRACTION", 
-		"OPERATORS_MULTIPLICATION", "OPERATORS_DIVISION", "OPERATORS_MODULO", 
-		"OPERATORS_ADDITIONANDASSIGNMENT", "OPERATORS_SUBTRACTIONANDASSIGNMENT", 
+		"ADDITIONAL_LITERAL_AT", "ADDITIONAL_LITERAL_ELLIPSIS", "KEYWORDS_CLASS_LONG", 
+		"KEYWORDS_CLASS_STRING", "KEYWORDS_ABSTRACT", "KEYWORDS_ASSERT", "KEYWORDS_BOOLEAN", 
+		"KEYWORDS_BREAK", "KEYWORDS_BYTE", "KEYWORDS_CASE", "KEYWORDS_CATCH", 
+		"KEYWORDS_CHAR", "KEYWORDS_CLASS", "KEYWORDS_CONST", "KEYWORDS_CONTINUE", 
+		"KEYWORDS_DEFAULT", "KEYWORDS_DO", "KEYWORDS_DOUBLE", "KEYWORDS_ELSE", 
+		"KEYWORDS_EXTENDS", "KEYWORDS_FINAL", "KEYWORDS_FINALLY", "KEYWORDS_FLOAT", 
+		"KEYWORDS_FOR", "KEYWORDS_GOTO", "KEYWORDS_IF", "KEYWORDS_IMPLEMENTS", 
+		"KEYWORDS_IMPORT", "KEYWORDS_INSTANCEOF", "KEYWORDS_INT", "KEYWORDS_INTERFACE", 
+		"KEYWORDS_LONG", "KEYWORDS_NATIVE", "KEYWORDS_NEW", "KEYWORDS_PACKAGE", 
+		"KEYWORDS_PRIVATE", "KEYWORDS_PROTECTED", "KEYWORDS_PUBLIC", "KEYWORDS_RETURN", 
+		"KEYWORDS_SHORT", "KEYWORDS_STATIC", "KEYWORDS_STRICTFP", "KEYWORDS_SUPER", 
+		"KEYWORDS_SYNCHRONIZED", "KEYWORDS_SWITCH", "KEYWORDS_THIS", "KEYWORDS_THROW", 
+		"KEYWORDS_THROWS", "KEYWORDS_TRANSIENT", "KEYWORDS_TRY", "KEYWORDS_VOID", 
+		"KEYWORDS_VOLATILE", "KEYWORDS_WHILE", "IDENTIFIERS", "LITERALS_NUMERIC_INT", 
+		"LITERALS_NUMERIC_DOUBLE", "LITERALS_LOGICAL_BOOLEAN", "LITERALS_TEXTUAL_CHAR", 
+		"LITERALS_TEXTUAL_STRING", "LITERALS_REFERENCE_NULL", "OPERATORS_IF", 
+		"OPERATORS_ELSE", "OPERATORS_ASSIGNMENT", "OPERATORS_GREATERTHAN", "OPERATORS_LESSTHAN", 
+		"OPERATORS_LOGICALNOT", "OPERATORS_LESSTHANOREQUAL", "OPERATORS_GREATERTHANOREQUAL", 
+		"OPERATORS_LOGICALEQUAL", "OPERATORS_LOGICALNOTEQUAL", "OPERATORS_LOGICALAND", 
+		"OPERATORS_LOGICALOR", "OPERATORS_INCREMENT", "OPERATORS_DECREMENT", "OPERATORS_ADDITION", 
+		"OPERATORS_SUBTRACTION", "OPERATORS_MULTIPLICATION", "OPERATORS_DIVISION", 
+		"OPERATORS_MODULO", "OPERATORS_ADDITIONANDASSIGNMENT", "OPERATORS_SUBTRACTIONANDASSIGNMENT", 
 		"OPERATORS_MULTIPLICATIONANDASSIGNMENT", "OPERATORS_DIVISIONANDASSIGNMENT", 
 		"OPERATORS_MODULOANDASSIGMENT", "OPERATORS_LOGICALANDASSIGNMENT", "OPERATORS_BITWISENOT", 
 		"OPERATORS_BITWISEAND", "OPERATORS_BITWISEOR", "OPERATORS_BITWISEXOR", 
@@ -217,7 +218,7 @@ public class JavaGrammarParser extends Parser {
 			setState(87);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_ABSTRACT) | (1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FINAL) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_NATIVE) | (1L << KEYWORDS_PRIVATE) | (1L << KEYWORDS_PROTECTED) | (1L << KEYWORDS_PUBLIC) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_STATIC) | (1L << KEYWORDS_STRICTFP) | (1L << KEYWORDS_STRING) | (1L << KEYWORDS_SYNCHRONIZED) | (1L << KEYWORDS_VOID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_CLASS_LONG) | (1L << KEYWORDS_CLASS_STRING) | (1L << KEYWORDS_ABSTRACT) | (1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FINAL) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_NATIVE) | (1L << KEYWORDS_PRIVATE) | (1L << KEYWORDS_PROTECTED) | (1L << KEYWORDS_PUBLIC) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_STATIC) | (1L << KEYWORDS_STRICTFP) | (1L << KEYWORDS_SYNCHRONIZED) | (1L << KEYWORDS_VOID))) != 0)) {
 				{
 				{
 				setState(84);
@@ -311,7 +312,7 @@ public class JavaGrammarParser extends Parser {
 			setState(100);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_STRING))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_CLASS_LONG) | (1L << KEYWORDS_CLASS_STRING) | (1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_SHORT))) != 0)) {
 				{
 				setState(99);
 				parameterList();
@@ -476,6 +477,8 @@ public class JavaGrammarParser extends Parser {
 			setState(113);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
+			case KEYWORDS_CLASS_LONG:
+			case KEYWORDS_CLASS_STRING:
 			case KEYWORDS_BOOLEAN:
 			case KEYWORDS_BYTE:
 			case KEYWORDS_CHAR:
@@ -484,7 +487,6 @@ public class JavaGrammarParser extends Parser {
 			case KEYWORDS_INT:
 			case KEYWORDS_LONG:
 			case KEYWORDS_SHORT:
-			case KEYWORDS_STRING:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(111);
@@ -694,6 +696,8 @@ public class JavaGrammarParser extends Parser {
 			setState(132);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
+			case KEYWORDS_CLASS_LONG:
+			case KEYWORDS_CLASS_STRING:
 			case KEYWORDS_BOOLEAN:
 			case KEYWORDS_BYTE:
 			case KEYWORDS_CHAR:
@@ -706,7 +710,6 @@ public class JavaGrammarParser extends Parser {
 			case KEYWORDS_LONG:
 			case KEYWORDS_RETURN:
 			case KEYWORDS_SHORT:
-			case KEYWORDS_STRING:
 			case KEYWORDS_WHILE:
 				enterOuterAlt(_localctx, 1);
 				{
@@ -772,7 +775,7 @@ public class JavaGrammarParser extends Parser {
 			{
 			setState(134);
 			_la = _input.LA(1);
-			if ( !(((((_la - 68)) & ~0x3f) == 0 && ((1L << (_la - 68)) & ((1L << (OPERATORS_GREATERTHAN - 68)) | (1L << (OPERATORS_LESSTHAN - 68)) | (1L << (OPERATORS_LESSTHANOREQUAL - 68)) | (1L << (OPERATORS_GREATERTHANOREQUAL - 68)) | (1L << (OPERATORS_LOGICALEQUAL - 68)))) != 0)) ) {
+			if ( !(((((_la - 69)) & ~0x3f) == 0 && ((1L << (_la - 69)) & ((1L << (OPERATORS_GREATERTHAN - 69)) | (1L << (OPERATORS_LESSTHAN - 69)) | (1L << (OPERATORS_LESSTHANOREQUAL - 69)) | (1L << (OPERATORS_GREATERTHANOREQUAL - 69)) | (1L << (OPERATORS_LOGICALEQUAL - 69)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1414,7 +1417,7 @@ public class JavaGrammarParser extends Parser {
 			setState(215);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DO) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_FOR) | (1L << KEYWORDS_IF) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_RETURN) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_STRING) | (1L << KEYWORDS_WHILE))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_CLASS_LONG) | (1L << KEYWORDS_CLASS_STRING) | (1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DO) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_FOR) | (1L << KEYWORDS_IF) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_RETURN) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_WHILE))) != 0)) {
 				{
 				{
 				setState(212);
@@ -1475,7 +1478,7 @@ public class JavaGrammarParser extends Parser {
 			setState(224);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BREAK) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_CONTINUE) | (1L << KEYWORDS_DO) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_FOR) | (1L << KEYWORDS_IF) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_RETURN) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_STRING) | (1L << KEYWORDS_WHILE))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_CLASS_LONG) | (1L << KEYWORDS_CLASS_STRING) | (1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BREAK) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_CONTINUE) | (1L << KEYWORDS_DO) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_FOR) | (1L << KEYWORDS_IF) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_RETURN) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_WHILE))) != 0)) {
 				{
 				{
 				setState(221);
@@ -1574,6 +1577,8 @@ public class JavaGrammarParser extends Parser {
 				block();
 				}
 				break;
+			case KEYWORDS_CLASS_LONG:
+			case KEYWORDS_CLASS_STRING:
 			case KEYWORDS_BOOLEAN:
 			case KEYWORDS_BYTE:
 			case KEYWORDS_CHAR:
@@ -1586,7 +1591,6 @@ public class JavaGrammarParser extends Parser {
 			case KEYWORDS_LONG:
 			case KEYWORDS_RETURN:
 			case KEYWORDS_SHORT:
-			case KEYWORDS_STRING:
 			case KEYWORDS_WHILE:
 				{
 				setState(234);
@@ -1622,6 +1626,8 @@ public class JavaGrammarParser extends Parser {
 						block();
 						}
 						break;
+					case KEYWORDS_CLASS_LONG:
+					case KEYWORDS_CLASS_STRING:
 					case KEYWORDS_BOOLEAN:
 					case KEYWORDS_BYTE:
 					case KEYWORDS_CHAR:
@@ -1634,7 +1640,6 @@ public class JavaGrammarParser extends Parser {
 					case KEYWORDS_LONG:
 					case KEYWORDS_RETURN:
 					case KEYWORDS_SHORT:
-					case KEYWORDS_STRING:
 					case KEYWORDS_WHILE:
 						{
 						setState(243);
@@ -1667,6 +1672,8 @@ public class JavaGrammarParser extends Parser {
 					block();
 					}
 					break;
+				case KEYWORDS_CLASS_LONG:
+				case KEYWORDS_CLASS_STRING:
 				case KEYWORDS_BOOLEAN:
 				case KEYWORDS_BYTE:
 				case KEYWORDS_CHAR:
@@ -1679,7 +1686,6 @@ public class JavaGrammarParser extends Parser {
 				case KEYWORDS_LONG:
 				case KEYWORDS_RETURN:
 				case KEYWORDS_SHORT:
-				case KEYWORDS_STRING:
 				case KEYWORDS_WHILE:
 					{
 					setState(253);
@@ -1750,6 +1756,8 @@ public class JavaGrammarParser extends Parser {
 				loopBlock();
 				}
 				break;
+			case KEYWORDS_CLASS_LONG:
+			case KEYWORDS_CLASS_STRING:
 			case KEYWORDS_BOOLEAN:
 			case KEYWORDS_BREAK:
 			case KEYWORDS_BYTE:
@@ -1764,7 +1772,6 @@ public class JavaGrammarParser extends Parser {
 			case KEYWORDS_LONG:
 			case KEYWORDS_RETURN:
 			case KEYWORDS_SHORT:
-			case KEYWORDS_STRING:
 			case KEYWORDS_WHILE:
 				{
 				setState(260);
@@ -1845,6 +1852,8 @@ public class JavaGrammarParser extends Parser {
 				loopBlock();
 				}
 				break;
+			case KEYWORDS_CLASS_LONG:
+			case KEYWORDS_CLASS_STRING:
 			case KEYWORDS_BOOLEAN:
 			case KEYWORDS_BREAK:
 			case KEYWORDS_BYTE:
@@ -1859,7 +1868,6 @@ public class JavaGrammarParser extends Parser {
 			case KEYWORDS_LONG:
 			case KEYWORDS_RETURN:
 			case KEYWORDS_SHORT:
-			case KEYWORDS_STRING:
 			case KEYWORDS_WHILE:
 				{
 				setState(273);
@@ -1918,7 +1926,7 @@ public class JavaGrammarParser extends Parser {
 			{
 			setState(276);
 			_la = _input.LA(1);
-			if ( !(((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (OPERATORS_ASSIGNMENT - 67)) | (1L << (OPERATORS_ADDITIONANDASSIGNMENT - 67)) | (1L << (OPERATORS_SUBTRACTIONANDASSIGNMENT - 67)) | (1L << (OPERATORS_MULTIPLICATIONANDASSIGNMENT - 67)) | (1L << (OPERATORS_DIVISIONANDASSIGNMENT - 67)) | (1L << (OPERATORS_MODULOANDASSIGMENT - 67)) | (1L << (OPERATORS_BITWISEANDASSIGNMENT - 67)) | (1L << (OPERATORS_BITWISEXORASSIGNMENT - 67)) | (1L << (OPERATORS_BITWISEORASSIGNMENT - 67)) | (1L << (OPERATORS_SHIFTLEFTASSIGNMENT - 67)) | (1L << (OPERATORS_SHIFTRIGHTASSIGNMENT - 67)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT - 67)))) != 0)) ) {
+			if ( !(((((_la - 68)) & ~0x3f) == 0 && ((1L << (_la - 68)) & ((1L << (OPERATORS_ASSIGNMENT - 68)) | (1L << (OPERATORS_ADDITIONANDASSIGNMENT - 68)) | (1L << (OPERATORS_SUBTRACTIONANDASSIGNMENT - 68)) | (1L << (OPERATORS_MULTIPLICATIONANDASSIGNMENT - 68)) | (1L << (OPERATORS_DIVISIONANDASSIGNMENT - 68)) | (1L << (OPERATORS_MODULOANDASSIGMENT - 68)) | (1L << (OPERATORS_BITWISEANDASSIGNMENT - 68)) | (1L << (OPERATORS_BITWISEXORASSIGNMENT - 68)) | (1L << (OPERATORS_BITWISEORASSIGNMENT - 68)) | (1L << (OPERATORS_SHIFTLEFTASSIGNMENT - 68)) | (1L << (OPERATORS_SHIFTRIGHTASSIGNMENT - 68)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT - 68)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2259,7 +2267,7 @@ public class JavaGrammarParser extends Parser {
 				setState(312);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_STRING) | (1L << IDENTIFIERS))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_CLASS_LONG) | (1L << KEYWORDS_CLASS_STRING) | (1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_SHORT) | (1L << IDENTIFIERS))) != 0)) {
 					{
 					setState(311);
 					forInit();
@@ -2271,7 +2279,7 @@ public class JavaGrammarParser extends Parser {
 				setState(316);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (((((_la - 58)) & ~0x3f) == 0 && ((1L << (_la - 58)) & ((1L << (IDENTIFIERS - 58)) | (1L << (LITERALS_NUMERIC_INT - 58)) | (1L << (LITERALS_NUMERIC_DOUBLE - 58)) | (1L << (LITERALS_LOGICAL_BOOLEAN - 58)) | (1L << (OPERATORS_SUBTRACTION - 58)) | (1L << (SEPARATORS_DELIMITERS_LEFTPARENTHESIS - 58)))) != 0)) {
+				if (((((_la - 59)) & ~0x3f) == 0 && ((1L << (_la - 59)) & ((1L << (IDENTIFIERS - 59)) | (1L << (LITERALS_NUMERIC_INT - 59)) | (1L << (LITERALS_NUMERIC_DOUBLE - 59)) | (1L << (LITERALS_LOGICAL_BOOLEAN - 59)) | (1L << (OPERATORS_SUBTRACTION - 59)) | (1L << (SEPARATORS_DELIMITERS_LEFTPARENTHESIS - 59)))) != 0)) {
 					{
 					setState(315);
 					logicalExpression(0);
@@ -2301,6 +2309,8 @@ public class JavaGrammarParser extends Parser {
 					loopBlock();
 					}
 					break;
+				case KEYWORDS_CLASS_LONG:
+				case KEYWORDS_CLASS_STRING:
 				case KEYWORDS_BOOLEAN:
 				case KEYWORDS_BREAK:
 				case KEYWORDS_BYTE:
@@ -2315,7 +2325,6 @@ public class JavaGrammarParser extends Parser {
 				case KEYWORDS_LONG:
 				case KEYWORDS_RETURN:
 				case KEYWORDS_SHORT:
-				case KEYWORDS_STRING:
 				case KEYWORDS_WHILE:
 					{
 					setState(324);
@@ -2698,6 +2707,8 @@ public class JavaGrammarParser extends Parser {
 				block();
 				}
 				break;
+			case KEYWORDS_CLASS_LONG:
+			case KEYWORDS_CLASS_STRING:
 			case KEYWORDS_BOOLEAN:
 			case KEYWORDS_BYTE:
 			case KEYWORDS_CHAR:
@@ -2710,7 +2721,6 @@ public class JavaGrammarParser extends Parser {
 			case KEYWORDS_LONG:
 			case KEYWORDS_RETURN:
 			case KEYWORDS_SHORT:
-			case KEYWORDS_STRING:
 			case KEYWORDS_WHILE:
 				{
 				setState(390);
@@ -2765,7 +2775,7 @@ public class JavaGrammarParser extends Parser {
 			setState(395);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (((((_la - 58)) & ~0x3f) == 0 && ((1L << (_la - 58)) & ((1L << (IDENTIFIERS - 58)) | (1L << (LITERALS_NUMERIC_INT - 58)) | (1L << (LITERALS_NUMERIC_DOUBLE - 58)) | (1L << (LITERALS_LOGICAL_BOOLEAN - 58)) | (1L << (OPERATORS_INCREMENT - 58)) | (1L << (OPERATORS_DECREMENT - 58)) | (1L << (OPERATORS_SUBTRACTION - 58)) | (1L << (SEPARATORS_DELIMITERS_LEFTPARENTHESIS - 58)))) != 0)) {
+			if (((((_la - 59)) & ~0x3f) == 0 && ((1L << (_la - 59)) & ((1L << (IDENTIFIERS - 59)) | (1L << (LITERALS_NUMERIC_INT - 59)) | (1L << (LITERALS_NUMERIC_DOUBLE - 59)) | (1L << (LITERALS_LOGICAL_BOOLEAN - 59)) | (1L << (OPERATORS_INCREMENT - 59)) | (1L << (OPERATORS_DECREMENT - 59)) | (1L << (OPERATORS_SUBTRACTION - 59)) | (1L << (SEPARATORS_DELIMITERS_LEFTPARENTHESIS - 59)))) != 0)) {
 				{
 				setState(394);
 				expression();
@@ -3001,7 +3011,7 @@ public class JavaGrammarParser extends Parser {
 			{
 			setState(420);
 			_la = _input.LA(1);
-			if ( !(((((_la - 90)) & ~0x3f) == 0 && ((1L << (_la - 90)) & ((1L << (OPERATORS_BITWISENOT - 90)) | (1L << (OPERATORS_BITWISEAND - 90)) | (1L << (OPERATORS_BITWISEOR - 90)) | (1L << (OPERATORS_BITWISEXOR - 90)) | (1L << (OPERATORS_BITWISEANDASSIGNMENT - 90)) | (1L << (OPERATORS_BITWISEXORASSIGNMENT - 90)) | (1L << (OPERATORS_BITWISEORASSIGNMENT - 90)) | (1L << (OPERATORS_SHIFTLEFT - 90)) | (1L << (OPERATORS_SHIFTRIGHT - 90)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNED - 90)) | (1L << (OPERATORS_SHIFTLEFTASSIGNMENT - 90)) | (1L << (OPERATORS_SHIFTRIGHTASSIGNMENT - 90)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT - 90)))) != 0)) ) {
+			if ( !(((((_la - 91)) & ~0x3f) == 0 && ((1L << (_la - 91)) & ((1L << (OPERATORS_BITWISENOT - 91)) | (1L << (OPERATORS_BITWISEAND - 91)) | (1L << (OPERATORS_BITWISEOR - 91)) | (1L << (OPERATORS_BITWISEXOR - 91)) | (1L << (OPERATORS_BITWISEANDASSIGNMENT - 91)) | (1L << (OPERATORS_BITWISEXORASSIGNMENT - 91)) | (1L << (OPERATORS_BITWISEORASSIGNMENT - 91)) | (1L << (OPERATORS_SHIFTLEFT - 91)) | (1L << (OPERATORS_SHIFTRIGHT - 91)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNED - 91)) | (1L << (OPERATORS_SHIFTLEFTASSIGNMENT - 91)) | (1L << (OPERATORS_SHIFTRIGHTASSIGNMENT - 91)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT - 91)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3091,7 +3101,7 @@ public class JavaGrammarParser extends Parser {
 				setState(428); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( ((((_la - 90)) & ~0x3f) == 0 && ((1L << (_la - 90)) & ((1L << (OPERATORS_BITWISENOT - 90)) | (1L << (OPERATORS_BITWISEAND - 90)) | (1L << (OPERATORS_BITWISEOR - 90)) | (1L << (OPERATORS_BITWISEXOR - 90)) | (1L << (OPERATORS_BITWISEANDASSIGNMENT - 90)) | (1L << (OPERATORS_BITWISEXORASSIGNMENT - 90)) | (1L << (OPERATORS_BITWISEORASSIGNMENT - 90)) | (1L << (OPERATORS_SHIFTLEFT - 90)) | (1L << (OPERATORS_SHIFTRIGHT - 90)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNED - 90)) | (1L << (OPERATORS_SHIFTLEFTASSIGNMENT - 90)) | (1L << (OPERATORS_SHIFTRIGHTASSIGNMENT - 90)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT - 90)))) != 0) );
+			} while ( ((((_la - 91)) & ~0x3f) == 0 && ((1L << (_la - 91)) & ((1L << (OPERATORS_BITWISENOT - 91)) | (1L << (OPERATORS_BITWISEAND - 91)) | (1L << (OPERATORS_BITWISEOR - 91)) | (1L << (OPERATORS_BITWISEXOR - 91)) | (1L << (OPERATORS_BITWISEANDASSIGNMENT - 91)) | (1L << (OPERATORS_BITWISEXORASSIGNMENT - 91)) | (1L << (OPERATORS_BITWISEORASSIGNMENT - 91)) | (1L << (OPERATORS_SHIFTLEFT - 91)) | (1L << (OPERATORS_SHIFTRIGHT - 91)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNED - 91)) | (1L << (OPERATORS_SHIFTLEFTASSIGNMENT - 91)) | (1L << (OPERATORS_SHIFTRIGHTASSIGNMENT - 91)) | (1L << (OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT - 91)))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -3106,7 +3116,7 @@ public class JavaGrammarParser extends Parser {
 	}
 
 	public static class StringNullAssignmentContext extends ParserRuleContext {
-		public TerminalNode KEYWORDS_STRING() { return getToken(JavaGrammarParser.KEYWORDS_STRING, 0); }
+		public TerminalNode KEYWORDS_CLASS_STRING() { return getToken(JavaGrammarParser.KEYWORDS_CLASS_STRING, 0); }
 		public TerminalNode IDENTIFIERS() { return getToken(JavaGrammarParser.IDENTIFIERS, 0); }
 		public TerminalNode OPERATORS_ASSIGNMENT() { return getToken(JavaGrammarParser.OPERATORS_ASSIGNMENT, 0); }
 		public TerminalNode LITERALS_REFERENCE_NULL() { return getToken(JavaGrammarParser.LITERALS_REFERENCE_NULL, 0); }
@@ -3131,7 +3141,7 @@ public class JavaGrammarParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(430);
-			match(KEYWORDS_STRING);
+			match(KEYWORDS_CLASS_STRING);
 			setState(431);
 			match(IDENTIFIERS);
 			setState(432);
@@ -3390,7 +3400,8 @@ public class JavaGrammarParser extends Parser {
 		public TerminalNode KEYWORDS_LONG() { return getToken(JavaGrammarParser.KEYWORDS_LONG, 0); }
 		public TerminalNode KEYWORDS_FLOAT() { return getToken(JavaGrammarParser.KEYWORDS_FLOAT, 0); }
 		public TerminalNode KEYWORDS_DOUBLE() { return getToken(JavaGrammarParser.KEYWORDS_DOUBLE, 0); }
-		public TerminalNode KEYWORDS_STRING() { return getToken(JavaGrammarParser.KEYWORDS_STRING, 0); }
+		public TerminalNode KEYWORDS_CLASS_STRING() { return getToken(JavaGrammarParser.KEYWORDS_CLASS_STRING, 0); }
+		public TerminalNode KEYWORDS_CLASS_LONG() { return getToken(JavaGrammarParser.KEYWORDS_CLASS_LONG, 0); }
 		public KeywordsTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3414,7 +3425,7 @@ public class JavaGrammarParser extends Parser {
 			{
 			setState(457);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_SHORT) | (1L << KEYWORDS_STRING))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORDS_CLASS_LONG) | (1L << KEYWORDS_CLASS_STRING) | (1L << KEYWORDS_BOOLEAN) | (1L << KEYWORDS_BYTE) | (1L << KEYWORDS_CHAR) | (1L << KEYWORDS_DOUBLE) | (1L << KEYWORDS_FLOAT) | (1L << KEYWORDS_INT) | (1L << KEYWORDS_LONG) | (1L << KEYWORDS_SHORT))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3472,7 +3483,7 @@ public class JavaGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3u\u01ce\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3v\u01ce\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -3509,12 +3520,12 @@ public class JavaGrammarParser extends Parser {
 		"\n$\r$\16$\u01ae\3%\3%\3%\3%\3%\3&\3&\3&\3\'\3\'\3\'\3(\3(\3(\3)\3)\3"+
 		")\3*\3*\3*\3*\5*\u01c6\n*\3*\3*\5*\u01ca\n*\3+\3+\3+\2\4\34 ,\2\4\6\b"+
 		"\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRT\2"+
-		"\13\3\2)+\7\2\n\n\32\32&&./\62\62\4\2FGIK\3\2=>\3\2??\6\2EEVZ`bfh\3\2"+
-		"\\h\3\2<=\13\2\f\f\16\16\21\21\27\27\34\34##%%--\60\60\2\u01f0\2Y\3\2"+
-		"\2\2\4]\3\2\2\2\6m\3\2\2\2\bo\3\2\2\2\ns\3\2\2\2\fu\3\2\2\2\16\u0081\3"+
-		"\2\2\2\20\u0086\3\2\2\2\22\u0088\3\2\2\2\24\u008a\3\2\2\2\26\u008e\3\2"+
-		"\2\2\30\u0090\3\2\2\2\32\u0094\3\2\2\2\34\u009e\3\2\2\2\36\u00b9\3\2\2"+
-		"\2 \u00c2\3\2\2\2\"\u00d5\3\2\2\2$\u00de\3\2\2\2&\u00e7\3\2\2\2(\u0104"+
+		"\13\3\2+-\7\2\f\f\34\34((\60\61\63\63\4\2GHJL\3\2>?\3\2@@\6\2FFW[acgi"+
+		"\3\2]i\3\2=>\13\2\n\13\16\16\20\20\23\23\31\31\36\36%%\'\'//\2\u01f0\2"+
+		"Y\3\2\2\2\4]\3\2\2\2\6m\3\2\2\2\bo\3\2\2\2\ns\3\2\2\2\fu\3\2\2\2\16\u0081"+
+		"\3\2\2\2\20\u0086\3\2\2\2\22\u0088\3\2\2\2\24\u008a\3\2\2\2\26\u008e\3"+
+		"\2\2\2\30\u0090\3\2\2\2\32\u0094\3\2\2\2\34\u009e\3\2\2\2\36\u00b9\3\2"+
+		"\2\2 \u00c2\3\2\2\2\"\u00d5\3\2\2\2$\u00de\3\2\2\2&\u00e7\3\2\2\2(\u0104"+
 		"\3\2\2\2*\u010e\3\2\2\2,\u0116\3\2\2\2.\u011f\3\2\2\2\60\u0121\3\2\2\2"+
 		"\62\u0134\3\2\2\2\64\u0149\3\2\2\2\66\u0172\3\2\2\28\u0175\3\2\2\2:\u0180"+
 		"\3\2\2\2<\u018b\3\2\2\2>\u0191\3\2\2\2@\u0197\3\2\2\2B\u019d\3\2\2\2D"+
@@ -3522,121 +3533,121 @@ public class JavaGrammarParser extends Parser {
 		"\2\2N\u01bb\3\2\2\2P\u01be\3\2\2\2R\u01c9\3\2\2\2T\u01cb\3\2\2\2VX\5\4"+
 		"\3\2WV\3\2\2\2X[\3\2\2\2YW\3\2\2\2YZ\3\2\2\2Z\3\3\2\2\2[Y\3\2\2\2\\^\5"+
 		"\6\4\2]\\\3\2\2\2]^\3\2\2\2^`\3\2\2\2_a\5\b\5\2`_\3\2\2\2`a\3\2\2\2ab"+
-		"\3\2\2\2bc\5\n\6\2cd\7<\2\2df\7m\2\2eg\5B\"\2fe\3\2\2\2fg\3\2\2\2gh\3"+
-		"\2\2\2hk\7n\2\2il\5\"\22\2jl\7i\2\2ki\3\2\2\2kj\3\2\2\2l\5\3\2\2\2mn\t"+
-		"\2\2\2n\7\3\2\2\2op\t\3\2\2p\t\3\2\2\2qt\5R*\2rt\79\2\2sq\3\2\2\2sr\3"+
-		"\2\2\2t\13\3\2\2\2uv\5R*\2vw\7<\2\2w\r\3\2\2\2xy\5\f\7\2yz\7i\2\2z\u0082"+
+		"\3\2\2\2bc\5\n\6\2cd\7=\2\2df\7n\2\2eg\5B\"\2fe\3\2\2\2fg\3\2\2\2gh\3"+
+		"\2\2\2hk\7o\2\2il\5\"\22\2jl\7j\2\2ki\3\2\2\2kj\3\2\2\2l\5\3\2\2\2mn\t"+
+		"\2\2\2n\7\3\2\2\2op\t\3\2\2p\t\3\2\2\2qt\5R*\2rt\7:\2\2sq\3\2\2\2sr\3"+
+		"\2\2\2t\13\3\2\2\2uv\5R*\2vw\7=\2\2w\r\3\2\2\2xy\5\f\7\2yz\7j\2\2z\u0082"+
 		"\3\2\2\2{\u0082\5&\24\2|\u0082\5*\26\2}\u0082\5(\25\2~\u0082\5\64\33\2"+
 		"\177\u0082\5:\36\2\u0080\u0082\5<\37\2\u0081x\3\2\2\2\u0081{\3\2\2\2\u0081"+
 		"|\3\2\2\2\u0081}\3\2\2\2\u0081~\3\2\2\2\u0081\177\3\2\2\2\u0081\u0080"+
 		"\3\2\2\2\u0082\17\3\2\2\2\u0083\u0087\5\16\b\2\u0084\u0087\5> \2\u0085"+
 		"\u0087\5@!\2\u0086\u0083\3\2\2\2\u0086\u0084\3\2\2\2\u0086\u0085\3\2\2"+
 		"\2\u0087\21\3\2\2\2\u0088\u0089\t\4\2\2\u0089\23\3\2\2\2\u008a\u008b\t"+
-		"\5\2\2\u008b\25\3\2\2\2\u008c\u008f\5\24\13\2\u008d\u008f\7<\2\2\u008e"+
+		"\5\2\2\u008b\25\3\2\2\2\u008c\u008f\5\24\13\2\u008d\u008f\7=\2\2\u008e"+
 		"\u008c\3\2\2\2\u008e\u008d\3\2\2\2\u008f\27\3\2\2\2\u0090\u0091\t\6\2"+
-		"\2\u0091\31\3\2\2\2\u0092\u0095\5\30\r\2\u0093\u0095\7<\2\2\u0094\u0092"+
+		"\2\u0091\31\3\2\2\2\u0092\u0095\5\30\r\2\u0093\u0095\7=\2\2\u0094\u0092"+
 		"\3\2\2\2\u0094\u0093\3\2\2\2\u0095\33\3\2\2\2\u0096\u0097\b\17\1\2\u0097"+
-		"\u0098\7R\2\2\u0098\u009f\5\34\17\t\u0099\u009a\7m\2\2\u009a\u009b\5\34"+
-		"\17\2\u009b\u009c\7n\2\2\u009c\u009f\3\2\2\2\u009d\u009f\5\26\f\2\u009e"+
+		"\u0098\7S\2\2\u0098\u009f\5\34\17\t\u0099\u009a\7n\2\2\u009a\u009b\5\34"+
+		"\17\2\u009b\u009c\7o\2\2\u009c\u009f\3\2\2\2\u009d\u009f\5\26\f\2\u009e"+
 		"\u0096\3\2\2\2\u009e\u0099\3\2\2\2\u009e\u009d\3\2\2\2\u009f\u00ae\3\2"+
-		"\2\2\u00a0\u00a1\f\b\2\2\u00a1\u00a2\7S\2\2\u00a2\u00ad\5\34\17\t\u00a3"+
-		"\u00a4\f\7\2\2\u00a4\u00a5\7T\2\2\u00a5\u00ad\5\34\17\b\u00a6\u00a7\f"+
-		"\6\2\2\u00a7\u00a8\7Q\2\2\u00a8\u00ad\5\34\17\7\u00a9\u00aa\f\5\2\2\u00aa"+
-		"\u00ab\7R\2\2\u00ab\u00ad\5\34\17\6\u00ac\u00a0\3\2\2\2\u00ac\u00a3\3"+
+		"\2\2\u00a0\u00a1\f\b\2\2\u00a1\u00a2\7T\2\2\u00a2\u00ad\5\34\17\t\u00a3"+
+		"\u00a4\f\7\2\2\u00a4\u00a5\7U\2\2\u00a5\u00ad\5\34\17\b\u00a6\u00a7\f"+
+		"\6\2\2\u00a7\u00a8\7R\2\2\u00a8\u00ad\5\34\17\7\u00a9\u00aa\f\5\2\2\u00aa"+
+		"\u00ab\7S\2\2\u00ab\u00ad\5\34\17\6\u00ac\u00a0\3\2\2\2\u00ac\u00a3\3"+
 		"\2\2\2\u00ac\u00a6\3\2\2\2\u00ac\u00a9\3\2\2\2\u00ad\u00b0\3\2\2\2\u00ae"+
 		"\u00ac\3\2\2\2\u00ae\u00af\3\2\2\2\u00af\35\3\2\2\2\u00b0\u00ae\3\2\2"+
 		"\2\u00b1\u00b2\5\34\17\2\u00b2\u00b3\5\22\n\2\u00b3\u00b4\5\34\17\2\u00b4"+
-		"\u00ba\3\2\2\2\u00b5\u00b6\7m\2\2\u00b6\u00b7\5\36\20\2\u00b7\u00b8\7"+
-		"n\2\2\u00b8\u00ba\3\2\2\2\u00b9\u00b1\3\2\2\2\u00b9\u00b5\3\2\2\2\u00ba"+
-		"\37\3\2\2\2\u00bb\u00bc\b\21\1\2\u00bc\u00c3\5\36\20\2\u00bd\u00be\7m"+
-		"\2\2\u00be\u00bf\5 \21\2\u00bf\u00c0\7n\2\2\u00c0\u00c3\3\2\2\2\u00c1"+
+		"\u00ba\3\2\2\2\u00b5\u00b6\7n\2\2\u00b6\u00b7\5\36\20\2\u00b7\u00b8\7"+
+		"o\2\2\u00b8\u00ba\3\2\2\2\u00b9\u00b1\3\2\2\2\u00b9\u00b5\3\2\2\2\u00ba"+
+		"\37\3\2\2\2\u00bb\u00bc\b\21\1\2\u00bc\u00c3\5\36\20\2\u00bd\u00be\7n"+
+		"\2\2\u00be\u00bf\5 \21\2\u00bf\u00c0\7o\2\2\u00c0\u00c3\3\2\2\2\u00c1"+
 		"\u00c3\5\32\16\2\u00c2\u00bb\3\2\2\2\u00c2\u00bd\3\2\2\2\u00c2\u00c1\3"+
-		"\2\2\2\u00c3\u00d2\3\2\2\2\u00c4\u00c5\f\t\2\2\u00c5\u00c6\7M\2\2\u00c6"+
-		"\u00d1\5 \21\n\u00c7\u00c8\f\b\2\2\u00c8\u00c9\7N\2\2\u00c9\u00d1\5 \21"+
-		"\t\u00ca\u00cb\f\7\2\2\u00cb\u00cc\7]\2\2\u00cc\u00d1\5 \21\b\u00cd\u00ce"+
-		"\f\6\2\2\u00ce\u00cf\7^\2\2\u00cf\u00d1\5 \21\7\u00d0\u00c4\3\2\2\2\u00d0"+
+		"\2\2\2\u00c3\u00d2\3\2\2\2\u00c4\u00c5\f\t\2\2\u00c5\u00c6\7N\2\2\u00c6"+
+		"\u00d1\5 \21\n\u00c7\u00c8\f\b\2\2\u00c8\u00c9\7O\2\2\u00c9\u00d1\5 \21"+
+		"\t\u00ca\u00cb\f\7\2\2\u00cb\u00cc\7^\2\2\u00cc\u00d1\5 \21\b\u00cd\u00ce"+
+		"\f\6\2\2\u00ce\u00cf\7_\2\2\u00cf\u00d1\5 \21\7\u00d0\u00c4\3\2\2\2\u00d0"+
 		"\u00c7\3\2\2\2\u00d0\u00ca\3\2\2\2\u00d0\u00cd\3\2\2\2\u00d1\u00d4\3\2"+
 		"\2\2\u00d2\u00d0\3\2\2\2\u00d2\u00d3\3\2\2\2\u00d3!\3\2\2\2\u00d4\u00d2"+
-		"\3\2\2\2\u00d5\u00d9\7o\2\2\u00d6\u00d8\5\16\b\2\u00d7\u00d6\3\2\2\2\u00d8"+
+		"\3\2\2\2\u00d5\u00d9\7p\2\2\u00d6\u00d8\5\16\b\2\u00d7\u00d6\3\2\2\2\u00d8"+
 		"\u00db\3\2\2\2\u00d9\u00d7\3\2\2\2\u00d9\u00da\3\2\2\2\u00da\u00dc\3\2"+
-		"\2\2\u00db\u00d9\3\2\2\2\u00dc\u00dd\7p\2\2\u00dd#\3\2\2\2\u00de\u00e2"+
-		"\7o\2\2\u00df\u00e1\5\20\t\2\u00e0\u00df\3\2\2\2\u00e1\u00e4\3\2\2\2\u00e2"+
+		"\2\2\u00db\u00d9\3\2\2\2\u00dc\u00dd\7q\2\2\u00dd#\3\2\2\2\u00de\u00e2"+
+		"\7p\2\2\u00df\u00e1\5\20\t\2\u00e0\u00df\3\2\2\2\u00e1\u00e4\3\2\2\2\u00e2"+
 		"\u00e0\3\2\2\2\u00e2\u00e3\3\2\2\2\u00e3\u00e5\3\2\2\2\u00e4\u00e2\3\2"+
-		"\2\2\u00e5\u00e6\7p\2\2\u00e6%\3\2\2\2\u00e7\u00e8\7\37\2\2\u00e8\u00e9"+
-		"\7m\2\2\u00e9\u00ea\5 \21\2\u00ea\u00ed\7n\2\2\u00eb\u00ee\5\"\22\2\u00ec"+
+		"\2\2\u00e5\u00e6\7q\2\2\u00e6%\3\2\2\2\u00e7\u00e8\7!\2\2\u00e8\u00e9"+
+		"\7n\2\2\u00e9\u00ea\5 \21\2\u00ea\u00ed\7o\2\2\u00eb\u00ee\5\"\22\2\u00ec"+
 		"\u00ee\5\16\b\2\u00ed\u00eb\3\2\2\2\u00ed\u00ec\3\2\2\2\u00ee\u00fa\3"+
-		"\2\2\2\u00ef\u00f0\7\30\2\2\u00f0\u00f1\7\37\2\2\u00f1\u00f2\7m\2\2\u00f2"+
-		"\u00f3\5 \21\2\u00f3\u00f6\7n\2\2\u00f4\u00f7\5\"\22\2\u00f5\u00f7\5\16"+
+		"\2\2\2\u00ef\u00f0\7\32\2\2\u00f0\u00f1\7!\2\2\u00f1\u00f2\7n\2\2\u00f2"+
+		"\u00f3\5 \21\2\u00f3\u00f6\7o\2\2\u00f4\u00f7\5\"\22\2\u00f5\u00f7\5\16"+
 		"\b\2\u00f6\u00f4\3\2\2\2\u00f6\u00f5\3\2\2\2\u00f7\u00f9\3\2\2\2\u00f8"+
 		"\u00ef\3\2\2\2\u00f9\u00fc\3\2\2\2\u00fa\u00f8\3\2\2\2\u00fa\u00fb\3\2"+
-		"\2\2\u00fb\u0102\3\2\2\2\u00fc\u00fa\3\2\2\2\u00fd\u0100\7\30\2\2\u00fe"+
+		"\2\2\u00fb\u0102\3\2\2\2\u00fc\u00fa\3\2\2\2\u00fd\u0100\7\32\2\2\u00fe"+
 		"\u0101\5\"\22\2\u00ff\u0101\5\16\b\2\u0100\u00fe\3\2\2\2\u0100\u00ff\3"+
 		"\2\2\2\u0101\u0103\3\2\2\2\u0102\u00fd\3\2\2\2\u0102\u0103\3\2\2\2\u0103"+
-		"\'\3\2\2\2\u0104\u0107\7\26\2\2\u0105\u0108\5$\23\2\u0106\u0108\5\20\t"+
+		"\'\3\2\2\2\u0104\u0107\7\30\2\2\u0105\u0108\5$\23\2\u0106\u0108\5\20\t"+
 		"\2\u0107\u0105\3\2\2\2\u0107\u0106\3\2\2\2\u0108\u0109\3\2\2\2\u0109\u010a"+
-		"\7;\2\2\u010a\u010b\7m\2\2\u010b\u010c\5 \21\2\u010c\u010d\7n\2\2\u010d"+
-		")\3\2\2\2\u010e\u010f\7;\2\2\u010f\u0110\7m\2\2\u0110\u0111\5 \21\2\u0111"+
-		"\u0114\7n\2\2\u0112\u0115\5$\23\2\u0113\u0115\5\20\t\2\u0114\u0112\3\2"+
+		"\7<\2\2\u010a\u010b\7n\2\2\u010b\u010c\5 \21\2\u010c\u010d\7o\2\2\u010d"+
+		")\3\2\2\2\u010e\u010f\7<\2\2\u010f\u0110\7n\2\2\u0110\u0111\5 \21\2\u0111"+
+		"\u0114\7o\2\2\u0112\u0115\5$\23\2\u0113\u0115\5\20\t\2\u0114\u0112\3\2"+
 		"\2\2\u0114\u0113\3\2\2\2\u0115+\3\2\2\2\u0116\u0117\t\7\2\2\u0117-\3\2"+
 		"\2\2\u0118\u0120\5\34\17\2\u0119\u0120\5 \21\2\u011a\u0120\5\62\32\2\u011b"+
 		"\u0120\5J&\2\u011c\u0120\5L\'\2\u011d\u0120\5N(\2\u011e\u0120\5P)\2\u011f"+
 		"\u0118\3\2\2\2\u011f\u0119\3\2\2\2\u011f\u011a\3\2\2\2\u011f\u011b\3\2"+
 		"\2\2\u011f\u011c\3\2\2\2\u011f\u011d\3\2\2\2\u011f\u011e\3\2\2\2\u0120"+
-		"/\3\2\2\2\u0121\u0122\5\62\32\2\u0122\u0123\7i\2\2\u0123\61\3\2\2\2\u0124"+
-		"\u0125\7<\2\2\u0125\u0128\5,\27\2\u0126\u0129\7<\2\2\u0127\u0129\5.\30"+
+		"/\3\2\2\2\u0121\u0122\5\62\32\2\u0122\u0123\7j\2\2\u0123\61\3\2\2\2\u0124"+
+		"\u0125\7=\2\2\u0125\u0128\5,\27\2\u0126\u0129\7=\2\2\u0127\u0129\5.\30"+
 		"\2\u0128\u0126\3\2\2\2\u0128\u0127\3\2\2\2\u0129\u0135\3\2\2\2\u012a\u012d"+
-		"\7<\2\2\u012b\u012c\7E\2\2\u012c\u012e\7<\2\2\u012d\u012b\3\2\2\2\u012e"+
+		"\7=\2\2\u012b\u012c\7F\2\2\u012c\u012e\7=\2\2\u012d\u012b\3\2\2\2\u012e"+
 		"\u012f\3\2\2\2\u012f\u012d\3\2\2\2\u012f\u0130\3\2\2\2\u0130\u0132\3\2"+
 		"\2\2\u0131\u0133\5.\30\2\u0132\u0131\3\2\2\2\u0132\u0133\3\2\2\2\u0133"+
 		"\u0135\3\2\2\2\u0134\u0124\3\2\2\2\u0134\u012a\3\2\2\2\u0135\63\3\2\2"+
-		"\2\u0136\u014a\5:\36\2\u0137\u0138\7\35\2\2\u0138\u013a\7m\2\2\u0139\u013b"+
+		"\2\u0136\u014a\5:\36\2\u0137\u0138\7\37\2\2\u0138\u013a\7n\2\2\u0139\u013b"+
 		"\5\66\34\2\u013a\u0139\3\2\2\2\u013a\u013b\3\2\2\2\u013b\u013c\3\2\2\2"+
-		"\u013c\u013e\7i\2\2\u013d\u013f\5 \21\2\u013e\u013d\3\2\2\2\u013e\u013f"+
-		"\3\2\2\2\u013f\u0140\3\2\2\2\u0140\u0142\7i\2\2\u0141\u0143\58\35\2\u0142"+
-		"\u0141\3\2\2\2\u0142\u0143\3\2\2\2\u0143\u0144\3\2\2\2\u0144\u0147\7n"+
+		"\u013c\u013e\7j\2\2\u013d\u013f\5 \21\2\u013e\u013d\3\2\2\2\u013e\u013f"+
+		"\3\2\2\2\u013f\u0140\3\2\2\2\u0140\u0142\7j\2\2\u0141\u0143\58\35\2\u0142"+
+		"\u0141\3\2\2\2\u0142\u0143\3\2\2\2\u0143\u0144\3\2\2\2\u0144\u0147\7o"+
 		"\2\2\u0145\u0148\5$\23\2\u0146\u0148\5\20\t\2\u0147\u0145\3\2\2\2\u0147"+
 		"\u0146\3\2\2\2\u0148\u014a\3\2\2\2\u0149\u0136\3\2\2\2\u0149\u0137\3\2"+
-		"\2\2\u014a\65\3\2\2\2\u014b\u014e\5\f\7\2\u014c\u014d\7E\2\2\u014d\u014f"+
-		"\7<\2\2\u014e\u014c\3\2\2\2\u014f\u0150\3\2\2\2\u0150\u014e\3\2\2\2\u0150"+
-		"\u0151\3\2\2\2\u0151\u0158\3\2\2\2\u0152\u0156\7E\2\2\u0153\u0157\5\26"+
-		"\f\2\u0154\u0157\7@\2\2\u0155\u0157\7A\2\2\u0156\u0153\3\2\2\2\u0156\u0154"+
+		"\2\2\u014a\65\3\2\2\2\u014b\u014e\5\f\7\2\u014c\u014d\7F\2\2\u014d\u014f"+
+		"\7=\2\2\u014e\u014c\3\2\2\2\u014f\u0150\3\2\2\2\u0150\u014e\3\2\2\2\u0150"+
+		"\u0151\3\2\2\2\u0151\u0158\3\2\2\2\u0152\u0156\7F\2\2\u0153\u0157\5\26"+
+		"\f\2\u0154\u0157\7A\2\2\u0155\u0157\7B\2\2\u0156\u0153\3\2\2\2\u0156\u0154"+
 		"\3\2\2\2\u0156\u0155\3\2\2\2\u0157\u0159\3\2\2\2\u0158\u0152\3\2\2\2\u0158"+
-		"\u0159\3\2\2\2\u0159\u0173\3\2\2\2\u015a\u015d\7<\2\2\u015b\u015c\7E\2"+
-		"\2\u015c\u015e\7<\2\2\u015d\u015b\3\2\2\2\u015e\u015f\3\2\2\2\u015f\u015d"+
-		"\3\2\2\2\u015f\u0160\3\2\2\2\u0160\u0168\3\2\2\2\u0161\u0166\7E\2\2\u0162"+
-		"\u0167\5\26\f\2\u0163\u0167\7@\2\2\u0164\u0167\7A\2\2\u0165\u0167\7<\2"+
+		"\u0159\3\2\2\2\u0159\u0173\3\2\2\2\u015a\u015d\7=\2\2\u015b\u015c\7F\2"+
+		"\2\u015c\u015e\7=\2\2\u015d\u015b\3\2\2\2\u015e\u015f\3\2\2\2\u015f\u015d"+
+		"\3\2\2\2\u015f\u0160\3\2\2\2\u0160\u0168\3\2\2\2\u0161\u0166\7F\2\2\u0162"+
+		"\u0167\5\26\f\2\u0163\u0167\7A\2\2\u0164\u0167\7B\2\2\u0165\u0167\7=\2"+
 		"\2\u0166\u0162\3\2\2\2\u0166\u0163\3\2\2\2\u0166\u0164\3\2\2\2\u0166\u0165"+
 		"\3\2\2\2\u0167\u0169\3\2\2\2\u0168\u0161\3\2\2\2\u0168\u0169\3\2\2\2\u0169"+
-		"\u0173\3\2\2\2\u016a\u016b\5\f\7\2\u016b\u0170\7E\2\2\u016c\u0171\5\26"+
-		"\f\2\u016d\u0171\7@\2\2\u016e\u0171\7A\2\2\u016f\u0171\7<\2\2\u0170\u016c"+
+		"\u0173\3\2\2\2\u016a\u016b\5\f\7\2\u016b\u0170\7F\2\2\u016c\u0171\5\26"+
+		"\f\2\u016d\u0171\7A\2\2\u016e\u0171\7B\2\2\u016f\u0171\7=\2\2\u0170\u016c"+
 		"\3\2\2\2\u0170\u016d\3\2\2\2\u0170\u016e\3\2\2\2\u0170\u016f\3\2\2\2\u0171"+
 		"\u0173\3\2\2\2\u0172\u014b\3\2\2\2\u0172\u015a\3\2\2\2\u0172\u016a\3\2"+
 		"\2\2\u0173\67\3\2\2\2\u0174\u0176\5\62\32\2\u0175\u0174\3\2\2\2\u0176"+
 		"\u0177\3\2\2\2\u0177\u0175\3\2\2\2\u0177\u0178\3\2\2\2\u0178\u017d\3\2"+
-		"\2\2\u0179\u017a\7j\2\2\u017a\u017c\5\62\32\2\u017b\u0179\3\2\2\2\u017c"+
+		"\2\2\u0179\u017a\7k\2\2\u017a\u017c\5\62\32\2\u017b\u0179\3\2\2\2\u017c"+
 		"\u017f\3\2\2\2\u017d\u017b\3\2\2\2\u017d\u017e\3\2\2\2\u017e9\3\2\2\2"+
-		"\u017f\u017d\3\2\2\2\u0180\u0181\7\35\2\2\u0181\u0182\7m\2\2\u0182\u0183"+
-		"\5T+\2\u0183\u0184\7<\2\2\u0184\u0185\7D\2\2\u0185\u0186\7<\2\2\u0186"+
-		"\u0189\7n\2\2\u0187\u018a\5\"\22\2\u0188\u018a\5\16\b\2\u0189\u0187\3"+
-		"\2\2\2\u0189\u0188\3\2\2\2\u018a;\3\2\2\2\u018b\u018d\7,\2\2\u018c\u018e"+
+		"\u017f\u017d\3\2\2\2\u0180\u0181\7\37\2\2\u0181\u0182\7n\2\2\u0182\u0183"+
+		"\5T+\2\u0183\u0184\7=\2\2\u0184\u0185\7E\2\2\u0185\u0186\7=\2\2\u0186"+
+		"\u0189\7o\2\2\u0187\u018a\5\"\22\2\u0188\u018a\5\16\b\2\u0189\u0187\3"+
+		"\2\2\2\u0189\u0188\3\2\2\2\u018a;\3\2\2\2\u018b\u018d\7.\2\2\u018c\u018e"+
 		"\5.\30\2\u018d\u018c\3\2\2\2\u018d\u018e\3\2\2\2\u018e\u018f\3\2\2\2\u018f"+
-		"\u0190\7i\2\2\u0190=\3\2\2\2\u0191\u0193\7\r\2\2\u0192\u0194\7<\2\2\u0193"+
-		"\u0192\3\2\2\2\u0193\u0194\3\2\2\2\u0194\u0195\3\2\2\2\u0195\u0196\7i"+
-		"\2\2\u0196?\3\2\2\2\u0197\u0199\7\24\2\2\u0198\u019a\7<\2\2\u0199\u0198"+
-		"\3\2\2\2\u0199\u019a\3\2\2\2\u019a\u019b\3\2\2\2\u019b\u019c\7i\2\2\u019c"+
-		"A\3\2\2\2\u019d\u019e\5R*\2\u019e\u01a3\7<\2\2\u019f\u01a0\7j\2\2\u01a0"+
+		"\u0190\7j\2\2\u0190=\3\2\2\2\u0191\u0193\7\17\2\2\u0192\u0194\7=\2\2\u0193"+
+		"\u0192\3\2\2\2\u0193\u0194\3\2\2\2\u0194\u0195\3\2\2\2\u0195\u0196\7j"+
+		"\2\2\u0196?\3\2\2\2\u0197\u0199\7\26\2\2\u0198\u019a\7=\2\2\u0199\u0198"+
+		"\3\2\2\2\u0199\u019a\3\2\2\2\u019a\u019b\3\2\2\2\u019b\u019c\7j\2\2\u019c"+
+		"A\3\2\2\2\u019d\u019e\5R*\2\u019e\u01a3\7=\2\2\u019f\u01a0\7k\2\2\u01a0"+
 		"\u01a2\5B\"\2\u01a1\u019f\3\2\2\2\u01a2\u01a5\3\2\2\2\u01a3\u01a1\3\2"+
 		"\2\2\u01a3\u01a4\3\2\2\2\u01a4C\3\2\2\2\u01a5\u01a3\3\2\2\2\u01a6\u01a7"+
 		"\t\b\2\2\u01a7E\3\2\2\2\u01a8\u01ac\t\t\2\2\u01a9\u01aa\5D#\2\u01aa\u01ab"+
 		"\t\t\2\2\u01ab\u01ad\3\2\2\2\u01ac\u01a9\3\2\2\2\u01ad\u01ae\3\2\2\2\u01ae"+
-		"\u01ac\3\2\2\2\u01ae\u01af\3\2\2\2\u01afG\3\2\2\2\u01b0\u01b1\7\60\2\2"+
-		"\u01b1\u01b2\7<\2\2\u01b2\u01b3\7E\2\2\u01b3\u01b4\7B\2\2\u01b4I\3\2\2"+
-		"\2\u01b5\u01b6\7O\2\2\u01b6\u01b7\7<\2\2\u01b7K\3\2\2\2\u01b8\u01b9\7"+
-		"<\2\2\u01b9\u01ba\7O\2\2\u01baM\3\2\2\2\u01bb\u01bc\7P\2\2\u01bc\u01bd"+
-		"\7<\2\2\u01bdO\3\2\2\2\u01be\u01bf\7<\2\2\u01bf\u01c0\7P\2\2\u01c0Q\3"+
-		"\2\2\2\u01c1\u01ca\5T+\2\u01c2\u01c3\5T+\2\u01c3\u01c5\7q\2\2\u01c4\u01c6"+
-		"\7=\2\2\u01c5\u01c4\3\2\2\2\u01c5\u01c6\3\2\2\2\u01c6\u01c7\3\2\2\2\u01c7"+
-		"\u01c8\7r\2\2\u01c8\u01ca\3\2\2\2\u01c9\u01c1\3\2\2\2\u01c9\u01c2\3\2"+
+		"\u01ac\3\2\2\2\u01ae\u01af\3\2\2\2\u01afG\3\2\2\2\u01b0\u01b1\7\13\2\2"+
+		"\u01b1\u01b2\7=\2\2\u01b2\u01b3\7F\2\2\u01b3\u01b4\7C\2\2\u01b4I\3\2\2"+
+		"\2\u01b5\u01b6\7P\2\2\u01b6\u01b7\7=\2\2\u01b7K\3\2\2\2\u01b8\u01b9\7"+
+		"=\2\2\u01b9\u01ba\7P\2\2\u01baM\3\2\2\2\u01bb\u01bc\7Q\2\2\u01bc\u01bd"+
+		"\7=\2\2\u01bdO\3\2\2\2\u01be\u01bf\7=\2\2\u01bf\u01c0\7Q\2\2\u01c0Q\3"+
+		"\2\2\2\u01c1\u01ca\5T+\2\u01c2\u01c3\5T+\2\u01c3\u01c5\7r\2\2\u01c4\u01c6"+
+		"\7>\2\2\u01c5\u01c4\3\2\2\2\u01c5\u01c6\3\2\2\2\u01c6\u01c7\3\2\2\2\u01c7"+
+		"\u01c8\7s\2\2\u01c8\u01ca\3\2\2\2\u01c9\u01c1\3\2\2\2\u01c9\u01c2\3\2"+
 		"\2\2\u01caS\3\2\2\2\u01cb\u01cc\t\n\2\2\u01ccU\3\2\2\28Y]`fks\u0081\u0086"+
 		"\u008e\u0094\u009e\u00ac\u00ae\u00b9\u00c2\u00d0\u00d2\u00d9\u00e2\u00ed"+
 		"\u00f6\u00fa\u0100\u0102\u0107\u0114\u011f\u0128\u012f\u0132\u0134\u013a"+

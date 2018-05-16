@@ -23,19 +23,21 @@ public class ParserDemo {
 		attacher.pubPrintJavaGrammar("public static int[] main1( int param1, String[] param2 ){}");
 		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
 				+ "int i;"
+				+ "String s;"
 				+ "}");
 		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
 				+ "int[] it;"
 				+ "}");
-		System.out.println();
-		
 		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
-				+ "long int li;"
-				+ "unsigned long float ulf;"
+				+ "long li;"
+				+ "Long lif;"
 				+ "}");
+		
+		System.out.println("--------------------------------- Granica Postepu ---------------------------------");
 		
 		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
 				+ "int i = 3;"
+				+ "String s = \"a string\";"
 				+ "}");
 		
 		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
@@ -44,6 +46,11 @@ public class ParserDemo {
 		
 		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
 				+ "int[] it = { 0, 1 };"
+				+ "}");
+		
+		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
+				+ "long li = -1231412412341235672L;"
+				+ "Long lif = Long.parseUnsignedLong(\"0.1231412412341231231231231231231312312\");"
 				+ "}");
 
 	}
