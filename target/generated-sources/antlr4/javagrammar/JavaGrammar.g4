@@ -158,18 +158,41 @@ methodReturnType:
 variableDeclaration:
                      variableType IDENTIFIERS ;
 
+statementNoShortIf:
+		  statementWithoutTrailingSubStatement
+		  |	IDENTIFIERS OPERATORS_ELSE statementNoShortIf
+		  |	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf KEYWORDS_ELSE statementNoShortIf
+		  |	KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf
+		  |	forStatementNoShortIf ;
+		  
+forStatementNoShortIf:
+		  basicForStatementNoShortIf
+		  |	enhancedForStatementNoShortIf ;
+
+basicForStatementNoShortIf:
+		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON expression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf ;
+		  
+enhancedForStatementNoShortIf:
+		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS keywordsType IDENTIFIERS OPERATORS_ELSE IDENTIFIERS SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (block | statementNoShortIf) ;
+
+forStatement:
+		  basicForStatement
+		  |	enhancedForStatement ;
+
+
+basicForStatement:
+		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON expression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement ;
+
 statement:
-          statementWithoutTrailingSubStatement
-          | ifStatement
-          | whileDoStatement
-          | doWhileStatement
-          | forStatement
-          | enhancedForStatement
-          | returnStatement 
-          ;
+		statementWithoutTrailingSubStatement
+		|	IDENTIFIERS OPERATORS_ELSE statement
+		|	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement 
+		|	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement KEYWORDS_ELSE statement
+		|	KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement
+		|	forStatement ;
 		  
 statementWithoutTrailingSubStatement:
-		  | block
+		  block
 		  |	SEPARATORS_PUNCTUATORS_SEMICOLON
 		  |	expressionStatement SEPARATORS_PUNCTUATORS_SEMICOLON
 		  |	switchStatement
@@ -246,7 +269,7 @@ switchLabel:
 		  |	KEYWORDS_DEFAULT OPERATORS_ELSE ;
 
 blockStatement:
-		  localVariableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON 
+		  localVariableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON
 	      |	classDeclaration
 		  |	statement ;
 		  
@@ -317,7 +340,7 @@ unannArrayType:
 		  |	unannClassOrInterfaceType dims
 		  |	/*unannTypeVariable*/ IDENTIFIERS dims ;
 
-loopStatment:
+loopStatement:
                 statement
              |  breakStatement
              |  continueStatement
@@ -379,7 +402,7 @@ block:
 		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET (blockStatement+)? SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
 		
 loopBlock:
-      SEPARATORS_DELIMITERS_LEFTCURLYBRACKET loopStatment* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
+      SEPARATORS_DELIMITERS_LEFTCURLYBRACKET loopStatement* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
 
 
 ifStatement:
@@ -389,11 +412,11 @@ ifStatement:
     ;
 
 doWhileStatement:
-    KEYWORDS_DO (loopBlock | loopStatment) KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+    KEYWORDS_DO (loopBlock | loopStatement) KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
     ;
 
 whileDoStatement:
-    KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (loopBlock | loopStatment)
+    KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (loopBlock | loopStatement)
     ;
 
 expression:
@@ -427,12 +450,6 @@ assignmentOperator:
 	  | OPERATORS_BITWISEANDASSIGNMENT
 	  | OPERATORS_BITWISEXORASSIGNMENT
 	  | OPERATORS_BITWISEORASSIGNMENT ;
-
-forStatement:
-        enhancedForStatement
-      | KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON logicalExpression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-        (loopBlock | loopStatment)
-      ;
 
 forInit:
         variableDeclaration (OPERATORS_ASSIGNMENT IDENTIFIERS)+ (OPERATORS_ASSIGNMENT (numberEquivalent | LITERALS_TEXTUAL_CHAR | LITERALS_TEXTUAL_STRING))?

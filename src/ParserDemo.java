@@ -21,6 +21,7 @@ public class ParserDemo {
 		attacher.pubPrintJavaGrammar("void method1( int param1, String param2 ){}");
 		attacher.pubPrintJavaGrammar("private final String method1( int param1, String param2 ){}");
 		attacher.pubPrintJavaGrammar("public static int[] main1( int param1, String[] param2 ){}");
+		System.out.println("--------------------------------- Granica Postepu ---------------------------------");
 		attacher.pubPrintJavaGrammar("public static void main( int arg0, String[] args ) {"
 				+ "int i;"
 				+ "String s;"

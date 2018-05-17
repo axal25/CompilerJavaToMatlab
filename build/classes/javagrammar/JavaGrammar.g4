@@ -68,7 +68,7 @@ classTypeModifier:
 classBody:
 		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET classBodyDeclaration* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
 		
-classBodyDeclaration: ;
+classBodyDeclaration: '\u000E';
 //		classMemberDeclaration
 //		|	block
 //		|	KEYWORDS_STATIC block
@@ -76,7 +76,7 @@ classBodyDeclaration: ;
 //		typeParameters? simpleTypeName SEPARATORS_DELIMITERS_LEFTPARENTHESIS formalParameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
 //		(KEYWORDS_THROWS exceptionTypeList)? constructorBody ;
 		
-classMemberDeclaration: ;	
+classMemberDeclaration: '\u000E';	
 //		fieldDeclaration
 //		|	methodDeclaration
 //		|	classDeclaration
@@ -158,18 +158,41 @@ methodReturnType:
 variableDeclaration:
                      variableType IDENTIFIERS ;
 
+statementNoShortIf:
+		  statementWithoutTrailingSubStatement
+		  |	IDENTIFIERS OPERATORS_ELSE statementNoShortIf
+		  |	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf KEYWORDS_ELSE statementNoShortIf
+		  |	KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf
+		  |	forStatementNoShortIf ;
+		  
+forStatementNoShortIf:
+		  basicForStatementNoShortIf
+		  |	enhancedForStatementNoShortIf ;
+
+basicForStatementNoShortIf:
+		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON expression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf ;
+		  
+enhancedForStatementNoShortIf:
+		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS keywordsType IDENTIFIERS OPERATORS_ELSE IDENTIFIERS SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (block | statementNoShortIf) ;
+
+forStatement:
+		  basicForStatement
+		  |	enhancedForStatement ;
+
+
+basicForStatement:
+		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON expression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement ;
+
 statement:
-          statementWithoutTrailingSubStatement
-          | ifStatement
-          | whileDoStatement
-          | doWhileStatement
-          | forStatement
-          | enhancedForStatement
-          | returnStatement 
-          ;
+		statementWithoutTrailingSubStatement
+		|	IDENTIFIERS OPERATORS_ELSE statement
+		|	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement 
+		|	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement KEYWORDS_ELSE statement
+		|	KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement
+		|	forStatement ;
 		  
 statementWithoutTrailingSubStatement:
-		  | block
+		  block
 		  |	SEPARATORS_PUNCTUATORS_SEMICOLON
 		  |	expressionStatement SEPARATORS_PUNCTUATORS_SEMICOLON
 		  |	switchStatement
@@ -194,9 +217,9 @@ expressionStatement:
 		  |	classInstanceCreationExpression ;
 		  
 classInstanceCreationExpression
-		  :	KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ Identifier (SEPARATORS_PUNCTUATORS_DOT /* annotation* */ Identifier)* typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
-		  |	expressionName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ Identifier typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS /*typeArguments?*/ typeLiteralArguments? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
-		  |	primary SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ Identifier typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
+		  :	KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ IDENTIFIERS (SEPARATORS_PUNCTUATORS_DOT /* annotation* */ IDENTIFIERS)* typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
+		  |	expressionName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ IDENTIFIERS typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS /*typeArguments?*/ typeLiteralArguments? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
+		  |	primary SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ IDENTIFIERS typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
 		  ;
 		  
 typeArgumentsOrDiamond:
@@ -212,13 +235,12 @@ methodInvocation
 		|	typeName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_SUPER SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
 		;
 		
-primary : 
+primary : '\u000E';
 //		(	primaryNoNewArray_lfno_primary
 //		|	arrayCreationExpression
 //		)
 //		(	primaryNoNewArray_lf_primary
-//		)*
-		;
+//		)* ;
 	
 typeName:
 		IDENTIFIERS
@@ -247,7 +269,7 @@ switchLabel:
 		  |	KEYWORDS_DEFAULT OPERATORS_ELSE ;
 
 blockStatement:
-		  localVariableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON 
+		  localVariableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON
 	      |	classDeclaration
 		  |	statement ;
 		  
@@ -302,13 +324,13 @@ unannClassOrInterfaceType:
 		  |	unannInterfaceType_lf_unannClassOrInterfaceType  )* ;
 
 unannClassType_lfno_unannClassOrInterfaceType:
-			Identifier /* typeArguments? */ typeLiteralArguments? ;
+			IDENTIFIERS /* typeArguments? */ typeLiteralArguments? ;
 	
 unannInterfaceType_lfno_unannClassOrInterfaceType:
 			unannClassType_lfno_unannClassOrInterfaceType ;
 	
 unannClassType_lf_unannClassOrInterfaceType:
-			SEPARATORS_PUNCTUATORS_DOT /* annotation* */ Identifier /* typeArguments? */ typeLiteralArguments? ;
+			SEPARATORS_PUNCTUATORS_DOT /* annotation* */ IDENTIFIERS /* typeArguments? */ typeLiteralArguments? ;
 	
 unannInterfaceType_lf_unannClassOrInterfaceType:
 			unannClassType_lf_unannClassOrInterfaceType ;
@@ -318,7 +340,7 @@ unannArrayType:
 		  |	unannClassOrInterfaceType dims
 		  |	/*unannTypeVariable*/ IDENTIFIERS dims ;
 
-loopStatment:
+loopStatement:
                 statement
              |  breakStatement
              |  continueStatement
@@ -349,8 +371,7 @@ logicalConst:
 
 logicalEquivalent:
       logicalConst
-    | IDENTIFIERS
-    ;
+    | IDENTIFIERS ;
 
 arithmeticExpression:
        OPERATORS_SUBTRACTION arithmeticExpression
@@ -381,8 +402,7 @@ block:
 		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET (blockStatement+)? SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
 		
 loopBlock:
-      SEPARATORS_DELIMITERS_LEFTCURLYBRACKET loopStatment* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET
-      ;
+      SEPARATORS_DELIMITERS_LEFTCURLYBRACKET loopStatement* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
 
 
 ifStatement:
@@ -392,11 +412,11 @@ ifStatement:
     ;
 
 doWhileStatement:
-    KEYWORDS_DO (loopBlock | loopStatment) KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+    KEYWORDS_DO (loopBlock | loopStatement) KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
     ;
 
 whileDoStatement:
-    KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (loopBlock | loopStatment)
+    KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (loopBlock | loopStatement)
     ;
 
 expression:
@@ -430,12 +450,6 @@ assignmentOperator:
 	  | OPERATORS_BITWISEANDASSIGNMENT
 	  | OPERATORS_BITWISEXORASSIGNMENT
 	  | OPERATORS_BITWISEORASSIGNMENT ;
-
-forStatement:
-        enhancedForStatement
-      | KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON logicalExpression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-        (loopBlock | loopStatment)
-      ;
 
 forInit:
         variableDeclaration (OPERATORS_ASSIGNMENT IDENTIFIERS)+ (OPERATORS_ASSIGNMENT (numberEquivalent | LITERALS_TEXTUAL_CHAR | LITERALS_TEXTUAL_STRING))?
