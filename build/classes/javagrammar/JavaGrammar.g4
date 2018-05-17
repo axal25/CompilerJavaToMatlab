@@ -1,3 +1,35 @@
+/*
+ * [The "BSD license"]
+ *  Copyright (c) 2014 Terence Parr
+ *  Copyright (c) 2014 Sam Harwell
+ *  All rights reserved.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *  2. Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ *  3. The name of the author may not be used to endorse or promote products
+ *     derived from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ *  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ *  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ *  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/* Modified by axal25 */
+
 grammar JavaGrammar;
 
 @header{
@@ -7,10 +39,98 @@ grammar JavaGrammar;
 // Parser Rules
  
 compilationUnit:
-				method* ;
+				methodDeclaraction* ;
                 // packageDeclaration? importDeclaration* typeDeclaration* EOF;
 
-method:
+typeDeclaration:
+		  classDeclaration
+		  //|	interfaceDeclaration
+		  |	SEPARATORS_PUNCTUATORS_SEMICOLON ;
+		  
+classDeclaration:	
+		  classPermissionModifier? classTypeModifier? KEYWORDS_CLASS IDENTIFIERS /* TypeParameters */ 
+		  /*(KEYWORDS_EXTENDS classType)?*/ /*(KEYWORDS_IMPLEMENTS interfaceTypeList)?*/ 
+		  classBody ;
+		  //|	enumDeclaration ;
+		  
+classPermissionModifier:
+		/*annotation*/
+		|	KEYWORDS_PUBLIC
+		|	KEYWORDS_PROTECTED
+		|	KEYWORDS_PUBLIC ;
+		
+classTypeModifier:
+		|	KEYWORDS_ABSTRACT
+		|	KEYWORDS_STATIC
+		|	KEYWORDS_FINAL
+		|	KEYWORDS_STRICTFP ;
+
+classBody:
+		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET classBodyDeclaration* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
+		
+classBodyDeclaration: ;
+//		classMemberDeclaration
+//		|	block
+//		|	KEYWORDS_STATIC block
+//		|	constructorModifier* 
+//		typeParameters? simpleTypeName SEPARATORS_DELIMITERS_LEFTPARENTHESIS formalParameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+//		(KEYWORDS_THROWS exceptionTypeList)? constructorBody ;
+		
+classMemberDeclaration: ;	
+//		fieldDeclaration
+//		|	methodDeclaration
+//		|	classDeclaration
+//		|	interfaceDeclaration
+//		|	SEPARATORS_PUNCTUATORS_SEMICOLON ;
+
+
+/*
+classType:
+		classOrInterfaceType SEPARATORS_PUNCTUATORS_DOT *//*annotation**//* IDENTIFIERS typeArguments? ;
+		
+classOrInterfaceType:
+		(	classType_lfno_classOrInterfaceType
+		|	interfaceType_lfno_classOrInterfaceType
+		)
+		(	classType_lf_classOrInterfaceType
+		|	interfaceType_lf_classOrInterfaceType
+		)* ;
+*/
+/*
+interfaceTypeList:
+			interfaceType (SEPARATORS_PUNCTUATORS_COMMA interfaceType)* ;
+			
+interfaceType:	
+			classType; */
+			
+//classType:
+//		  /* annotation* */ IDENTIFIERS typeArguments?
+//		  |	/* classOrInterfaceType SEPARATORS_PUNCTUATORS_DOT */ /* annotation* */ IDENTIFIERS typeArguments? ;
+//		  
+//typeArguments
+//	:	OPERATORS_LESSTHAN typeArgumentList OPERATORS_GREATERTHAN
+//	;
+//
+//typeArgumentList
+//	:	typeArgument (SEPARATORS_PUNCTUATORS_COMMA typeArgument)*
+//	;
+//
+//typeArgument
+//	:	referenceType
+//	|	wildcard
+//	;
+//
+//wildcard
+//	:	annotation* '?' wildcardBounds?
+//	;
+//
+//wildcardBounds
+//	:	'extends' referenceType
+//	|	KEYWORDS_SUPER referenceType
+//;
+
+
+methodDeclaraction:
         /*annotation*/ methodPermissionModifier? methodTypeModifier? methodReturnType IDENTIFIERS
         SEPARATORS_DELIMITERS_LEFTPARENTHESIS parameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS 
         ( block | SEPARATORS_PUNCTUATORS_SEMICOLON ) ;
@@ -36,11 +156,10 @@ methodReturnType:
 		| KEYWORDS_VOID ;
 
 variableDeclaration:
-                     variableType IDENTIFIERS
-                     ;
+                     variableType IDENTIFIERS ;
 
 statement:
-          variableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON
+          statementWithoutTrailingSubStatement
           | ifStatement
           | whileDoStatement
           | doWhileStatement
@@ -48,6 +167,156 @@ statement:
           | enhancedForStatement
           | returnStatement 
           ;
+		  
+statementWithoutTrailingSubStatement:
+		  | block
+		  |	SEPARATORS_PUNCTUATORS_SEMICOLON
+		  |	expressionStatement SEPARATORS_PUNCTUATORS_SEMICOLON
+		  |	switchStatement
+		  |	KEYWORDS_DO statement 
+		  		KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS 
+		  			expression
+		  		SEPARATORS_DELIMITERS_RIGHTPARENTHESIS SEPARATORS_PUNCTUATORS_SEMICOLON
+		  |	breakStatement
+		  |	continueStatement
+		  |	returnStatement
+		  |	KEYWORDS_SYNCHRONIZED KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS block
+		  |	KEYWORDS_THROWS expression SEPARATORS_PUNCTUATORS_SEMICOLON ;
+//		  |	tryStatement ;
+		
+expressionStatement:
+		  assignment
+		  |	preIncrementationExpression
+		  |	preDecrementationExpression
+		  |	postIncrementationExpression
+		  |	postDecrementationExpression
+		  |	methodInvocation
+		  |	classInstanceCreationExpression ;
+		  
+classInstanceCreationExpression
+		  :	KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ Identifier (SEPARATORS_PUNCTUATORS_DOT /* annotation* */ Identifier)* typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
+		  |	expressionName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ Identifier typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS /*typeArguments?*/ typeLiteralArguments? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
+		  |	primary SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ Identifier typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
+		  ;
+		  
+typeArgumentsOrDiamond:
+		  /*typeArguments*/ typeLiteralArguments
+		  | OPERATORS_LESSTHAN OPERATORS_GREATERTHAN;
+		  
+methodInvocation
+		:	IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+		|	typeName SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? keywordsType IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+		|	expressionName SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+		|	primary SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+		|	KEYWORDS_SUPER SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+		|	typeName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_SUPER SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+		;
+		
+primary : 
+//		(	primaryNoNewArray_lfno_primary
+//		|	arrayCreationExpression
+//		)
+//		(	primaryNoNewArray_lf_primary
+//		)*
+		;
+	
+typeName:
+		IDENTIFIERS
+		| typeName SEPARATORS_PUNCTUATORS_DOT IDENTIFIERS ;
+	
+argumentList:
+		expression (SEPARATORS_PUNCTUATORS_COMMA expression)* ;
+		
+		
+typeLiteralArguments:
+		OPERATORS_LESSTHAN keywordsType OPERATORS_GREATERTHAN;
+		
+expressionName:
+		IDENTIFIERS
+		|	expressionName SEPARATORS_PUNCTUATORS_DOT IDENTIFIERS ;		  
+
+switchStatement:	
+			KEYWORDS_SWITCH SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS 
+			SEPARATORS_DELIMITERS_LEFTCURLYBRACKET 
+				( (switchLabel switchLabel) blockStatement+ )* switchLabel* 
+			SEPARATORS_DELIMITERS_LEFTCURLYBRACKET ;
+			
+switchLabel:
+		  KEYWORDS_CASE expression OPERATORS_ELSE
+		  |	KEYWORDS_CASE IDENTIFIERS OPERATORS_ELSE
+		  |	KEYWORDS_DEFAULT OPERATORS_ELSE ;
+
+blockStatement:
+		  localVariableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON 
+	      |	classDeclaration
+		  |	statement ;
+		  
+localVariableDeclaration:
+		  KEYWORDS_FINAL? unannType variableDeclaratorList ;
+		  
+variableDeclaratorList:
+		  variableDeclarator (SEPARATORS_PUNCTUATORS_COMMA variableDeclarator)* ;
+
+variableDeclarator:
+		  variableDeclaratorId (OPERATORS_ASSIGNMENT variableInitializer)? ;
+
+variableDeclaratorId:
+		  IDENTIFIERS dims? ;
+
+variableInitializer:
+		  expression
+		  | arrayInitializer ;
+	
+arrayInitializer:
+		  SEPARATORS_DELIMITERS_LEFTCURLYBRACKET variableInitializerList? SEPARATORS_PUNCTUATORS_COMMA? SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
+	
+variableInitializerList:
+		  variableInitializer (SEPARATORS_PUNCTUATORS_COMMA variableInitializer)* ;
+
+dims:
+		/* annotation* */ SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET ( /* annotation* */ SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET)* ;
+		
+unannType:
+		  unannPrimitiveType
+		  | unannReferenceType ;
+		  
+unannPrimitiveType:
+		  KEYWORDS_BYTE
+		  |	KEYWORDS_SHORT
+		  |	KEYWORDS_INT
+		  |	KEYWORDS_LONG
+		  | KEYWORDS_CHAR
+		  |	KEYWORDS_FLOAT
+		  | KEYWORDS_DOUBLE 
+		  | KEYWORDS_BOOLEAN ;
+
+unannReferenceType:	
+		  unannClassOrInterfaceType
+		  |	/* unannTypeVariable */ IDENTIFIERS
+		  |	unannArrayType ;
+		  
+unannClassOrInterfaceType:
+		  (unannClassType_lfno_unannClassOrInterfaceType
+		  |	unannInterfaceType_lfno_unannClassOrInterfaceType )
+		  (	unannClassType_lf_unannClassOrInterfaceType
+		  |	unannInterfaceType_lf_unannClassOrInterfaceType  )* ;
+
+unannClassType_lfno_unannClassOrInterfaceType:
+			Identifier /* typeArguments? */ typeLiteralArguments? ;
+	
+unannInterfaceType_lfno_unannClassOrInterfaceType:
+			unannClassType_lfno_unannClassOrInterfaceType ;
+	
+unannClassType_lf_unannClassOrInterfaceType:
+			SEPARATORS_PUNCTUATORS_DOT /* annotation* */ Identifier /* typeArguments? */ typeLiteralArguments? ;
+	
+unannInterfaceType_lf_unannClassOrInterfaceType:
+			unannClassType_lf_unannClassOrInterfaceType ;
+			
+unannArrayType:
+		  unannPrimitiveType dims
+		  |	unannClassOrInterfaceType dims
+		  |	/*unannTypeVariable*/ IDENTIFIERS dims ;
 
 loopStatment:
                 statement
@@ -108,9 +377,9 @@ logicalExpression:
      | logicalEquivalent
      ;
 
-block:
-      SEPARATORS_DELIMITERS_LEFTCURLYBRACKET statement* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET
-      ;
+block: 
+		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET (blockStatement+)? SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
+		
 loopBlock:
       SEPARATORS_DELIMITERS_LEFTCURLYBRACKET loopStatment* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET
       ;
@@ -130,6 +399,24 @@ whileDoStatement:
     KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (loopBlock | loopStatment)
     ;
 
+expression:
+        arithmeticExpression
+      | logicalExpression
+      | assignmentExpression
+      | preIncrementationExpression
+      | postIncrementationExpression
+      | preDecrementationExpression
+      | postDecrementationExpression ;
+
+assignment:
+        assignmentExpression
+        SEPARATORS_PUNCTUATORS_SEMICOLON ;
+
+
+assignmentExpression:
+        IDENTIFIERS assignmentOperator (IDENTIFIERS | expression)
+      | IDENTIFIERS (OPERATORS_ASSIGNMENT IDENTIFIERS)+ expression? ;
+
 assignmentOperator:
         OPERATORS_ASSIGNMENT
 	  | OPERATORS_MULTIPLICATIONANDASSIGNMENT
@@ -142,29 +429,7 @@ assignmentOperator:
 	  | OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT
 	  | OPERATORS_BITWISEANDASSIGNMENT
 	  | OPERATORS_BITWISEXORASSIGNMENT
-	  | OPERATORS_BITWISEORASSIGNMENT
-	  ;
-
-expression:
-        arithmeticExpression
-      | logicalExpression
-      | assignmentExpression
-      | preIncrementationExpression
-      | postIncrementationExpression
-      | preDecrementationExpression
-      | postDecrementationExpression
-      ;
-
-assignment:
-        assignmentExpression
-        SEPARATORS_PUNCTUATORS_SEMICOLON
-      ;
-
-
-assignmentExpression:
-        IDENTIFIERS assignmentOperator (IDENTIFIERS | expression)
-      | IDENTIFIERS (OPERATORS_ASSIGNMENT IDENTIFIERS)+ expression?
-      ;
+	  | OPERATORS_BITWISEORASSIGNMENT ;
 
 forStatement:
         enhancedForStatement
@@ -265,8 +530,8 @@ keywordsType:
 // 10kowe
 
 fragment DecimalFloatingPointLiteral:
-				Digits '.' Digits? ExponentPart? FloatTypeSuffix?
-				|	'.' Digits ExponentPart? FloatTypeSuffix?
+				Digits SEPARATORS_PUNCTUATORS_DOT Digits? ExponentPart? FloatTypeSuffix?
+				|	SEPARATORS_PUNCTUATORS_DOT Digits ExponentPart? FloatTypeSuffix?
 				|	Digits ExponentPart FloatTypeSuffix?
 				| Digits FloatTypeSuffix ;
 				
@@ -292,8 +557,8 @@ fragment HexadecimalFloatingPointLiteral:
 				
 
 fragment HexSignificand:
-				HexNumeral '.'?
-				|	'0' [xX] HexDigits? '.' HexDigits ;
+				HexNumeral SEPARATORS_PUNCTUATORS_DOT?
+				|	'0' [xX] HexDigits? SEPARATORS_PUNCTUATORS_DOT HexDigits ;
 
 fragment BinaryExponent:
 				BinaryExponentIndicator SignedInteger ;
@@ -441,7 +706,7 @@ KEYWORDS_CLASS_LONG:					'Long';
 KEYWORDS_CLASS_STRING:					'String';
 
 KEYWORDS_ABSTRACT:				        'abstract'; //nie obsluzone
-KEYWORDS_ASSERT:				        'assert'; //nie obsluzone
+KEYWORDS_ASSERT:				        'assert'; //nie obsluzone - Nie bede uzywac
 KEYWORDS_BOOLEAN:				        'boolean';
 KEYWORDS_BREAK: 						'break';
 KEYWORDS_BYTE: 							'byte';
