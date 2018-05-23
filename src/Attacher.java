@@ -14,7 +14,7 @@ public class Attacher {
 	
 	Attacher() {}
 	
-	private void printDrink(String drinkSentence) 
+	private void privPrintDrink(String drinkSentence) 
 	{
 		// Get our lexer
 	    DrinkLexer lexer = new DrinkLexer(new ANTLRInputStream(drinkSentence));
@@ -34,7 +34,34 @@ public class Attacher {
 		walker.walk(listener, drinkSentenceContext);
 	}
 	
-	private void printJavaGrammar(String javaSentence) 
+	public void pubPrintDrink( String drinkSentence )
+	{
+		privPrintDrink( drinkSentence );
+	}
+	
+//-----------------------------------------------------------------------------------------------------------------
+	
+	private void privPrintMethodDeclaration(String javaSentence) 
+	{
+		// Get our lexer
+	    JavaGrammarLexer lexer = new JavaGrammarLexer(new ANTLRInputStream( javaSentence ));
+	 
+	    // Get a list of matched tokens
+	    CommonTokenStream tokens = new CommonTokenStream(lexer);
+	 
+	    // Pass the tokens to the parser
+	    JavaGrammarParser parser = new JavaGrammarParser(tokens);
+	 
+	    // Specify our entry point
+	    JavaGrammarParser.MethodDeclaractionContext methodDeclaraction_ctx = parser.methodDeclaraction();
+	 
+	    // Walk it and attach our listener
+		ParseTreeWalker walker = new ParseTreeWalker();
+		AntlrJavaGrammarListener listener = new AntlrJavaGrammarListener();
+		walker.walk(listener, methodDeclaraction_ctx);
+	}
+	
+	private void privPrintJavaGrammar(String javaSentence) 
 	{
 		// Get our lexer
 	    JavaGrammarLexer lexer = new JavaGrammarLexer(new ANTLRInputStream( javaSentence ));
@@ -54,14 +81,14 @@ public class Attacher {
 		walker.walk(listener, compilationUnit_ctx);
 	}
 	
-	public void pubPrintDrink( String drinkSentence )
+	public void pubPrintMethodDeclaration( String inputSentence )
 	{
-		printDrink( drinkSentence );
+		privPrintMethodDeclaration( inputSentence );
 	}
 	
 	public void pubPrintJavaGrammar( String inputSentence )
 	{
-		printJavaGrammar( inputSentence );
+		privPrintJavaGrammar( inputSentence );
 	}
 
 }

@@ -6,5 +6,10 @@ public class AntlrJavaGrammarListener extends JavaGrammarBaseListener {
     public void enterCompilationUnit( JavaGrammarParser.CompilationUnitContext ctx) {
         System.out.println( ctx.getText() );
     }
+    
+    @Override
+    public void enterMethodDeclaraction( JavaGrammarParser.MethodDeclaractionContext ctx) {
+        System.out.println( ctx.getText() );
+    }
  
 }

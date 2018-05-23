@@ -8,4 +8,25 @@ public static void main( int arg0, String[] args ) {
 	char [] varCharTab = new char [3];
 	int [] var_int_tab = { 0, 1 };
 	char [] var_char_tab = new char [3];
+	
+	String s = null;
+	for( int ind = 0; i<=10; i++ ) 
+	{
+		if( ind != 9 ) 
+		{
+			if( s != null ) 
+			{
+				s = s + ind + ", ";
+			}
+			else 
+			{
+				s = ind + ", ";
+			}
+		} 
+		else 
+		{
+			s = s + ind + ";";
+		}
+	}
+	System.out.println(s);
 }
