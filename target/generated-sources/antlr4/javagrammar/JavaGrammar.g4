@@ -131,12 +131,13 @@ interfaceType:
 
 
 methodDeclaraction:
-        /*annotation*/ methodPermissionModifier? methodTypeModifier? methodReturnType IDENTIFIERS
-        SEPARATORS_DELIMITERS_LEFTPARENTHESIS parameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS 
+        /*annotation*/ methodPermissionModifier? methodTypeModifier? methodReturnType methodDeclarator
         ( block | SEPARATORS_PUNCTUATORS_SEMICOLON ) ;
 
 /*annotation:
 		;*/
+methodDeclarator:
+		IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS parameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS dims?;
 
 methodPermissionModifier:
 		  KEYWORDS_PUBLIC
@@ -152,7 +153,7 @@ methodTypeModifier:
 		  |	KEYWORDS_STRICTFP ;
 
 methodReturnType:
-		  variableType
+		  unannType
 		| KEYWORDS_VOID ;
 
 variableDeclaration:
@@ -310,7 +311,9 @@ unannPrimitiveType:
 		  | KEYWORDS_CHAR
 		  |	KEYWORDS_FLOAT
 		  | KEYWORDS_DOUBLE 
-		  | KEYWORDS_BOOLEAN ;
+		  | KEYWORDS_BOOLEAN;
+		  //| KEYWORDS_CLASS_STRING//ZMIANA ale bez sensu na razie proba 1
+         //| KEYWORDS_CLASS_LONG;//ZMIANA ale bez sensu na razie proba 1
 
 unannReferenceType:	
 		  unannClassOrInterfaceType
@@ -478,7 +481,29 @@ continueStatement:
     ;
 
 parameterList:
-        ( variableType IDENTIFIERS (SEPARATORS_PUNCTUATORS_COMMA parameterList)* ) ;
+        //( variableType IDENTIFIERS (SEPARATORS_PUNCTUATORS_COMMA parameterList)* ) ;
+        receiverParameter
+        | formalParameters  SEPARATORS_PUNCTUATORS_COMMA lastFormalParameter
+        | lastFormalParameter
+        ;
+
+formalParameters
+	:	KEYWORDS_FINAL* unannType variableDeclaratorId (SEPARATORS_PUNCTUATORS_COMMA KEYWORDS_FINAL* unannType variableDeclaratorId)*
+	|	receiverParameter (SEPARATORS_PUNCTUATORS_COMMA formalParameter)*
+	;
+
+lastFormalParameter
+	:	KEYWORDS_FINAL* unannType '...' variableDeclaratorId
+	|	formalParameter
+;
+
+formalParameter
+	:	KEYWORDS_FINAL* unannType variableDeclaratorId
+;
+
+receiverParameter
+	:	unannType (IDENTIFIERS SEPARATORS_PUNCTUATORS_DOT)? KEYWORDS_THIS
+;
 
 operatorsBitwise:
 		OPERATORS_BITWISENOT
@@ -499,9 +524,9 @@ expressionBitwise:
         (IDENTIFIERS | LITERALS_NUMERIC_INT) (operatorsBitwise (IDENTIFIERS | LITERALS_NUMERIC_INT))+ 
         ;
 
-stringNullAssignment:
-        KEYWORDS_CLASS_STRING IDENTIFIERS OPERATORS_ASSIGNMENT LITERALS_REFERENCE_NULL 
-        ;
+//stringNullAssignment:
+      //  KEYWORDS_CLASS_STRING IDENTIFIERS OPERATORS_ASSIGNMENT LITERALS_REFERENCE_NULL 
+       // ;
 
 preIncrementationExpression:
         OPERATORS_INCREMENT IDENTIFIERS 
@@ -531,9 +556,10 @@ keywordsType:
       | KEYWORDS_SHORT
       | KEYWORDS_LONG
       | KEYWORDS_FLOAT
-      | KEYWORDS_DOUBLE 
-      | KEYWORDS_CLASS_STRING
-      | KEYWORDS_CLASS_LONG ;
+      | KEYWORDS_DOUBLE ;
+    //  | KEYWORDS_CLASS_STRING
+    //  | KEYWORDS_CLASS_LONG;
+      
  
 // Lexer Rules-------------------------------------------------------------------------------------------
 
@@ -716,8 +742,8 @@ fragment UPPERCASE_LETTER:
 ADDITIONAL_LITERAL_AT:					'@'; //zmiana
 ADDITIONAL_LITERAL_ELLIPSIS:			'...'; //zmiana
 
-KEYWORDS_CLASS_LONG:					'Long';
-KEYWORDS_CLASS_STRING:					'String';
+//KEYWORDS_CLASS_LONG:					'Long';
+//KEYWORDS_CLASS_STRING:					'String';
 
 KEYWORDS_ABSTRACT:				        'abstract'; //nie obsluzone
 KEYWORDS_ASSERT:				        'assert'; //nie obsluzone - Nie bede uzywac
