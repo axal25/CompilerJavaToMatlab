@@ -100,6 +100,16 @@ public interface JavaGrammarListener extends ParseTreeListener {
 	 */
 	void exitMethodDeclaraction(JavaGrammarParser.MethodDeclaractionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JavaGrammarParser#methodDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodDeclarator(JavaGrammarParser.MethodDeclaratorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaGrammarParser#methodDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodDeclarator(JavaGrammarParser.MethodDeclaratorContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JavaGrammarParser#methodPermissionModifier}.
 	 * @param ctx the parse tree
 	 */
@@ -760,6 +770,46 @@ public interface JavaGrammarListener extends ParseTreeListener {
 	 */
 	void exitParameterList(JavaGrammarParser.ParameterListContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JavaGrammarParser#formalParameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormalParameters(JavaGrammarParser.FormalParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaGrammarParser#formalParameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormalParameters(JavaGrammarParser.FormalParametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaGrammarParser#lastFormalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterLastFormalParameter(JavaGrammarParser.LastFormalParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaGrammarParser#lastFormalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitLastFormalParameter(JavaGrammarParser.LastFormalParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaGrammarParser#formalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormalParameter(JavaGrammarParser.FormalParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaGrammarParser#formalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormalParameter(JavaGrammarParser.FormalParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaGrammarParser#receiverParameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterReceiverParameter(JavaGrammarParser.ReceiverParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaGrammarParser#receiverParameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitReceiverParameter(JavaGrammarParser.ReceiverParameterContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JavaGrammarParser#operatorsBitwise}.
 	 * @param ctx the parse tree
 	 */
@@ -779,16 +829,6 @@ public interface JavaGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionBitwise(JavaGrammarParser.ExpressionBitwiseContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JavaGrammarParser#stringNullAssignment}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringNullAssignment(JavaGrammarParser.StringNullAssignmentContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JavaGrammarParser#stringNullAssignment}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringNullAssignment(JavaGrammarParser.StringNullAssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaGrammarParser#preIncrementationExpression}.
 	 * @param ctx the parse tree

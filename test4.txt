@@ -3,6 +3,9 @@ public static void main( int arg0, String[] args ) {
 	float j = 1.0;
 	long li1 = -1231412412341235672L;
 	long li2 = 1231412412341235672L;
-	String s;
+	String s = "myChainOfChars";
 	int [] varIntTab = { 0, 1 };
+	char [] varCharTab = new char [3];
+	int [] var_int_tab = { 0, 1 };
+	char [] var_char_tab = new char [3];
 }

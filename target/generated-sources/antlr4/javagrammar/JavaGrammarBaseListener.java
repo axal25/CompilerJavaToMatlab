@@ -126,6 +126,18 @@ public class JavaGrammarBaseListener implements JavaGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMethodDeclarator(JavaGrammarParser.MethodDeclaratorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethodDeclarator(JavaGrammarParser.MethodDeclaratorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMethodPermissionModifier(JavaGrammarParser.MethodPermissionModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -918,6 +930,54 @@ public class JavaGrammarBaseListener implements JavaGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFormalParameters(JavaGrammarParser.FormalParametersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFormalParameters(JavaGrammarParser.FormalParametersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLastFormalParameter(JavaGrammarParser.LastFormalParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLastFormalParameter(JavaGrammarParser.LastFormalParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFormalParameter(JavaGrammarParser.FormalParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFormalParameter(JavaGrammarParser.FormalParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReceiverParameter(JavaGrammarParser.ReceiverParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReceiverParameter(JavaGrammarParser.ReceiverParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterOperatorsBitwise(JavaGrammarParser.OperatorsBitwiseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -937,18 +997,6 @@ public class JavaGrammarBaseListener implements JavaGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpressionBitwise(JavaGrammarParser.ExpressionBitwiseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStringNullAssignment(JavaGrammarParser.StringNullAssignmentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStringNullAssignment(JavaGrammarParser.StringNullAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

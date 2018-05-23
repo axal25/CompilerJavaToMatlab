@@ -88,6 +88,12 @@ public void staticInputTesting() {
 		String content3 = new FileOperations().readFile("test3.txt", Charset.defaultCharset() );
 		System.out.println( content3 );
 		attacher.pubPrintJavaGrammar( content3 );
+		
+		System.out.println("\t--------------------------- test4.txt ---------------------------");
+		System.out.println("\t\t-------------- 4th mile stone ---------------");
+		String content4 = new FileOperations().readFile("test4.txt", Charset.defaultCharset() );
+		System.out.println( content4 );
+		attacher.pubPrintJavaGrammar( content4 );
 	}
 
 }
