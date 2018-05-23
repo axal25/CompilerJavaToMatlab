@@ -1,0 +1,8 @@
+import java.nio.charset.Charset;
+
+public class ParserDemo {
+
+	public static void main(String[] args) {
+		int i = 5;
+	}
+}

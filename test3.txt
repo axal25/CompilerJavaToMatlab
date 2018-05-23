@@ -1,0 +1,5 @@
+public static void main( int arg0, String[] args ) {
+	int i = 0;
+	float j = 1.0;
+	String s = "myChainOfChars";
+}
