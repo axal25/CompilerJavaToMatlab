@@ -34,8 +34,9 @@ public class ParserDemo {
 		char [] var_char_tab = new char [3];
 		
 		String s = null;
-		for( int ind = 0; i<=10; i++ ) {
-			if( ind != 9 ) {
+		int lastInd = 10;
+		for( int ind = 0; ind<=lastInd; ind++ ) {
+			if( ind != lastInd ) {
 				if( s != null ) {
 					s = s + ind + ", ";
 				}

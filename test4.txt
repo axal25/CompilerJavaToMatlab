@@ -10,9 +10,10 @@ public static void main( int arg0, String[] args ) {
 	char [] var_char_tab = new char [3];
 	
 	String s = null;
-	for( int ind = 0; i<=10; i++ ) 
+	int lastInd = 10;
+	for( int ind = 0; ind<=lastInd; ind++ ) 
 	{
-		if( ind != 9 ) 
+		if( ind != lastInd ) 
 		{
 			if( s != null ) 
 			{
