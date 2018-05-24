@@ -236,17 +236,252 @@ methodInvocation
 		|	typeName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_SUPER SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
 		;
 		
-primary : '\u000E';
-//		(	primaryNoNewArray_lfno_primary
-//		|	arrayCreationExpression
-//		)
-//		(	primaryNoNewArray_lf_primary
-//		)* ;
-	
 typeName:
 		IDENTIFIERS
 		| typeName SEPARATORS_PUNCTUATORS_DOT IDENTIFIERS ;
+		
+//primary:
+//;
+//PRIMARY////////////////////////////////////////////////////////////////		
+primaryNoNewArray_lf_primary
+	:	classInstanceCreationExpression_lf_primary
+	|	fieldAccess_lf_primary
+	|	arrayAccess_lf_primary
+	|	methodInvocation_lf_primary
+	|	methodReference_lf_primary
+;
+
+methodReference_lf_primary
+	:	'::' typeArguments? IDENTIFIERS
+;
+
+methodInvocation_lf_primary
+	:	'.' typeArguments? IDENTIFIERS '(' argumentList? ')'
+;
+
+primary : // '\u000E';
+		(	primaryNoNewArray_lfno_primary
+		|	arrayCreationExpression
+		)
+		(	primaryNoNewArray_lf_primary
+		)* 
+		;
+
+typeArguments
+	:	'<' typeArgumentList '>'
+	;
+
+typeArgumentList
+	:	typeArgument (',' typeArgument)*
+	;
 	
+referenceType
+	:	classOrInterfaceType
+	|	IDENTIFIERS
+	|	arrayType
+;
+
+arrayType
+	:	unannPrimitiveType dims
+	|	classOrInterfaceType dims
+	|	IDENTIFIERS dims
+	;
+
+classOrInterfaceType
+	:	(	classType_lfno_classOrInterfaceType
+		|	interfaceType_lfno_classOrInterfaceType
+		)
+		(	classType_lf_classOrInterfaceType
+		|	interfaceType_lf_classOrInterfaceType
+		)*
+	;
+
+classType
+	:	IDENTIFIERS typeArguments?
+	|	classOrInterfaceType '.' IDENTIFIERS typeArguments?
+	;
+
+classType_lf_classOrInterfaceType
+	:	'.'  IDENTIFIERS typeArguments?
+	;
+
+classType_lfno_classOrInterfaceType
+	:	 IDENTIFIERS typeArguments?
+	;
+
+interfaceType
+	:	classType
+	;
+
+interfaceType_lf_classOrInterfaceType
+	:	classType_lf_classOrInterfaceType
+	;
+
+interfaceType_lfno_classOrInterfaceType
+	:	classType_lfno_classOrInterfaceType
+;
+typeArgument
+	:	referenceType
+;		
+		
+classInstanceCreationExpression_lf_primary
+	:	'.' 'new' typeArguments?  IDENTIFIERS typeArgumentsOrDiamond? '(' argumentList? ')' classBody?
+;	
+
+primaryNoNewArray_lfno_primary
+	:	literal
+	|	typeName ('[' ']')* '.' 'class'
+	|	unannPrimitiveType ('[' ']')* '.' 'class'
+	|	'void' '.' 'class'
+	|	'this'
+	|	typeName '.' 'this'
+	|	'(' expression ')'
+	|	classInstanceCreationExpression_lfno_primary
+	|	fieldAccess_lfno_primary
+	|	arrayAccess_lfno_primary
+	|	methodInvocation_lfno_primary 
+	|	methodReference_lfno_primary
+;
+
+methodReference_lfno_primary
+	:	expressionName '::' typeArguments? IDENTIFIERS
+	|	referenceType '::' typeArguments? IDENTIFIERS
+	|	'super' '::' typeArguments? IDENTIFIERS
+	|	typeName '.' 'super' '::' typeArguments? IDENTIFIERS
+	|	classType '::' typeArguments? 'new'
+	|	arrayType '::' 'new'
+;
+
+methodInvocation_lfno_primary
+	:	IDENTIFIERS '(' argumentList? ')'
+	|	typeName '.' typeArguments? IDENTIFIERS '(' argumentList? ')'
+	|	expressionName '.' typeArguments? IDENTIFIERS '(' argumentList? ')'
+	|	'super' '.' typeArguments? IDENTIFIERS '(' argumentList? ')'
+	|	typeName '.' 'super' '.' typeArguments? IDENTIFIERS '(' argumentList? ')'
+;
+
+fieldAccess_lf_primary
+	:	'.' IDENTIFIERS
+	;
+
+fieldAccess_lfno_primary
+	:	'super' '.' IDENTIFIERS
+	|	typeName '.' 'super' '.' IDENTIFIERS
+;
+
+classInstanceCreationExpression_lfno_primary
+	:	'new' typeArguments?  IDENTIFIERS ('.'  IDENTIFIERS)* typeArgumentsOrDiamond? '(' argumentList? ')' classBody?
+	|	expressionName '.' 'new' typeArguments?  IDENTIFIERS typeArgumentsOrDiamond? '(' argumentList? ')' classBody?
+;
+
+	
+literal
+	:	LITERALS_NUMERIC_INT
+	|	LITERALS_NUMERIC_DOUBLE
+	|	LITERALS_LOGICAL_BOOLEAN
+	|	LITERALS_TEXTUAL_CHAR
+	|	LITERALS_TEXTUAL_STRING
+	|	LITERALS_REFERENCE_NULL
+;	 
+
+
+dimExprs
+	:	dimExpr dimExpr*
+	;
+
+dimExpr
+	:	'[' expression ']'
+;
+		
+arrayCreationExpression
+	:	'new' unannPrimitiveType dimExprs dims?
+	|	'new' classOrInterfaceType dimExprs dims?
+	|	'new' unannPrimitiveType dims arrayInitializer
+	|	'new' classOrInterfaceType dims arrayInitializer
+;
+
+arrayAccess
+	:	(	expressionName '[' expression ']'
+		|	primaryNoNewArray_lfno_arrayAccess '[' expression ']'
+		)
+		(	primaryNoNewArray_lf_arrayAccess '[' expression ']'
+		)*
+	;
+
+arrayAccess_lf_primary
+	:	(	primaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary '[' expression ']'
+		)
+		(	primaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary '[' expression ']'
+		)*
+	;
+
+arrayAccess_lfno_primary
+	:	(	expressionName '[' expression ']'
+		|	primaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary '[' expression ']'
+		)
+		(	primaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary '[' expression ']'
+		)*
+;
+primaryNoNewArray_lfno_arrayAccess
+	:	literal
+	|	typeName ('[' ']')* '.' 'class'
+	|	'void' '.' 'class'
+	|	'this'
+	|	typeName '.' 'this'
+	|	'(' expression ')'
+	|	classInstanceCreationExpression
+	|	fieldAccess
+	|	methodInvocation
+	|	methodReference
+;
+methodReference
+	:	expressionName '::' typeArguments? IDENTIFIERS
+	|	referenceType '::' typeArguments? IDENTIFIERS
+	|	primary '::' typeArguments? IDENTIFIERS
+	|	'super' '::' typeArguments? IDENTIFIERS
+	|	typeName '.' 'super' '::' typeArguments? IDENTIFIERS
+	|	classType '::' typeArguments? 'new'
+	|	arrayType '::' 'new'
+;
+
+fieldAccess
+	:	primary '.' IDENTIFIERS
+	|	'super' '.' IDENTIFIERS
+	|	typeName '.' 'super' '.' IDENTIFIERS
+;
+primaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary
+	:	literal
+	|	typeName ('[' ']')* '.' 'class'
+	|	unannPrimitiveType ('[' ']')* '.' 'class'
+	|	'void' '.' 'class'
+	|	'this'
+	|	typeName '.' 'this'
+	|	'(' expression ')'
+	|	classInstanceCreationExpression_lfno_primary
+	|	fieldAccess_lfno_primary
+	|	methodInvocation_lfno_primary
+	|	methodReference_lfno_primary
+;
+primaryNoNewArray_lf_arrayAccess
+	:
+;
+
+primaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary
+	:
+;
+
+primaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary
+	:
+;
+
+primaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary
+	:	classInstanceCreationExpression_lf_primary
+	|	fieldAccess_lf_primary
+	|	methodInvocation_lf_primary
+	|	methodReference_lf_primary
+;
+	
+//////////////////////////
 argumentList:
 		expression (SEPARATORS_PUNCTUATORS_COMMA expression)* ;
 		
@@ -421,24 +656,153 @@ doWhileStatement:
 whileDoStatement:
     KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (loopBlock | loopStatement)
     ;
-
+/////////////////////////////////////////expression changes
 expression:
-        arithmeticExpression
-      | logicalExpression
-      | assignmentExpression
-      | preIncrementationExpression
-      | postIncrementationExpression
-      | preDecrementationExpression
-      | postDecrementationExpression ;
+    //    arithmeticExpression
+    // | logicalExpression
+    //  | assignmentExpression
+    //  | preIncrementationExpression
+    //  | postIncrementationExpression
+    //  | preDecrementationExpression
+    //  | postDecrementationExpression 
+    //  | assignment;
+		conditionalExpression
+	|	assignment
+;
 
+conditionalExpression
+	:	conditionalOrExpression
+	|	conditionalOrExpression '?' expression ':' conditionalExpression
+	;
+
+conditionalOrExpression
+	:	conditionalAndExpression
+	|	conditionalOrExpression '||' conditionalAndExpression
+	;
+
+conditionalAndExpression
+	:	inclusiveOrExpression
+	|	conditionalAndExpression '&&' inclusiveOrExpression
+	;
+
+inclusiveOrExpression
+	:	exclusiveOrExpression
+	|	inclusiveOrExpression '|' exclusiveOrExpression
+	;
+
+exclusiveOrExpression
+	:	andExpression
+	|	exclusiveOrExpression '^' andExpression
+	;
+
+andExpression
+	:	equalityExpression
+	|	andExpression '&' equalityExpression
+	;
+
+equalityExpression
+	:	relationalExpression
+	|	equalityExpression '==' relationalExpression
+	|	equalityExpression '!=' relationalExpression
+	;
+
+relationalExpression
+	:	shiftExpression
+	|	relationalExpression '<' shiftExpression
+	|	relationalExpression '>' shiftExpression
+	|	relationalExpression '<=' shiftExpression
+	|	relationalExpression '>=' shiftExpression
+	|	relationalExpression 'instanceof' referenceType
+	;
+
+shiftExpression
+	:	additiveExpression
+	|	shiftExpression '<' '<' additiveExpression
+	|	shiftExpression '>' '>' additiveExpression
+	|	shiftExpression '>' '>' '>' additiveExpression
+	;
+
+additiveExpression
+	:	multiplicativeExpression
+	|	additiveExpression '+' multiplicativeExpression
+	|	additiveExpression '-' multiplicativeExpression
+	;
+
+multiplicativeExpression
+	:	unaryExpression
+	|	multiplicativeExpression '*' unaryExpression
+	|	multiplicativeExpression '/' unaryExpression
+	|	multiplicativeExpression '%' unaryExpression
+	;
+
+unaryExpression
+	:	preIncrementExpression
+	|	preDecrementExpression
+	|	'+' unaryExpression
+	|	'-' unaryExpression
+	|	unaryExpressionNotPlusMinus
+	;
+
+preIncrementExpression
+	:	'++' unaryExpression
+	;
+
+preDecrementExpression
+	:	'--' unaryExpression
+	;
+
+unaryExpressionNotPlusMinus
+	:	postfixExpression
+	|	'~' unaryExpression
+	|	'!' unaryExpression
+	|	castExpression
+	;
+
+postfixExpression
+	:	(	primary
+		|	expressionName
+		)
+		(	postIncrementExpression_lf_postfixExpression
+		|	postDecrementExpression_lf_postfixExpression
+		)*
+	;
+
+postIncrementExpression
+	:	postfixExpression '++'
+	;
+
+postIncrementExpression_lf_postfixExpression
+	:	'++'
+	;
+
+postDecrementExpression
+	:	postfixExpression '--'
+	;
+
+postDecrementExpression_lf_postfixExpression
+	:	'--'
+	;
+
+castExpression
+	:	'(' unannPrimitiveType ')' unaryExpression
+	|	'(' referenceType '&' interfaceType* ')' unaryExpressionNotPlusMinus
+;
+///////////////////////////////////////////////////////////////////////
 assignment:
-        assignmentExpression
-        SEPARATORS_PUNCTUATORS_SEMICOLON ;
+		leftHandSide assignmentOperator expression;
+//       assignmentExpression
+//        SEPARATORS_PUNCTUATORS_SEMICOLON ;
 
+leftHandSide
+	:	expressionName
+	|	fieldAccess
+	|	arrayAccess
+;
 
 assignmentExpression:
         IDENTIFIERS assignmentOperator (IDENTIFIERS | expression)
-      | IDENTIFIERS (OPERATORS_ASSIGNMENT IDENTIFIERS)+ expression? ;
+      | IDENTIFIERS (OPERATORS_ASSIGNMENT IDENTIFIERS)+ expression? 
+      | assignment;
 
 assignmentOperator:
         OPERATORS_ASSIGNMENT
@@ -461,8 +825,23 @@ forInit:
       ;
 
 forUpdate:
-        assignmentExpression+ (SEPARATORS_PUNCTUATORS_COMMA assignmentExpression)*
+        statementExpressionList
       ;
+
+
+statementExpressionList
+	:	statementExpression (',' statementExpression)*
+;
+
+statementExpression
+	:	assignment
+	|	preIncrementExpression
+	|	preDecrementExpression
+	|	postIncrementExpression
+	|	postDecrementExpression
+	|	methodInvocation
+	|	classInstanceCreationExpression
+	;
 
 enhancedForStatement:
         KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS keywordsType IDENTIFIERS OPERATORS_ELSE IDENTIFIERS SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (block | statement)
@@ -695,6 +1074,11 @@ fragment DigitOrUnderscore:
 				
 fragment Underscores:
 				'_'+ ;
+				
+fragment
+UnicodeEscape
+    :   '\\' 'u'+  HexDigit HexDigit HexDigit HexDigit
+;
 
 WHITE_SPACES:
             [ \t\r\n\u000C]+ -> skip ;
@@ -710,8 +1094,38 @@ COMMENTS_BLOCK:
         COMMENTS_BLOCK_OPENING .*? COMMENTS_BLOCK_CLOSING -> channel(HIDDEN) ;
         
 
-UNTERMINATED_STRING:
-				'"' (~["\\\r\n] | '\\' (. | EOF))* ;        
+//UNTERMINATED_STRING:
+				//'"' (~["\\\r\n] | '\\' (. | EOF))* ;     
+				//'"' ((~["\\\r\n] | '\\' (. | EOF))+)? ;    
+fragment
+StringCharacters:
+				StringCharacter+ ;
+
+fragment
+StringCharacter
+	:	~["\\\r\n]
+	|	EscapeSequence
+	;
+// §3.10.6 Escape Sequences for Character and String Literals
+fragment
+EscapeSequence
+	:	'\\' [btnfr"'\\]
+	|	OctalEscape
+	| '\\' (. | EOF)
+    |   UnicodeEscape // This is not in the spec but prevents having to preprocess the input
+;
+
+fragment
+OctalEscape
+	:	'\\' OctalDigit
+	|	'\\' OctalDigit OctalDigit
+	|	'\\' ZeroToThree OctalDigit OctalDigit
+	;
+
+fragment
+ZeroToThree
+	:	[0-3]
+;
 
 fragment LETTERORDIGIT:
 				LETTER
@@ -722,7 +1136,7 @@ fragment DIGIT:
                 | NONZERODIGIT;
                 
 fragment NONZERODIGIT:
-				[1-9];
+				[1-9$_];
                 
 fragment LETTER:
                 LOWERCASE_LETTER | UPPERCASE_LETTER 
@@ -732,10 +1146,10 @@ fragment LETTER:
 					{ Character.isJavaIdentifierStart(  Character.toCodePoint( (char)_input.LA(-2), (char)_input.LA(-1))  ) }? ;
                 
 fragment LOWERCASE_LETTER:
-				[a-z];
+				[a-z$_];
 				
 fragment UPPERCASE_LETTER:
-				[A-Z];
+				[A-Z$_];
 
 //Tokeny ( literaly ) rzeczywiste
 
@@ -814,7 +1228,7 @@ LITERALS_LOGICAL_BOOLEAN:				 'true' | 'false';
 
 LITERALS_TEXTUAL_CHAR:		           	 '\'' . '\'' ;
             
-LITERALS_TEXTUAL_STRING:				 UNTERMINATED_STRING '"';
+LITERALS_TEXTUAL_STRING:				'"' StringCharacters? '"';
             
 LITERALS_REFERENCE_NULL:				 'null';
 

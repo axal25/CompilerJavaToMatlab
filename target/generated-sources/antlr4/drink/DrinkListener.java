@@ -1,7 +1,8 @@
-// Generated from Drink.g4 by ANTLR 4.7.1
+// Generated from Drink.g4 by ANTLR 4.4
 
 	package drink;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -13,20 +14,20 @@ public interface DrinkListener extends ParseTreeListener {
 	 * Enter a parse tree produced by {@link DrinkParser#drinkSentence}.
 	 * @param ctx the parse tree
 	 */
-	void enterDrinkSentence(DrinkParser.DrinkSentenceContext ctx);
+	void enterDrinkSentence(@NotNull DrinkParser.DrinkSentenceContext ctx);
 	/**
 	 * Exit a parse tree produced by {@link DrinkParser#drinkSentence}.
 	 * @param ctx the parse tree
 	 */
-	void exitDrinkSentence(DrinkParser.DrinkSentenceContext ctx);
+	void exitDrinkSentence(@NotNull DrinkParser.DrinkSentenceContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DrinkParser#drink}.
 	 * @param ctx the parse tree
 	 */
-	void enterDrink(DrinkParser.DrinkContext ctx);
+	void enterDrink(@NotNull DrinkParser.DrinkContext ctx);
 	/**
 	 * Exit a parse tree produced by {@link DrinkParser#drink}.
 	 * @param ctx the parse tree
 	 */
-	void exitDrink(DrinkParser.DrinkContext ctx);
+	void exitDrink(@NotNull DrinkParser.DrinkContext ctx);
 }

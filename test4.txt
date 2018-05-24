@@ -4,10 +4,15 @@ public static void main( int arg0, String[] args ) {
 	long li1 = -1231412412341235672L;
 	long li2 = 1231412412341235672L;
 	String s = "myChainOfChars";
+	String s = "aaaaaaaa";
+	String s = a4aa3aaaaa;
 	int [] varIntTab = { 0, 1 };
 	char [] varCharTab = new char [3];
 	int [] var_int_tab = { 0, 1 };
-	char [] var_char_tab = new char [3];
+	char [] var_char_tab = new char [hdhshdj];
+		char [] var_char_tab = new int [hdhshdj];
+	int [] aa_aa_aa = { 0, 1 };
+	char [] aaaa_aaaa_aaaaaa = new char []; //ok bo tu ma wywalac blad
 	
 	String s = null;
 	int lastInd = 10;

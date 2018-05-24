@@ -1,0 +1,11 @@
+
+/// zmiany ktore akceptuja '_'
+fragment NONZERODIGIT:
+				[1-9$_];
+                
+               
+fragment LOWERCASE_LETTER:
+				[a-z$_];
+				
+fragment UPPERCASE_LETTER:
+				[A-Z$_];
