@@ -20,6 +20,7 @@ public class ParserDemo {
 		}
 		catch( Exception e ) {
 			System.out.println("Exception cought in ParserDemo pd.fileTesting(): \n" + e.toString() );
+			System.out.println("Meh... easy~!");
 		}
 	}
 	
