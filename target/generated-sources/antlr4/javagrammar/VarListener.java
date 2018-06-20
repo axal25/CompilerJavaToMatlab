@@ -17,7 +17,7 @@ public class VarListener extends JavaGrammarBaseListener{
 	
 	@Override 
 	public void enterVariableDeclarator
-	(@NotNull JavaGrammarParser.VariableDeclaratorContext ctx) {
+	(JavaGrammarParser.VariableDeclaratorContext ctx) {
 		String identifiers2 = ctx.getText();
 		printThis("variable declarator : " + identifiers2);
 	}
