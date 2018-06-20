@@ -100,6 +100,22 @@ public void staticInputTesting() {
 		System.out.println( content4 );
 		attacher.pubPrintMethodDeclaration( content4 );
 		Thread.sleep(100);
+		
+		System.out.println("\n\t--------------------------- full_program_test_life.txt ---------------------------");
+		System.out.println("\t\t-------------- Goal example ---------------");
+		String lifeContent = new FileOperations().readFile("full_program_test_life.txt", Charset.defaultCharset() );
+		System.out.println( lifeContent );
+		attacher.pubPrintJavaGrammar( lifeContent );
+		Thread.sleep(100);
+		
+		System.out.println("\n\t--------------------------- full_program_test_arrays.txt ---------------------------");
+		System.out.println("\t\t-------------- Goal example ---------------");
+		String arraysContent = new FileOperations().readFile("full_program_test_arrays.txt", Charset.defaultCharset() );
+		System.out.println( arraysContent );
+		attacher.pubPrintJavaGrammar( arraysContent );
+		Thread.sleep(100);
+		
+		
 	}
 
 }
