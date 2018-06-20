@@ -26,8 +26,6 @@ public class VarListener extends JavaGrammarBaseListener{
 	public void enterLocalVariableDeclaration
 	(JavaGrammarParser.LocalVariableDeclarationContext ctx) {
 		List a = null;
-		//sd fksdmfk
-		//Hey! I'm doing something here!
 		String ala = "";
 		try{
 			a = ctx.variableModifier();

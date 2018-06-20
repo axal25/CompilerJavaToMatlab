@@ -4,7 +4,6 @@ public class Tests {
 	
 public void staticInputTesting() {
 		System.out.println("--------------------------------- staticInputTesting ---------------------------------");
-
 		
 		Attacher attacher = new Attacher();
 		
@@ -122,8 +121,6 @@ public void staticInputTesting() {
 		Thread.sleep(100);
 		attacher.pubPrintIdentifiers( vListenerContent );
 		Thread.sleep(100);
-		
-		
 	}
 
 }
