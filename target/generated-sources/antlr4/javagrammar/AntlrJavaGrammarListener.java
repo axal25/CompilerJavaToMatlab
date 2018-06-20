@@ -1,5 +1,7 @@
 package javagrammar;
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 public class AntlrJavaGrammarListener extends JavaGrammarBaseListener {
 	 
     @Override
@@ -9,8 +11,8 @@ public class AntlrJavaGrammarListener extends JavaGrammarBaseListener {
     
     @Override
     public void enterMethodDeclaration
-    ( JavaGrammarParser.MethodDeclarationContext ctx) {
+    ( JavaGrammarParser.MethodDeclarationContext ctx ) {
         System.out.println( ctx.getText() );
     }
- 
+
 }

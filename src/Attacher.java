@@ -5,13 +5,13 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import drink.AntlrDrinkListener;
 import drink.DrinkLexer;
 import drink.DrinkParser;
-
 import javagrammar.AntlrJavaGrammarListener;
 import javagrammar.JavaGrammarLexer;
 import javagrammar.JavaGrammarParser;
+import javagrammar.VarListener;
 
 public class Attacher {
-	
+
 	Attacher() {}
 	
 	private void privPrintDrink(String drinkSentence) 
@@ -81,6 +81,23 @@ public class Attacher {
 		walker.walk(listener, compilationUnit_ctx);
 	}
 	
+	private void privPrintIdentifiers(String javaSentence) 
+	{
+		// Get our lexer
+	    JavaGrammarLexer lexer = new JavaGrammarLexer(new ANTLRInputStream( javaSentence ));
+	 
+	    // Get a list of matched tokens
+	    CommonTokenStream tokens = new CommonTokenStream(lexer);
+	 
+	    // Pass the tokens to the parser
+	    JavaGrammarParser parser = new JavaGrammarParser(tokens);
+	    
+	    // Specify our entry point
+	    JavaGrammarParser.CompilationUnitContext compilationUnit_ctx = parser.compilationUnit();
+	   
+        ParseTreeWalker.DEFAULT.walk(new VarListener(), compilationUnit_ctx);
+	}
+	
 	public void pubPrintMethodDeclaration( String inputSentence )
 	{
 		privPrintMethodDeclaration( inputSentence );
@@ -89,6 +106,11 @@ public class Attacher {
 	public void pubPrintJavaGrammar( String inputSentence )
 	{
 		privPrintJavaGrammar( inputSentence );
+	}
+
+	public void pubPrintIdentifiers( String inputSentence )
+	{
+		privPrintIdentifiers( inputSentence );
 	}
 
 }

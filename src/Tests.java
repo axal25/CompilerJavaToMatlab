@@ -116,6 +116,16 @@ public void staticInputTesting() {
 		Thread.sleep(100);
 		
 		
+		System.out.println("\n\t--------------------------- test_variableListener.txt ---------------------------");
+		System.out.println("\t\t-------------- Goal example ---------------");
+		String vListenerContent = new FileOperations().readFile("test_variableListener.txt", Charset.defaultCharset() );
+		System.out.println( vListenerContent );
+		attacher.pubPrintJavaGrammar( vListenerContent );
+		Thread.sleep(100);
+		attacher.pubPrintIdentifiers( vListenerContent );
+		Thread.sleep(100);
+		
+		
 	}
 
 }
