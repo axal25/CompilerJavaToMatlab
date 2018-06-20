@@ -8,8 +8,6 @@ public void staticInputTesting() {
 		
 		Attacher attacher = new Attacher();
 		
-		attacher.pubPrintDrink("the pint of beer");
-		
 		System.out.println();
 		
 		attacher.pubPrintMethodDeclaration("void method1();");
