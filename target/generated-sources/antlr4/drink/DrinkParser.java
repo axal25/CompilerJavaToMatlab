@@ -1,4 +1,4 @@
-// Generated from Drink.g4 by ANTLR 4.4
+// Generated from Drink.g4 by ANTLR 4.7.1
 
 	package drink;
 
@@ -13,27 +13,60 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class DrinkParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
 		ARTICLE=1, OF=2, DRINKING_VESSEL=3, TEXT=4, WHITESPACE=5;
-	public static final String[] tokenNames = {
-		"<INVALID>", "ARTICLE", "'of'", "DRINKING_VESSEL", "TEXT", "WHITESPACE"
-	};
 	public static final int
 		RULE_drinkSentence = 0, RULE_drink = 1;
 	public static final String[] ruleNames = {
 		"drinkSentence", "drink"
 	};
 
-	@Override
-	public String getGrammarFileName() { return "Drink.g4"; }
+	private static final String[] _LITERAL_NAMES = {
+		null, null, "'of'"
+	};
+	private static final String[] _SYMBOLIC_NAMES = {
+		null, "ARTICLE", "OF", "DRINKING_VESSEL", "TEXT", "WHITESPACE"
+	};
+	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+
+	/**
+	 * @deprecated Use {@link #VOCABULARY} instead.
+	 */
+	@Deprecated
+	public static final String[] tokenNames;
+	static {
+		tokenNames = new String[_SYMBOLIC_NAMES.length];
+		for (int i = 0; i < tokenNames.length; i++) {
+			tokenNames[i] = VOCABULARY.getLiteralName(i);
+			if (tokenNames[i] == null) {
+				tokenNames[i] = VOCABULARY.getSymbolicName(i);
+			}
+
+			if (tokenNames[i] == null) {
+				tokenNames[i] = "<INVALID>";
+			}
+		}
+	}
 
 	@Override
-	public String[] getTokenNames() { return tokenNames; }
+	@Deprecated
+	public String[] getTokenNames() {
+		return tokenNames;
+	}
+
+	@Override
+
+	public Vocabulary getVocabulary() {
+		return VOCABULARY;
+	}
+
+	@Override
+	public String getGrammarFileName() { return "Drink.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -49,8 +82,8 @@ public class DrinkParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class DrinkSentenceContext extends ParserRuleContext {
-		public TerminalNode OF() { return getToken(DrinkParser.OF, 0); }
 		public TerminalNode DRINKING_VESSEL() { return getToken(DrinkParser.DRINKING_VESSEL, 0); }
+		public TerminalNode OF() { return getToken(DrinkParser.OF, 0); }
 		public DrinkContext drink() {
 			return getRuleContext(DrinkContext.class,0);
 		}
@@ -77,16 +110,21 @@ public class DrinkParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(5);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ARTICLE) {
 				{
-				setState(4); match(ARTICLE);
+				setState(4);
+				match(ARTICLE);
 				}
 			}
 
-			setState(7); match(DRINKING_VESSEL);
-			setState(8); match(OF);
-			setState(9); drink();
+			setState(7);
+			match(DRINKING_VESSEL);
+			setState(8);
+			match(OF);
+			setState(9);
+			drink();
 			}
 		}
 		catch (RecognitionException re) {
@@ -122,7 +160,8 @@ public class DrinkParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(11); match(TEXT);
+			setState(11);
+			match(TEXT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -137,11 +176,11 @@ public class DrinkParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\7\20\4\2\t\2\4\3"+
-		"\t\3\3\2\5\2\b\n\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\2\2\4\2\4\2\2\16\2\7\3"+
-		"\2\2\2\4\r\3\2\2\2\6\b\7\3\2\2\7\6\3\2\2\2\7\b\3\2\2\2\b\t\3\2\2\2\t\n"+
-		"\7\5\2\2\n\13\7\4\2\2\13\f\5\4\3\2\f\3\3\2\2\2\r\16\7\6\2\2\16\5\3\2\2"+
-		"\2\3\7";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\20\4\2\t\2\4\3"+
+		"\t\3\3\2\5\2\b\n\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\2\2\4\2\4\2\2\2\16\2\7"+
+		"\3\2\2\2\4\r\3\2\2\2\6\b\7\3\2\2\7\6\3\2\2\2\7\b\3\2\2\2\b\t\3\2\2\2\t"+
+		"\n\7\5\2\2\n\13\7\4\2\2\13\f\5\4\3\2\f\3\3\2\2\2\r\16\7\6\2\2\16\5\3\2"+
+		"\2\2\3\7";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

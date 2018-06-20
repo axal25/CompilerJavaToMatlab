@@ -1,4 +1,4 @@
-// Generated from JavaGrammar.g4 by ANTLR 4.4
+// Generated from JavaGrammar.g4 by ANTLR 4.7.1
 
 	package javagrammar;
 
@@ -13,13 +13,13 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class JavaGrammarLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__1=1, T__0=2, WHITE_SPACES=3, LINE_COMMENT=4, NEW_LINE=5, COMMENTS_BLOCK=6, 
+		T__0=1, T__1=2, WHITE_SPACES=3, LINE_COMMENT=4, NEW_LINE=5, COMMENTS_BLOCK=6, 
 		UNTERMINATED_STRING=7, ADDITIONAL_LITERAL_AT=8, ADDITIONAL_LITERAL_ELLIPSIS=9, 
 		KEYWORDS_ABSTRACT=10, KEYWORDS_ASSERT=11, KEYWORDS_BOOLEAN=12, KEYWORDS_BREAK=13, 
 		KEYWORDS_BYTE=14, KEYWORDS_CASE=15, KEYWORDS_CATCH=16, KEYWORDS_CHAR=17, 
@@ -54,28 +54,16 @@ public class JavaGrammarLexer extends Lexer {
 		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET=110, SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET=111, 
 		SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET=112, SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET=113, 
 		COMMENTS_LINE=114, COMMENTS_BLOCK_OPENING=115, COMMENTS_BLOCK_CLOSING=116;
+	public static String[] channelNames = {
+		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
+	};
+
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
 
-	public static final String[] tokenNames = {
-		"'\\u0000'", "'\\u0001'", "'\\u0002'", "'\\u0003'", "'\\u0004'", "'\\u0005'", 
-		"'\\u0006'", "'\\u0007'", "'\b'", "'\t'", "'\n'", "'\\u000B'", "'\f'", 
-		"'\r'", "'\\u000E'", "'\\u000F'", "'\\u0010'", "'\\u0011'", "'\\u0012'", 
-		"'\\u0013'", "'\\u0014'", "'\\u0015'", "'\\u0016'", "'\\u0017'", "'\\u0018'", 
-		"'\\u0019'", "'\\u001A'", "'\\u001B'", "'\\u001C'", "'\\u001D'", "'\\u001E'", 
-		"'\\u001F'", "' '", "'!'", "'\"'", "'#'", "'$'", "'%'", "'&'", "'''", 
-		"'('", "')'", "'*'", "'+'", "','", "'-'", "'.'", "'/'", "'0'", "'1'", 
-		"'2'", "'3'", "'4'", "'5'", "'6'", "'7'", "'8'", "'9'", "':'", "';'", 
-		"'<'", "'='", "'>'", "'?'", "'@'", "'A'", "'B'", "'C'", "'D'", "'E'", 
-		"'F'", "'G'", "'H'", "'I'", "'J'", "'K'", "'L'", "'M'", "'N'", "'O'", 
-		"'P'", "'Q'", "'R'", "'S'", "'T'", "'U'", "'V'", "'W'", "'X'", "'Y'", 
-		"'Z'", "'['", "'\\'", "']'", "'^'", "'_'", "'`'", "'a'", "'b'", "'c'", 
-		"'d'", "'e'", "'f'", "'g'", "'h'", "'i'", "'j'", "'k'", "'l'", "'m'", 
-		"'n'", "'o'", "'p'", "'q'", "'r'", "'s'", "'t'"
-	};
 	public static final String[] ruleNames = {
-		"T__1", "T__0", "DecimalFloatingPointLiteral", "FloatTypeSuffix", "ExponentIndicator", 
+		"T__0", "T__1", "DecimalFloatingPointLiteral", "FloatTypeSuffix", "ExponentIndicator", 
 		"ExponentPart", "SignedInteger", "Sign", "HexadecimalFloatingPointLiteral", 
 		"HexSignificand", "BinaryExponent", "BinaryExponentIndicator", "OctalIntegerLiteral", 
 		"OctalNumeral", "OctalDigits", "OctalDigit", "OctalDigitsAndUnderscores", 
@@ -122,6 +110,93 @@ public class JavaGrammarLexer extends Lexer {
 		"COMMENTS_BLOCK_CLOSING"
 	};
 
+	private static final String[] _LITERAL_NAMES = {
+		null, "'::'", "'->'", null, null, null, null, null, "'@'", "'...'", "'abstract'", 
+		"'assert'", "'boolean'", "'break'", "'byte'", "'case'", "'catch'", "'char'", 
+		"'class'", "'const'", "'continue'", "'default'", "'do'", "'double'", "'else'", 
+		"'extends'", "'final'", "'finally'", "'float'", "'for'", "'goto'", "'if'", 
+		"'implements'", "'import'", "'instanceof'", "'int'", "'interface'", "'long'", 
+		"'native'", "'new'", "'package'", "'private'", "'protected'", "'public'", 
+		"'return'", "'short'", "'static'", "'strictfp'", "'super'", "'synchronized'", 
+		"'switch'", "'this'", "'throw'", "'throws'", "'transient'", "'try'", "'void'", 
+		"'volatile'", "'while'", null, null, null, null, null, null, "'null'", 
+		"'?'", "':'", "'='", "'>'", "'<'", "'!'", "'<='", "'>='", "'=='", "'!='", 
+		"'&&'", "'||'", "'++'", "'--'", "'+'", "'-'", "'*'", "'/'", "'%'", "'+='", 
+		"'-='", "'*='", "'/='", "'%='", "'&&='", "'~'", "'&'", "'|'", "'^'", "'&='", 
+		"'^='", "'|='", "'<<'", "'>>'", "'>>>'", "'<<='", "'>>='", "'>>>='", "';'", 
+		"','", "'.'", "'\\'", "'('", "')'", "'{'", "'}'", "'['", "']'", "'//'", 
+		"'/*'", "'*/'"
+	};
+	private static final String[] _SYMBOLIC_NAMES = {
+		null, null, null, "WHITE_SPACES", "LINE_COMMENT", "NEW_LINE", "COMMENTS_BLOCK", 
+		"UNTERMINATED_STRING", "ADDITIONAL_LITERAL_AT", "ADDITIONAL_LITERAL_ELLIPSIS", 
+		"KEYWORDS_ABSTRACT", "KEYWORDS_ASSERT", "KEYWORDS_BOOLEAN", "KEYWORDS_BREAK", 
+		"KEYWORDS_BYTE", "KEYWORDS_CASE", "KEYWORDS_CATCH", "KEYWORDS_CHAR", "KEYWORDS_CLASS", 
+		"KEYWORDS_CONST", "KEYWORDS_CONTINUE", "KEYWORDS_DEFAULT", "KEYWORDS_DO", 
+		"KEYWORDS_DOUBLE", "KEYWORDS_ELSE", "KEYWORDS_EXTENDS", "KEYWORDS_FINAL", 
+		"KEYWORDS_FINALLY", "KEYWORDS_FLOAT", "KEYWORDS_FOR", "KEYWORDS_GOTO", 
+		"KEYWORDS_IF", "KEYWORDS_IMPLEMENTS", "KEYWORDS_IMPORT", "KEYWORDS_INSTANCEOF", 
+		"KEYWORDS_INT", "KEYWORDS_INTERFACE", "KEYWORDS_LONG", "KEYWORDS_NATIVE", 
+		"KEYWORDS_NEW", "KEYWORDS_PACKAGE", "KEYWORDS_PRIVATE", "KEYWORDS_PROTECTED", 
+		"KEYWORDS_PUBLIC", "KEYWORDS_RETURN", "KEYWORDS_SHORT", "KEYWORDS_STATIC", 
+		"KEYWORDS_STRICTFP", "KEYWORDS_SUPER", "KEYWORDS_SYNCHRONIZED", "KEYWORDS_SWITCH", 
+		"KEYWORDS_THIS", "KEYWORDS_THROW", "KEYWORDS_THROWS", "KEYWORDS_TRANSIENT", 
+		"KEYWORDS_TRY", "KEYWORDS_VOID", "KEYWORDS_VOLATILE", "KEYWORDS_WHILE", 
+		"IDENTIFIERS", "LITERALS_NUMERIC_INT", "LITERALS_NUMERIC_DOUBLE", "LITERALS_LOGICAL_BOOLEAN", 
+		"LITERALS_TEXTUAL_CHAR", "LITERALS_TEXTUAL_STRING", "LITERALS_REFERENCE_NULL", 
+		"OPERATORS_IF", "OPERATORS_ELSE", "OPERATORS_ASSIGNMENT", "OPERATORS_GREATERTHAN", 
+		"OPERATORS_LESSTHAN", "OPERATORS_LOGICALNOT", "OPERATORS_LESSTHANOREQUAL", 
+		"OPERATORS_GREATERTHANOREQUAL", "OPERATORS_LOGICALEQUAL", "OPERATORS_LOGICALNOTEQUAL", 
+		"OPERATORS_LOGICALAND", "OPERATORS_LOGICALOR", "OPERATORS_INCREMENT", 
+		"OPERATORS_DECREMENT", "OPERATORS_ADDITION", "OPERATORS_SUBTRACTION", 
+		"OPERATORS_MULTIPLICATION", "OPERATORS_DIVISION", "OPERATORS_MODULO", 
+		"OPERATORS_ADDITIONANDASSIGNMENT", "OPERATORS_SUBTRACTIONANDASSIGNMENT", 
+		"OPERATORS_MULTIPLICATIONANDASSIGNMENT", "OPERATORS_DIVISIONANDASSIGNMENT", 
+		"OPERATORS_MODULOANDASSIGMENT", "OPERATORS_LOGICALANDASSIGNMENT", "OPERATORS_BITWISENOT", 
+		"OPERATORS_BITWISEAND", "OPERATORS_BITWISEOR", "OPERATORS_BITWISEXOR", 
+		"OPERATORS_BITWISEANDASSIGNMENT", "OPERATORS_BITWISEXORASSIGNMENT", "OPERATORS_BITWISEORASSIGNMENT", 
+		"OPERATORS_SHIFTLEFT", "OPERATORS_SHIFTRIGHT", "OPERATORS_SHIFTRIGHTUNSIGNED", 
+		"OPERATORS_SHIFTLEFTASSIGNMENT", "OPERATORS_SHIFTRIGHTASSIGNMENT", "OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT", 
+		"SEPARATORS_PUNCTUATORS_SEMICOLON", "SEPARATORS_PUNCTUATORS_COMMA", "SEPARATORS_PUNCTUATORS_DOT", 
+		"SEPARATORS_PUNCTUATORS_ESCAPECHARACTER", "SEPARATORS_DELIMITERS_LEFTPARENTHESIS", 
+		"SEPARATORS_DELIMITERS_RIGHTPARENTHESIS", "SEPARATORS_DELIMITERS_LEFTCURLYBRACKET", 
+		"SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET", "SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET", 
+		"SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET", "COMMENTS_LINE", "COMMENTS_BLOCK_OPENING", 
+		"COMMENTS_BLOCK_CLOSING"
+	};
+	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+
+	/**
+	 * @deprecated Use {@link #VOCABULARY} instead.
+	 */
+	@Deprecated
+	public static final String[] tokenNames;
+	static {
+		tokenNames = new String[_SYMBOLIC_NAMES.length];
+		for (int i = 0; i < tokenNames.length; i++) {
+			tokenNames[i] = VOCABULARY.getLiteralName(i);
+			if (tokenNames[i] == null) {
+				tokenNames[i] = VOCABULARY.getSymbolicName(i);
+			}
+
+			if (tokenNames[i] == null) {
+				tokenNames[i] = "<INVALID>";
+			}
+		}
+	}
+
+	@Override
+	@Deprecated
+	public String[] getTokenNames() {
+		return tokenNames;
+	}
+
+	@Override
+
+	public Vocabulary getVocabulary() {
+		return VOCABULARY;
+	}
+
 
 	public JavaGrammarLexer(CharStream input) {
 		super(input);
@@ -132,13 +207,13 @@ public class JavaGrammarLexer extends Lexer {
 	public String getGrammarFileName() { return "JavaGrammar.g4"; }
 
 	@Override
-	public String[] getTokenNames() { return tokenNames; }
-
-	@Override
 	public String[] getRuleNames() { return ruleNames; }
 
 	@Override
 	public String getSerializedATN() { return _serializedATN; }
+
+	@Override
+	public String[] getChannelNames() { return channelNames; }
 
 	@Override
 	public String[] getModeNames() { return modeNames; }
@@ -149,20 +224,23 @@ public class JavaGrammarLexer extends Lexer {
 	@Override
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 45: return LETTER_sempred((RuleContext)_localctx, predIndex);
+		case 45:
+			return LETTER_sempred((RuleContext)_localctx, predIndex);
 		}
 		return true;
 	}
 	private boolean LETTER_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return  Character.isJavaIdentifierStart(_input.LA(-1) ) ;
-		case 1: return  Character.isJavaIdentifierStart(  Character.toCodePoint( (char)_input.LA(-2), (char)_input.LA(-1))  ) ;
+		case 0:
+			return  Character.isJavaIdentifierStart(_input.LA(-1) ) ;
+		case 1:
+			return  Character.isJavaIdentifierStart(  Character.toCodePoint( (char)_input.LA(-2), (char)_input.LA(-1))  ) ;
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2v\u0442\b\1\4\2\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2v\u0442\b\1\4\2\t"+
 		"\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -249,12 +327,12 @@ public class JavaGrammarLexer extends Lexer {
 		"g\4\2--//\4\2ZZzz\4\2RRrr\3\2\629\4\2DDdd\3\2\62\63\5\2\62;CHch\4\2NN"+
 		"nn\5\2\13\f\16\17\"\"\5\2\f\f\17\17\u202a\u202b\6\2\f\f\17\17$$^^\5\2"+
 		"&&\63;aa\4\2\2\u0081\ud802\udc01\3\2\ud802\udc01\3\2\udc02\ue001\5\2&"+
-		"&aac|\5\2&&C\\aa\u0451\2\3\3\2\2\2\2\5\3\2\2\2\2M\3\2\2\2\2O\3\2\2\2\2"+
-		"Q\3\2\2\2\2S\3\2\2\2\2U\3\2\2\2\2c\3\2\2\2\2e\3\2\2\2\2g\3\2\2\2\2i\3"+
-		"\2\2\2\2k\3\2\2\2\2m\3\2\2\2\2o\3\2\2\2\2q\3\2\2\2\2s\3\2\2\2\2u\3\2\2"+
-		"\2\2w\3\2\2\2\2y\3\2\2\2\2{\3\2\2\2\2}\3\2\2\2\2\177\3\2\2\2\2\u0081\3"+
-		"\2\2\2\2\u0083\3\2\2\2\2\u0085\3\2\2\2\2\u0087\3\2\2\2\2\u0089\3\2\2\2"+
-		"\2\u008b\3\2\2\2\2\u008d\3\2\2\2\2\u008f\3\2\2\2\2\u0091\3\2\2\2\2\u0093"+
+		"&aac|\5\2&&C\\aa\2\u0451\2\3\3\2\2\2\2\5\3\2\2\2\2M\3\2\2\2\2O\3\2\2\2"+
+		"\2Q\3\2\2\2\2S\3\2\2\2\2U\3\2\2\2\2c\3\2\2\2\2e\3\2\2\2\2g\3\2\2\2\2i"+
+		"\3\2\2\2\2k\3\2\2\2\2m\3\2\2\2\2o\3\2\2\2\2q\3\2\2\2\2s\3\2\2\2\2u\3\2"+
+		"\2\2\2w\3\2\2\2\2y\3\2\2\2\2{\3\2\2\2\2}\3\2\2\2\2\177\3\2\2\2\2\u0081"+
+		"\3\2\2\2\2\u0083\3\2\2\2\2\u0085\3\2\2\2\2\u0087\3\2\2\2\2\u0089\3\2\2"+
+		"\2\2\u008b\3\2\2\2\2\u008d\3\2\2\2\2\u008f\3\2\2\2\2\u0091\3\2\2\2\2\u0093"+
 		"\3\2\2\2\2\u0095\3\2\2\2\2\u0097\3\2\2\2\2\u0099\3\2\2\2\2\u009b\3\2\2"+
 		"\2\2\u009d\3\2\2\2\2\u009f\3\2\2\2\2\u00a1\3\2\2\2\2\u00a3\3\2\2\2\2\u00a5"+
 		"\3\2\2\2\2\u00a7\3\2\2\2\2\u00a9\3\2\2\2\2\u00ab\3\2\2\2\2\u00ad\3\2\2"+
