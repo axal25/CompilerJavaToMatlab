@@ -6,7 +6,7 @@ import java.util.Stack;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 
-public class VarListener extends JavaGrammarBaseListener{
+public class InterpreterListener extends JavaGrammarBaseListener{
     
 	@Override 
 	public void enterVariableDeclaratorId

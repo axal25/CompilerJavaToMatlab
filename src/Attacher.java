@@ -2,10 +2,10 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import javagrammar.AntlrJavaGrammarListener;
+import javagrammar.ParsingValidatorListener;
 import javagrammar.JavaGrammarLexer;
 import javagrammar.JavaGrammarParser;
-import javagrammar.VarListener;
+import javagrammar.InterpreterListener;
 
 public class Attacher {
 
@@ -28,7 +28,7 @@ public class Attacher {
 	 
 	    // Walk it and attach our listener
 		ParseTreeWalker walker = new ParseTreeWalker();
-		AntlrJavaGrammarListener listener = new AntlrJavaGrammarListener();
+		ParsingValidatorListener listener = new ParsingValidatorListener();
 		walker.walk(listener, methodDeclaraction_ctx);
 	}
 	
@@ -48,7 +48,7 @@ public class Attacher {
 	 
 	    // Walk it and attach our listener
 		ParseTreeWalker walker = new ParseTreeWalker();
-		AntlrJavaGrammarListener listener = new AntlrJavaGrammarListener();
+		ParsingValidatorListener listener = new ParsingValidatorListener();
 		walker.walk(listener, compilationUnit_ctx);
 	}
 	
@@ -66,7 +66,7 @@ public class Attacher {
 	    // Specify our entry point
 	    JavaGrammarParser.CompilationUnitContext compilationUnit_ctx = parser.compilationUnit();
 	   
-        ParseTreeWalker.DEFAULT.walk(new VarListener(), compilationUnit_ctx);
+        ParseTreeWalker.DEFAULT.walk(new InterpreterListener(), compilationUnit_ctx);
 	}
 	
 	public void pubPrintMethodDeclaration( String inputSentence )

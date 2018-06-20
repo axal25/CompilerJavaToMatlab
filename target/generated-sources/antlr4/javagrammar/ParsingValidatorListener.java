@@ -2,7 +2,7 @@ package javagrammar;
 
 import org.antlr.v4.runtime.misc.NotNull;
 
-public class AntlrJavaGrammarListener extends JavaGrammarBaseListener {
+public class ParsingValidatorListener extends JavaGrammarBaseListener {
 	 
     @Override
     public void enterCompilationUnit( JavaGrammarParser.CompilationUnitContext ctx) {
