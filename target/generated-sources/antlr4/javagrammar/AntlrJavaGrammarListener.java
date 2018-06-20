@@ -8,7 +8,8 @@ public class AntlrJavaGrammarListener extends JavaGrammarBaseListener {
     }
     
     @Override
-    public void enterMethodDeclaraction( JavaGrammarParser.MethodDeclaractionContext ctx) {
+    public void enterMethodDeclaration
+    ( JavaGrammarParser.MethodDeclarationContext ctx) {
         System.out.println( ctx.getText() );
     }
  

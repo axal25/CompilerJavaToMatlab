@@ -53,7 +53,7 @@ public class Attacher {
 	    JavaGrammarParser parser = new JavaGrammarParser(tokens);
 	 
 	    // Specify our entry point
-	    JavaGrammarParser.MethodDeclaractionContext methodDeclaraction_ctx = parser.methodDeclaraction();
+	    JavaGrammarParser.MethodDeclarationContext methodDeclaraction_ctx = parser.methodDeclaration();
 	 
 	    // Walk it and attach our listener
 		ParseTreeWalker walker = new ParseTreeWalker();

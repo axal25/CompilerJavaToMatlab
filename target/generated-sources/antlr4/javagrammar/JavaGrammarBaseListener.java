@@ -1,9 +1,10 @@
-// Generated from JavaGrammar.g4 by ANTLR 4.7.1
+// Generated from JavaGrammar.g4 by ANTLR 4.4
 
 	package javagrammar;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -18,1080 +19,1248 @@ public class JavaGrammarBaseListener implements JavaGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompilationUnit(JavaGrammarParser.CompilationUnitContext ctx) { }
+	@Override public void enterMemberDeclaration(@NotNull JavaGrammarParser.MemberDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCompilationUnit(JavaGrammarParser.CompilationUnitContext ctx) { }
+	@Override public void exitMemberDeclaration(@NotNull JavaGrammarParser.MemberDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTypeDeclaration(JavaGrammarParser.TypeDeclarationContext ctx) { }
+	@Override public void enterMethodPermissionModifier(@NotNull JavaGrammarParser.MethodPermissionModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTypeDeclaration(JavaGrammarParser.TypeDeclarationContext ctx) { }
+	@Override public void exitMethodPermissionModifier(@NotNull JavaGrammarParser.MethodPermissionModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassDeclaration(JavaGrammarParser.ClassDeclarationContext ctx) { }
+	@Override public void enterDefaultValue(@NotNull JavaGrammarParser.DefaultValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassDeclaration(JavaGrammarParser.ClassDeclarationContext ctx) { }
+	@Override public void exitDefaultValue(@NotNull JavaGrammarParser.DefaultValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassPermissionModifier(JavaGrammarParser.ClassPermissionModifierContext ctx) { }
+	@Override public void enterAnnotationTypeElementDeclaration(@NotNull JavaGrammarParser.AnnotationTypeElementDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassPermissionModifier(JavaGrammarParser.ClassPermissionModifierContext ctx) { }
+	@Override public void exitAnnotationTypeElementDeclaration(@NotNull JavaGrammarParser.AnnotationTypeElementDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassTypeModifier(JavaGrammarParser.ClassTypeModifierContext ctx) { }
+	@Override public void enterAnnotationTypeBody(@NotNull JavaGrammarParser.AnnotationTypeBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassTypeModifier(JavaGrammarParser.ClassTypeModifierContext ctx) { }
+	@Override public void exitAnnotationTypeBody(@NotNull JavaGrammarParser.AnnotationTypeBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassBody(JavaGrammarParser.ClassBodyContext ctx) { }
+	@Override public void enterLambdaBody(@NotNull JavaGrammarParser.LambdaBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassBody(JavaGrammarParser.ClassBodyContext ctx) { }
+	@Override public void exitLambdaBody(@NotNull JavaGrammarParser.LambdaBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassBodyDeclaration(JavaGrammarParser.ClassBodyDeclarationContext ctx) { }
+	@Override public void enterGenericInterfaceMethodDeclaration(@NotNull JavaGrammarParser.GenericInterfaceMethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassBodyDeclaration(JavaGrammarParser.ClassBodyDeclarationContext ctx) { }
+	@Override public void exitGenericInterfaceMethodDeclaration(@NotNull JavaGrammarParser.GenericInterfaceMethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassMemberDeclaration(JavaGrammarParser.ClassMemberDeclarationContext ctx) { }
+	@Override public void enterClassBodyDeclaration(@NotNull JavaGrammarParser.ClassBodyDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassMemberDeclaration(JavaGrammarParser.ClassMemberDeclarationContext ctx) { }
+	@Override public void exitClassBodyDeclaration(@NotNull JavaGrammarParser.ClassBodyDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodDeclaraction(JavaGrammarParser.MethodDeclaractionContext ctx) { }
+	@Override public void enterBlock(@NotNull JavaGrammarParser.BlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodDeclaraction(JavaGrammarParser.MethodDeclaractionContext ctx) { }
+	@Override public void exitBlock(@NotNull JavaGrammarParser.BlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodDeclarator(JavaGrammarParser.MethodDeclaratorContext ctx) { }
+	@Override public void enterTypeType(@NotNull JavaGrammarParser.TypeTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodDeclarator(JavaGrammarParser.MethodDeclaratorContext ctx) { }
+	@Override public void exitTypeType(@NotNull JavaGrammarParser.TypeTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodPermissionModifier(JavaGrammarParser.MethodPermissionModifierContext ctx) { }
+	@Override public void enterEnhancedForControl(@NotNull JavaGrammarParser.EnhancedForControlContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodPermissionModifier(JavaGrammarParser.MethodPermissionModifierContext ctx) { }
+	@Override public void exitEnhancedForControl(@NotNull JavaGrammarParser.EnhancedForControlContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodTypeModifier(JavaGrammarParser.MethodTypeModifierContext ctx) { }
+	@Override public void enterAnnotationConstantRest(@NotNull JavaGrammarParser.AnnotationConstantRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodTypeModifier(JavaGrammarParser.MethodTypeModifierContext ctx) { }
+	@Override public void exitAnnotationConstantRest(@NotNull JavaGrammarParser.AnnotationConstantRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodReturnType(JavaGrammarParser.MethodReturnTypeContext ctx) { }
+	@Override public void enterExplicitGenericInvocation(@NotNull JavaGrammarParser.ExplicitGenericInvocationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodReturnType(JavaGrammarParser.MethodReturnTypeContext ctx) { }
+	@Override public void exitExplicitGenericInvocation(@NotNull JavaGrammarParser.ExplicitGenericInvocationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableDeclaration(JavaGrammarParser.VariableDeclarationContext ctx) { }
+	@Override public void enterNonWildcardTypeArgumentsOrDiamond(@NotNull JavaGrammarParser.NonWildcardTypeArgumentsOrDiamondContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableDeclaration(JavaGrammarParser.VariableDeclarationContext ctx) { }
+	@Override public void exitNonWildcardTypeArgumentsOrDiamond(@NotNull JavaGrammarParser.NonWildcardTypeArgumentsOrDiamondContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatementNoShortIf(JavaGrammarParser.StatementNoShortIfContext ctx) { }
+	@Override public void enterExpressionList(@NotNull JavaGrammarParser.ExpressionListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatementNoShortIf(JavaGrammarParser.StatementNoShortIfContext ctx) { }
+	@Override public void exitExpressionList(@NotNull JavaGrammarParser.ExpressionListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForStatementNoShortIf(JavaGrammarParser.ForStatementNoShortIfContext ctx) { }
+	@Override public void enterAnnotationTypeElementRest(@NotNull JavaGrammarParser.AnnotationTypeElementRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForStatementNoShortIf(JavaGrammarParser.ForStatementNoShortIfContext ctx) { }
+	@Override public void exitAnnotationTypeElementRest(@NotNull JavaGrammarParser.AnnotationTypeElementRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBasicForStatementNoShortIf(JavaGrammarParser.BasicForStatementNoShortIfContext ctx) { }
+	@Override public void enterClassOrInterfaceType(@NotNull JavaGrammarParser.ClassOrInterfaceTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBasicForStatementNoShortIf(JavaGrammarParser.BasicForStatementNoShortIfContext ctx) { }
+	@Override public void exitClassOrInterfaceType(@NotNull JavaGrammarParser.ClassOrInterfaceTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEnhancedForStatementNoShortIf(JavaGrammarParser.EnhancedForStatementNoShortIfContext ctx) { }
+	@Override public void enterTypeBound(@NotNull JavaGrammarParser.TypeBoundContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEnhancedForStatementNoShortIf(JavaGrammarParser.EnhancedForStatementNoShortIfContext ctx) { }
+	@Override public void exitTypeBound(@NotNull JavaGrammarParser.TypeBoundContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForStatement(JavaGrammarParser.ForStatementContext ctx) { }
+	@Override public void enterVariableDeclaratorId(@NotNull JavaGrammarParser.VariableDeclaratorIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForStatement(JavaGrammarParser.ForStatementContext ctx) { }
+	@Override public void exitVariableDeclaratorId(@NotNull JavaGrammarParser.VariableDeclaratorIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBasicForStatement(JavaGrammarParser.BasicForStatementContext ctx) { }
+	@Override public void enterMethodCall(@NotNull JavaGrammarParser.MethodCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBasicForStatement(JavaGrammarParser.BasicForStatementContext ctx) { }
+	@Override public void exitMethodCall(@NotNull JavaGrammarParser.MethodCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(JavaGrammarParser.StatementContext ctx) { }
+	@Override public void enterPrimary(@NotNull JavaGrammarParser.PrimaryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(JavaGrammarParser.StatementContext ctx) { }
+	@Override public void exitPrimary(@NotNull JavaGrammarParser.PrimaryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatementWithoutTrailingSubStatement(JavaGrammarParser.StatementWithoutTrailingSubStatementContext ctx) { }
+	@Override public void enterClassCreatorRest(@NotNull JavaGrammarParser.ClassCreatorRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatementWithoutTrailingSubStatement(JavaGrammarParser.StatementWithoutTrailingSubStatementContext ctx) { }
+	@Override public void exitClassCreatorRest(@NotNull JavaGrammarParser.ClassCreatorRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpressionStatement(JavaGrammarParser.ExpressionStatementContext ctx) { }
+	@Override public void enterInterfaceBodyDeclaration(@NotNull JavaGrammarParser.InterfaceBodyDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpressionStatement(JavaGrammarParser.ExpressionStatementContext ctx) { }
+	@Override public void exitInterfaceBodyDeclaration(@NotNull JavaGrammarParser.InterfaceBodyDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassInstanceCreationExpression(JavaGrammarParser.ClassInstanceCreationExpressionContext ctx) { }
+	@Override public void enterTypeArguments(@NotNull JavaGrammarParser.TypeArgumentsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassInstanceCreationExpression(JavaGrammarParser.ClassInstanceCreationExpressionContext ctx) { }
+	@Override public void exitTypeArguments(@NotNull JavaGrammarParser.TypeArgumentsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTypeArgumentsOrDiamond(JavaGrammarParser.TypeArgumentsOrDiamondContext ctx) { }
+	@Override public void enterFinallyBlock(@NotNull JavaGrammarParser.FinallyBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTypeArgumentsOrDiamond(JavaGrammarParser.TypeArgumentsOrDiamondContext ctx) { }
+	@Override public void exitFinallyBlock(@NotNull JavaGrammarParser.FinallyBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodInvocation(JavaGrammarParser.MethodInvocationContext ctx) { }
+	@Override public void enterTypeParameters(@NotNull JavaGrammarParser.TypeParametersContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodInvocation(JavaGrammarParser.MethodInvocationContext ctx) { }
+	@Override public void exitTypeParameters(@NotNull JavaGrammarParser.TypeParametersContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrimary(JavaGrammarParser.PrimaryContext ctx) { }
+	@Override public void enterLastFormalParameter(@NotNull JavaGrammarParser.LastFormalParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrimary(JavaGrammarParser.PrimaryContext ctx) { }
+	@Override public void exitLastFormalParameter(@NotNull JavaGrammarParser.LastFormalParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTypeName(JavaGrammarParser.TypeNameContext ctx) { }
+	@Override public void enterLiteral(@NotNull JavaGrammarParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTypeName(JavaGrammarParser.TypeNameContext ctx) { }
+	@Override public void exitLiteral(@NotNull JavaGrammarParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgumentList(JavaGrammarParser.ArgumentListContext ctx) { }
+	@Override public void enterAnnotationMethodOrConstantRest(@NotNull JavaGrammarParser.AnnotationMethodOrConstantRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArgumentList(JavaGrammarParser.ArgumentListContext ctx) { }
+	@Override public void exitAnnotationMethodOrConstantRest(@NotNull JavaGrammarParser.AnnotationMethodOrConstantRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTypeLiteralArguments(JavaGrammarParser.TypeLiteralArgumentsContext ctx) { }
+	@Override public void enterCatchClause(@NotNull JavaGrammarParser.CatchClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTypeLiteralArguments(JavaGrammarParser.TypeLiteralArgumentsContext ctx) { }
+	@Override public void exitCatchClause(@NotNull JavaGrammarParser.CatchClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpressionName(JavaGrammarParser.ExpressionNameContext ctx) { }
+	@Override public void enterVariableDeclarator(@NotNull JavaGrammarParser.VariableDeclaratorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpressionName(JavaGrammarParser.ExpressionNameContext ctx) { }
+	@Override public void exitVariableDeclarator(@NotNull JavaGrammarParser.VariableDeclaratorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSwitchStatement(JavaGrammarParser.SwitchStatementContext ctx) { }
+	@Override public void enterTypeList(@NotNull JavaGrammarParser.TypeListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSwitchStatement(JavaGrammarParser.SwitchStatementContext ctx) { }
+	@Override public void exitTypeList(@NotNull JavaGrammarParser.TypeListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSwitchLabel(JavaGrammarParser.SwitchLabelContext ctx) { }
+	@Override public void enterClassBody(@NotNull JavaGrammarParser.ClassBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSwitchLabel(JavaGrammarParser.SwitchLabelContext ctx) { }
+	@Override public void exitClassBody(@NotNull JavaGrammarParser.ClassBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBlockStatement(JavaGrammarParser.BlockStatementContext ctx) { }
+	@Override public void enterCreatedName(@NotNull JavaGrammarParser.CreatedNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBlockStatement(JavaGrammarParser.BlockStatementContext ctx) { }
+	@Override public void exitCreatedName(@NotNull JavaGrammarParser.CreatedNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLocalVariableDeclaration(JavaGrammarParser.LocalVariableDeclarationContext ctx) { }
+	@Override public void enterFormalParameter(@NotNull JavaGrammarParser.FormalParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLocalVariableDeclaration(JavaGrammarParser.LocalVariableDeclarationContext ctx) { }
+	@Override public void exitFormalParameter(@NotNull JavaGrammarParser.FormalParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableDeclaratorList(JavaGrammarParser.VariableDeclaratorListContext ctx) { }
+	@Override public void enterParExpression(@NotNull JavaGrammarParser.ParExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableDeclaratorList(JavaGrammarParser.VariableDeclaratorListContext ctx) { }
+	@Override public void exitParExpression(@NotNull JavaGrammarParser.ParExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableDeclarator(JavaGrammarParser.VariableDeclaratorContext ctx) { }
+	@Override public void enterAnnotation(@NotNull JavaGrammarParser.AnnotationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableDeclarator(JavaGrammarParser.VariableDeclaratorContext ctx) { }
+	@Override public void exitAnnotation(@NotNull JavaGrammarParser.AnnotationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableDeclaratorId(JavaGrammarParser.VariableDeclaratorIdContext ctx) { }
+	@Override public void enterVariableInitializer(@NotNull JavaGrammarParser.VariableInitializerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableDeclaratorId(JavaGrammarParser.VariableDeclaratorIdContext ctx) { }
+	@Override public void exitVariableInitializer(@NotNull JavaGrammarParser.VariableInitializerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableInitializer(JavaGrammarParser.VariableInitializerContext ctx) { }
+	@Override public void enterElementValueArrayInitializer(@NotNull JavaGrammarParser.ElementValueArrayInitializerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableInitializer(JavaGrammarParser.VariableInitializerContext ctx) { }
+	@Override public void exitElementValueArrayInitializer(@NotNull JavaGrammarParser.ElementValueArrayInitializerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArrayInitializer(JavaGrammarParser.ArrayInitializerContext ctx) { }
+	@Override public void enterCreator(@NotNull JavaGrammarParser.CreatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArrayInitializer(JavaGrammarParser.ArrayInitializerContext ctx) { }
+	@Override public void exitCreator(@NotNull JavaGrammarParser.CreatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableInitializerList(JavaGrammarParser.VariableInitializerListContext ctx) { }
+	@Override public void enterArrayCreatorRest(@NotNull JavaGrammarParser.ArrayCreatorRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableInitializerList(JavaGrammarParser.VariableInitializerListContext ctx) { }
+	@Override public void exitArrayCreatorRest(@NotNull JavaGrammarParser.ArrayCreatorRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDims(JavaGrammarParser.DimsContext ctx) { }
+	@Override public void enterExpression(@NotNull JavaGrammarParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDims(JavaGrammarParser.DimsContext ctx) { }
+	@Override public void exitExpression(@NotNull JavaGrammarParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannType(JavaGrammarParser.UnannTypeContext ctx) { }
+	@Override public void enterQualifiedNameList(@NotNull JavaGrammarParser.QualifiedNameListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannType(JavaGrammarParser.UnannTypeContext ctx) { }
+	@Override public void exitQualifiedNameList(@NotNull JavaGrammarParser.QualifiedNameListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannPrimitiveType(JavaGrammarParser.UnannPrimitiveTypeContext ctx) { }
+	@Override public void enterLambdaParameters(@NotNull JavaGrammarParser.LambdaParametersContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannPrimitiveType(JavaGrammarParser.UnannPrimitiveTypeContext ctx) { }
+	@Override public void exitLambdaParameters(@NotNull JavaGrammarParser.LambdaParametersContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannReferenceType(JavaGrammarParser.UnannReferenceTypeContext ctx) { }
+	@Override public void enterConstructorDeclaration(@NotNull JavaGrammarParser.ConstructorDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannReferenceType(JavaGrammarParser.UnannReferenceTypeContext ctx) { }
+	@Override public void exitConstructorDeclaration(@NotNull JavaGrammarParser.ConstructorDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannClassOrInterfaceType(JavaGrammarParser.UnannClassOrInterfaceTypeContext ctx) { }
+	@Override public void enterForControl(@NotNull JavaGrammarParser.ForControlContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannClassOrInterfaceType(JavaGrammarParser.UnannClassOrInterfaceTypeContext ctx) { }
+	@Override public void exitForControl(@NotNull JavaGrammarParser.ForControlContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannClassType_lfno_unannClassOrInterfaceType(JavaGrammarParser.UnannClassType_lfno_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void enterSuperSuffix(@NotNull JavaGrammarParser.SuperSuffixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannClassType_lfno_unannClassOrInterfaceType(JavaGrammarParser.UnannClassType_lfno_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void exitSuperSuffix(@NotNull JavaGrammarParser.SuperSuffixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannInterfaceType_lfno_unannClassOrInterfaceType(JavaGrammarParser.UnannInterfaceType_lfno_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void enterVariableDeclarators(@NotNull JavaGrammarParser.VariableDeclaratorsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannInterfaceType_lfno_unannClassOrInterfaceType(JavaGrammarParser.UnannInterfaceType_lfno_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void exitVariableDeclarators(@NotNull JavaGrammarParser.VariableDeclaratorsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannClassType_lf_unannClassOrInterfaceType(JavaGrammarParser.UnannClassType_lf_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void enterCatchType(@NotNull JavaGrammarParser.CatchTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannClassType_lf_unannClassOrInterfaceType(JavaGrammarParser.UnannClassType_lf_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void exitCatchType(@NotNull JavaGrammarParser.CatchTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannInterfaceType_lf_unannClassOrInterfaceType(JavaGrammarParser.UnannInterfaceType_lf_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void enterIntegerLiteral(@NotNull JavaGrammarParser.IntegerLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannInterfaceType_lf_unannClassOrInterfaceType(JavaGrammarParser.UnannInterfaceType_lf_unannClassOrInterfaceTypeContext ctx) { }
+	@Override public void exitIntegerLiteral(@NotNull JavaGrammarParser.IntegerLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnannArrayType(JavaGrammarParser.UnannArrayTypeContext ctx) { }
+	@Override public void enterClassOrInterfaceModifier(@NotNull JavaGrammarParser.ClassOrInterfaceModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnannArrayType(JavaGrammarParser.UnannArrayTypeContext ctx) { }
+	@Override public void exitClassOrInterfaceModifier(@NotNull JavaGrammarParser.ClassOrInterfaceModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoopStatement(JavaGrammarParser.LoopStatementContext ctx) { }
+	@Override public void enterModifier(@NotNull JavaGrammarParser.ModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoopStatement(JavaGrammarParser.LoopStatementContext ctx) { }
+	@Override public void exitModifier(@NotNull JavaGrammarParser.ModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComparisonOperator(JavaGrammarParser.ComparisonOperatorContext ctx) { }
+	@Override public void enterInnerCreator(@NotNull JavaGrammarParser.InnerCreatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComparisonOperator(JavaGrammarParser.ComparisonOperatorContext ctx) { }
+	@Override public void exitInnerCreator(@NotNull JavaGrammarParser.InnerCreatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumber(JavaGrammarParser.NumberContext ctx) { }
+	@Override public void enterExplicitGenericInvocationSuffix(@NotNull JavaGrammarParser.ExplicitGenericInvocationSuffixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumber(JavaGrammarParser.NumberContext ctx) { }
+	@Override public void exitExplicitGenericInvocationSuffix(@NotNull JavaGrammarParser.ExplicitGenericInvocationSuffixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumberEquivalent(JavaGrammarParser.NumberEquivalentContext ctx) { }
+	@Override public void enterVariableModifier(@NotNull JavaGrammarParser.VariableModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumberEquivalent(JavaGrammarParser.NumberEquivalentContext ctx) { }
+	@Override public void exitVariableModifier(@NotNull JavaGrammarParser.VariableModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicalConst(JavaGrammarParser.LogicalConstContext ctx) { }
+	@Override public void enterFloatLiteral(@NotNull JavaGrammarParser.FloatLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicalConst(JavaGrammarParser.LogicalConstContext ctx) { }
+	@Override public void exitFloatLiteral(@NotNull JavaGrammarParser.FloatLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicalEquivalent(JavaGrammarParser.LogicalEquivalentContext ctx) { }
+	@Override public void enterElementValuePair(@NotNull JavaGrammarParser.ElementValuePairContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicalEquivalent(JavaGrammarParser.LogicalEquivalentContext ctx) { }
+	@Override public void exitElementValuePair(@NotNull JavaGrammarParser.ElementValuePairContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArithmeticExpression(JavaGrammarParser.ArithmeticExpressionContext ctx) { }
+	@Override public void enterArrayInitializer(@NotNull JavaGrammarParser.ArrayInitializerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArithmeticExpression(JavaGrammarParser.ArithmeticExpressionContext ctx) { }
+	@Override public void exitArrayInitializer(@NotNull JavaGrammarParser.ArrayInitializerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComparisonExpression(JavaGrammarParser.ComparisonExpressionContext ctx) { }
+	@Override public void enterElementValue(@NotNull JavaGrammarParser.ElementValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComparisonExpression(JavaGrammarParser.ComparisonExpressionContext ctx) { }
+	@Override public void exitElementValue(@NotNull JavaGrammarParser.ElementValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicalExpression(JavaGrammarParser.LogicalExpressionContext ctx) { }
+	@Override public void enterLambdaExpression(@NotNull JavaGrammarParser.LambdaExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicalExpression(JavaGrammarParser.LogicalExpressionContext ctx) { }
+	@Override public void exitLambdaExpression(@NotNull JavaGrammarParser.LambdaExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBlock(JavaGrammarParser.BlockContext ctx) { }
+	@Override public void enterTypeTypeOrVoid(@NotNull JavaGrammarParser.TypeTypeOrVoidContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBlock(JavaGrammarParser.BlockContext ctx) { }
+	@Override public void exitTypeTypeOrVoid(@NotNull JavaGrammarParser.TypeTypeOrVoidContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoopBlock(JavaGrammarParser.LoopBlockContext ctx) { }
+	@Override public void enterConstDeclaration(@NotNull JavaGrammarParser.ConstDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoopBlock(JavaGrammarParser.LoopBlockContext ctx) { }
+	@Override public void exitConstDeclaration(@NotNull JavaGrammarParser.ConstDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfStatement(JavaGrammarParser.IfStatementContext ctx) { }
+	@Override public void enterResource(@NotNull JavaGrammarParser.ResourceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfStatement(JavaGrammarParser.IfStatementContext ctx) { }
+	@Override public void exitResource(@NotNull JavaGrammarParser.ResourceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDoWhileStatement(JavaGrammarParser.DoWhileStatementContext ctx) { }
+	@Override public void enterQualifiedName(@NotNull JavaGrammarParser.QualifiedNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDoWhileStatement(JavaGrammarParser.DoWhileStatementContext ctx) { }
+	@Override public void exitQualifiedName(@NotNull JavaGrammarParser.QualifiedNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterWhileDoStatement(JavaGrammarParser.WhileDoStatementContext ctx) { }
+	@Override public void enterInterfaceMethodModifier(@NotNull JavaGrammarParser.InterfaceMethodModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitWhileDoStatement(JavaGrammarParser.WhileDoStatementContext ctx) { }
+	@Override public void exitInterfaceMethodModifier(@NotNull JavaGrammarParser.InterfaceMethodModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(JavaGrammarParser.ExpressionContext ctx) { }
+	@Override public void enterResourceSpecification(@NotNull JavaGrammarParser.ResourceSpecificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(JavaGrammarParser.ExpressionContext ctx) { }
+	@Override public void exitResourceSpecification(@NotNull JavaGrammarParser.ResourceSpecificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignment(JavaGrammarParser.AssignmentContext ctx) { }
+	@Override public void enterFormalParameterList(@NotNull JavaGrammarParser.FormalParameterListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignment(JavaGrammarParser.AssignmentContext ctx) { }
+	@Override public void exitFormalParameterList(@NotNull JavaGrammarParser.FormalParameterListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignmentExpression(JavaGrammarParser.AssignmentExpressionContext ctx) { }
+	@Override public void enterAnnotationTypeDeclaration(@NotNull JavaGrammarParser.AnnotationTypeDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignmentExpression(JavaGrammarParser.AssignmentExpressionContext ctx) { }
+	@Override public void exitAnnotationTypeDeclaration(@NotNull JavaGrammarParser.AnnotationTypeDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignmentOperator(JavaGrammarParser.AssignmentOperatorContext ctx) { }
+	@Override public void enterCompilationUnit(@NotNull JavaGrammarParser.CompilationUnitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignmentOperator(JavaGrammarParser.AssignmentOperatorContext ctx) { }
+	@Override public void exitCompilationUnit(@NotNull JavaGrammarParser.CompilationUnitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForInit(JavaGrammarParser.ForInitContext ctx) { }
+	@Override public void enterAnnotationMethodRest(@NotNull JavaGrammarParser.AnnotationMethodRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForInit(JavaGrammarParser.ForInitContext ctx) { }
+	@Override public void exitAnnotationMethodRest(@NotNull JavaGrammarParser.AnnotationMethodRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForUpdate(JavaGrammarParser.ForUpdateContext ctx) { }
+	@Override public void enterClassType(@NotNull JavaGrammarParser.ClassTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForUpdate(JavaGrammarParser.ForUpdateContext ctx) { }
+	@Override public void exitClassType(@NotNull JavaGrammarParser.ClassTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEnhancedForStatement(JavaGrammarParser.EnhancedForStatementContext ctx) { }
+	@Override public void enterLocalTypeDeclaration(@NotNull JavaGrammarParser.LocalTypeDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEnhancedForStatement(JavaGrammarParser.EnhancedForStatementContext ctx) { }
+	@Override public void exitLocalTypeDeclaration(@NotNull JavaGrammarParser.LocalTypeDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturnStatement(JavaGrammarParser.ReturnStatementContext ctx) { }
+	@Override public void enterSwitchBlockStatementGroup(@NotNull JavaGrammarParser.SwitchBlockStatementGroupContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturnStatement(JavaGrammarParser.ReturnStatementContext ctx) { }
+	@Override public void exitSwitchBlockStatementGroup(@NotNull JavaGrammarParser.SwitchBlockStatementGroupContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBreakStatement(JavaGrammarParser.BreakStatementContext ctx) { }
+	@Override public void enterTypeParameter(@NotNull JavaGrammarParser.TypeParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBreakStatement(JavaGrammarParser.BreakStatementContext ctx) { }
+	@Override public void exitTypeParameter(@NotNull JavaGrammarParser.TypeParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterContinueStatement(JavaGrammarParser.ContinueStatementContext ctx) { }
+	@Override public void enterInterfaceBody(@NotNull JavaGrammarParser.InterfaceBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitContinueStatement(JavaGrammarParser.ContinueStatementContext ctx) { }
+	@Override public void exitInterfaceBody(@NotNull JavaGrammarParser.InterfaceBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParameterList(JavaGrammarParser.ParameterListContext ctx) { }
+	@Override public void enterMethodDeclaration(@NotNull JavaGrammarParser.MethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParameterList(JavaGrammarParser.ParameterListContext ctx) { }
+	@Override public void exitMethodDeclaration(@NotNull JavaGrammarParser.MethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFormalParameters(JavaGrammarParser.FormalParametersContext ctx) { }
+	@Override public void enterMethodBody(@NotNull JavaGrammarParser.MethodBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFormalParameters(JavaGrammarParser.FormalParametersContext ctx) { }
+	@Override public void exitMethodBody(@NotNull JavaGrammarParser.MethodBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLastFormalParameter(JavaGrammarParser.LastFormalParameterContext ctx) { }
+	@Override public void enterTypeArgument(@NotNull JavaGrammarParser.TypeArgumentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLastFormalParameter(JavaGrammarParser.LastFormalParameterContext ctx) { }
+	@Override public void exitTypeArgument(@NotNull JavaGrammarParser.TypeArgumentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFormalParameter(JavaGrammarParser.FormalParameterContext ctx) { }
+	@Override public void enterTypeDeclaration(@NotNull JavaGrammarParser.TypeDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFormalParameter(JavaGrammarParser.FormalParameterContext ctx) { }
+	@Override public void exitTypeDeclaration(@NotNull JavaGrammarParser.TypeDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReceiverParameter(JavaGrammarParser.ReceiverParameterContext ctx) { }
+	@Override public void enterGenericConstructorDeclaration(@NotNull JavaGrammarParser.GenericConstructorDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReceiverParameter(JavaGrammarParser.ReceiverParameterContext ctx) { }
+	@Override public void exitGenericConstructorDeclaration(@NotNull JavaGrammarParser.GenericConstructorDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperatorsBitwise(JavaGrammarParser.OperatorsBitwiseContext ctx) { }
+	@Override public void enterClassDeclaration(@NotNull JavaGrammarParser.ClassDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperatorsBitwise(JavaGrammarParser.OperatorsBitwiseContext ctx) { }
+	@Override public void exitClassDeclaration(@NotNull JavaGrammarParser.ClassDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpressionBitwise(JavaGrammarParser.ExpressionBitwiseContext ctx) { }
+	@Override public void enterMethodTypeModifier(@NotNull JavaGrammarParser.MethodTypeModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpressionBitwise(JavaGrammarParser.ExpressionBitwiseContext ctx) { }
+	@Override public void exitMethodTypeModifier(@NotNull JavaGrammarParser.MethodTypeModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPreIncrementationExpression(JavaGrammarParser.PreIncrementationExpressionContext ctx) { }
+	@Override public void enterStatement(@NotNull JavaGrammarParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPreIncrementationExpression(JavaGrammarParser.PreIncrementationExpressionContext ctx) { }
+	@Override public void exitStatement(@NotNull JavaGrammarParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPostIncrementationExpression(JavaGrammarParser.PostIncrementationExpressionContext ctx) { }
+	@Override public void enterImportDeclaration(@NotNull JavaGrammarParser.ImportDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPostIncrementationExpression(JavaGrammarParser.PostIncrementationExpressionContext ctx) { }
+	@Override public void exitImportDeclaration(@NotNull JavaGrammarParser.ImportDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPreDecrementationExpression(JavaGrammarParser.PreDecrementationExpressionContext ctx) { }
+	@Override public void enterPrimitiveType(@NotNull JavaGrammarParser.PrimitiveTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPreDecrementationExpression(JavaGrammarParser.PreDecrementationExpressionContext ctx) { }
+	@Override public void exitPrimitiveType(@NotNull JavaGrammarParser.PrimitiveTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPostDecrementationExpression(JavaGrammarParser.PostDecrementationExpressionContext ctx) { }
+	@Override public void enterInterfaceDeclaration(@NotNull JavaGrammarParser.InterfaceDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPostDecrementationExpression(JavaGrammarParser.PostDecrementationExpressionContext ctx) { }
+	@Override public void exitInterfaceDeclaration(@NotNull JavaGrammarParser.InterfaceDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableType(JavaGrammarParser.VariableTypeContext ctx) { }
+	@Override public void enterBlockStatement(@NotNull JavaGrammarParser.BlockStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableType(JavaGrammarParser.VariableTypeContext ctx) { }
+	@Override public void exitBlockStatement(@NotNull JavaGrammarParser.BlockStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterKeywordsType(JavaGrammarParser.KeywordsTypeContext ctx) { }
+	@Override public void enterFieldDeclaration(@NotNull JavaGrammarParser.FieldDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitKeywordsType(JavaGrammarParser.KeywordsTypeContext ctx) { }
+	@Override public void exitFieldDeclaration(@NotNull JavaGrammarParser.FieldDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConstantDeclarator(@NotNull JavaGrammarParser.ConstantDeclaratorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstantDeclarator(@NotNull JavaGrammarParser.ConstantDeclaratorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterResources(@NotNull JavaGrammarParser.ResourcesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitResources(@NotNull JavaGrammarParser.ResourcesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInterfaceMethodDeclaration(@NotNull JavaGrammarParser.InterfaceMethodDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterfaceMethodDeclaration(@NotNull JavaGrammarParser.InterfaceMethodDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPackageDeclaration(@NotNull JavaGrammarParser.PackageDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPackageDeclaration(@NotNull JavaGrammarParser.PackageDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterElementValuePairs(@NotNull JavaGrammarParser.ElementValuePairsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElementValuePairs(@NotNull JavaGrammarParser.ElementValuePairsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLocalVariableDeclaration(@NotNull JavaGrammarParser.LocalVariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLocalVariableDeclaration(@NotNull JavaGrammarParser.LocalVariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNonWildcardTypeArguments(@NotNull JavaGrammarParser.NonWildcardTypeArgumentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNonWildcardTypeArguments(@NotNull JavaGrammarParser.NonWildcardTypeArgumentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInterfaceMemberDeclaration(@NotNull JavaGrammarParser.InterfaceMemberDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterfaceMemberDeclaration(@NotNull JavaGrammarParser.InterfaceMemberDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSwitchLabel(@NotNull JavaGrammarParser.SwitchLabelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSwitchLabel(@NotNull JavaGrammarParser.SwitchLabelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterForInit(@NotNull JavaGrammarParser.ForInitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForInit(@NotNull JavaGrammarParser.ForInitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFormalParameters(@NotNull JavaGrammarParser.FormalParametersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFormalParameters(@NotNull JavaGrammarParser.FormalParametersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArguments(@NotNull JavaGrammarParser.ArgumentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArguments(@NotNull JavaGrammarParser.ArgumentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGenericMethodDeclaration(@NotNull JavaGrammarParser.GenericMethodDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGenericMethodDeclaration(@NotNull JavaGrammarParser.GenericMethodDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTypeArgumentsOrDiamond(@NotNull JavaGrammarParser.TypeArgumentsOrDiamondContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTypeArgumentsOrDiamond(@NotNull JavaGrammarParser.TypeArgumentsOrDiamondContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
+	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEveryRule(ParserRuleContext ctx) { }
+	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitTerminal(TerminalNode node) { }
+	@Override public void visitTerminal(@NotNull TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitErrorNode(ErrorNode node) { }
+	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
 }

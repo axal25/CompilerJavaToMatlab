@@ -36,108 +36,104 @@ grammar JavaGrammar;
 	package javagrammar;
 }
  
-// Parser Rules
- 
-compilationUnit:
-				methodDeclaraction* ;
-                // packageDeclaration? importDeclaration* typeDeclaration* EOF;
+compilationUnit
+    : packageDeclaration? importDeclaration* typeDeclaration* EOF
+    ;
 
-typeDeclaration:
-		  classDeclaration
-		  //|	interfaceDeclaration
-		  |	SEPARATORS_PUNCTUATORS_SEMICOLON ;
-		  
-classDeclaration:	
-		  classPermissionModifier? classTypeModifier? KEYWORDS_CLASS IDENTIFIERS /* TypeParameters */ 
-		  /*(KEYWORDS_EXTENDS classType)?*/ /*(KEYWORDS_IMPLEMENTS interfaceTypeList)?*/ 
-		  classBody ;
-		  //|	enumDeclaration ;
-		  
-classPermissionModifier:
-		/*annotation*/
-		|	KEYWORDS_PUBLIC
-		|	KEYWORDS_PROTECTED
-		|	KEYWORDS_PUBLIC ;
-		
-classTypeModifier:
-		|	KEYWORDS_ABSTRACT
-		|	KEYWORDS_STATIC
-		|	KEYWORDS_FINAL
-		|	KEYWORDS_STRICTFP ;
+packageDeclaration
+    : annotation* KEYWORDS_PACKAGE qualifiedName ';'
+    ;
 
-classBody:
-		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET classBodyDeclaration* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
-		
-classBodyDeclaration: '\u000E';
-//		classMemberDeclaration
-//		|	block
-//		|	KEYWORDS_STATIC block
-//		|	constructorModifier* 
-//		typeParameters? simpleTypeName SEPARATORS_DELIMITERS_LEFTPARENTHESIS formalParameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-//		(KEYWORDS_THROWS exceptionTypeList)? constructorBody ;
-		
-classMemberDeclaration: '\u000E';	
-//		fieldDeclaration
-//		|	methodDeclaration
-//		|	classDeclaration
-//		|	interfaceDeclaration
-//		|	SEPARATORS_PUNCTUATORS_SEMICOLON ;
+importDeclaration
+    : KEYWORDS_IMPORT KEYWORDS_STATIC? qualifiedName ('.' '*')? ';'
+    ;
 
+typeDeclaration
+    : classOrInterfaceModifier*
+      (classDeclaration | interfaceDeclaration | annotationTypeDeclaration)
+    | ';'
+    ;
 
-/*
-classType:
-		classOrInterfaceType SEPARATORS_PUNCTUATORS_DOT *//*annotation**//* IDENTIFIERS typeArguments? ;
-		
-classOrInterfaceType:
-		(	classType_lfno_classOrInterfaceType
-		|	interfaceType_lfno_classOrInterfaceType
-		)
-		(	classType_lf_classOrInterfaceType
-		|	interfaceType_lf_classOrInterfaceType
-		)* ;
-*/
-/*
-interfaceTypeList:
-			interfaceType (SEPARATORS_PUNCTUATORS_COMMA interfaceType)* ;
-			
-interfaceType:	
-			classType; */
-			
-//classType:
-//		  /* annotation* */ IDENTIFIERS typeArguments?
-//		  |	/* classOrInterfaceType SEPARATORS_PUNCTUATORS_DOT */ /* annotation* */ IDENTIFIERS typeArguments? ;
-//		  
-//typeArguments
-//	:	OPERATORS_LESSTHAN typeArgumentList OPERATORS_GREATERTHAN
-//	;
-//
-//typeArgumentList
-//	:	typeArgument (SEPARATORS_PUNCTUATORS_COMMA typeArgument)*
-//	;
-//
-//typeArgument
-//	:	referenceType
-//	|	wildcard
-//	;
-//
-//wildcard
-//	:	annotation* '?' wildcardBounds?
-//	;
-//
-//wildcardBounds
-//	:	'extends' referenceType
-//	|	KEYWORDS_SUPER referenceType
-//;
+modifier
+    : classOrInterfaceModifier
+    | KEYWORDS_SYNCHRONIZED
 
+    ;
 
-methodDeclaraction:
-        /*annotation*/ methodPermissionModifier? methodTypeModifier? methodReturnType methodDeclarator
-        ( block | SEPARATORS_PUNCTUATORS_SEMICOLON ) ;
+classOrInterfaceModifier
+    : annotation
+    | KEYWORDS_PUBLIC
+    | KEYWORDS_PROTECTED
+    | KEYWORDS_PRIVATE
+    | KEYWORDS_STATIC
+    | KEYWORDS_ABSTRACT
+    | KEYWORDS_FINAL    // FINAL for class only -- does not apply to interfaces
+    | KEYWORDS_STRICTFP
+    ;
 
-/*annotation:
-		;*/
-methodDeclarator:
-		IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS parameterList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS dims?;
+variableModifier
+    : KEYWORDS_FINAL
+    | annotation
+    ;
+
+classDeclaration
+    : KEYWORDS_CLASS IDENTIFIERS typeParameters?
+      (KEYWORDS_EXTENDS typeType)?
+      (KEYWORDS_IMPLEMENTS typeList)?
+      classBody
+    ;
+
+typeParameters
+    : '<' typeParameter (',' typeParameter)* '>'//UWAGAAA
+    ;
+
+typeParameter
+    : annotation* IDENTIFIERS (KEYWORDS_EXTENDS typeBound)?
+    ;
+
+typeBound
+    : typeType ('&' typeType)*
+    ;
+
+interfaceDeclaration
+    : KEYWORDS_INTERFACE IDENTIFIERS typeParameters? (KEYWORDS_EXTENDS typeList)? interfaceBody
+    ;
+
+classBody
+    : '{' classBodyDeclaration* '}'
+    ;
+
+interfaceBody
+    : '{' interfaceBodyDeclaration* '}'
+    ;
+
+classBodyDeclaration
+    : ';'
+    | KEYWORDS_STATIC? block
+    | modifier* memberDeclaration
+    ;
+
+memberDeclaration
+    : methodDeclaration
+    | genericMethodDeclaration
+    | fieldDeclaration
+    | constructorDeclaration
+    | genericConstructorDeclaration
+    | interfaceDeclaration
+    | annotationTypeDeclaration
+    | classDeclaration
+    ;
+
+/* We use rule this even for void methods which cannot have [] after parameters.
+   This simplifies grammar and we can consider void to be a type, which
+   renders the [] matching as a context-sensitive issue or a semantic check
+   for invalid return type after parsing.
+ */
+methodDeclaration
+    : methodPermissionModifier? methodTypeModifier? typeTypeOrVoid IDENTIFIERS formalParameters ('[' ']')* //typeTypeOrVoid IDENTIFIERS formalParameters ('[' ']')*
+      (KEYWORDS_THROWS qualifiedNameList)?
+      methodBody
+    ;
 
 methodPermissionModifier:
 		  KEYWORDS_PUBLIC
@@ -152,415 +148,464 @@ methodTypeModifier:
 		  |	KEYWORDS_NATIVE
 		  |	KEYWORDS_STRICTFP ;
 
-methodReturnType:
-		  unannType
-		| KEYWORDS_VOID ;
 
-variableDeclaration:
-                     variableType IDENTIFIERS ;
-
-statementNoShortIf:
-		  statementWithoutTrailingSubStatement
-		  |	IDENTIFIERS OPERATORS_ELSE statementNoShortIf
-		  |	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf KEYWORDS_ELSE statementNoShortIf
-		  |	KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf
-		  |	forStatementNoShortIf ;
-		  
-forStatementNoShortIf:
-		  basicForStatementNoShortIf
-		  |	enhancedForStatementNoShortIf ;
-
-basicForStatementNoShortIf:
-		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON expression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statementNoShortIf ;
-		  
-enhancedForStatementNoShortIf:
-		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS keywordsType IDENTIFIERS OPERATORS_ELSE IDENTIFIERS SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (block | statementNoShortIf) ;
-
-forStatement:
-		  basicForStatement
-		  |	enhancedForStatement ;
-
-
-basicForStatement:
-		  KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS forInit? SEPARATORS_PUNCTUATORS_SEMICOLON expression? SEPARATORS_PUNCTUATORS_SEMICOLON forUpdate? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement ;
-
-statement:
-		statementWithoutTrailingSubStatement
-		|	IDENTIFIERS OPERATORS_ELSE statement
-		|	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement 
-		|	KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement KEYWORDS_ELSE statement
-		|	KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS statement
-		|	forStatement ;
-		  
-statementWithoutTrailingSubStatement:
-		  block
-		  |	SEPARATORS_PUNCTUATORS_SEMICOLON
-		  |	expressionStatement SEPARATORS_PUNCTUATORS_SEMICOLON
-		  |	switchStatement
-		  |	KEYWORDS_DO statement 
-		  		KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS 
-		  			expression
-		  		SEPARATORS_DELIMITERS_RIGHTPARENTHESIS SEPARATORS_PUNCTUATORS_SEMICOLON
-		  |	breakStatement
-		  |	continueStatement
-		  |	returnStatement
-		  |	KEYWORDS_SYNCHRONIZED KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS block
-		  |	KEYWORDS_THROWS expression SEPARATORS_PUNCTUATORS_SEMICOLON ;
-//		  |	tryStatement ;
-		
-expressionStatement:
-		  assignment
-		  |	preIncrementationExpression
-		  |	preDecrementationExpression
-		  |	postIncrementationExpression
-		  |	postDecrementationExpression
-		  |	methodInvocation
-		  |	classInstanceCreationExpression ;
-		  
-classInstanceCreationExpression
-		  :	KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ IDENTIFIERS (SEPARATORS_PUNCTUATORS_DOT /* annotation* */ IDENTIFIERS)* typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
-		  |	expressionName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ IDENTIFIERS typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS /*typeArguments?*/ typeLiteralArguments? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
-		  |	primary SEPARATORS_PUNCTUATORS_DOT KEYWORDS_NEW /*typeArguments?*/ typeLiteralArguments? /* annotation* */ IDENTIFIERS typeArgumentsOrDiamond? SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS classBody?
-		  ;
-		  
-typeArgumentsOrDiamond:
-		  /*typeArguments*/ typeLiteralArguments
-		  | OPERATORS_LESSTHAN OPERATORS_GREATERTHAN;
-		  
-methodInvocation
-		:	IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-		|	typeName SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? keywordsType IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-		|	expressionName SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-		|	primary SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-		|	KEYWORDS_SUPER SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-		|	typeName SEPARATORS_PUNCTUATORS_DOT KEYWORDS_SUPER SEPARATORS_PUNCTUATORS_DOT /*typeArguments?*/ typeLiteralArguments? IDENTIFIERS SEPARATORS_DELIMITERS_LEFTPARENTHESIS argumentList? SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-		;
-		
-primary : '\u000E';
-//		(	primaryNoNewArray_lfno_primary
-//		|	arrayCreationExpression
-//		)
-//		(	primaryNoNewArray_lf_primary
-//		)* ;
-	
-typeName:
-		IDENTIFIERS
-		| typeName SEPARATORS_PUNCTUATORS_DOT IDENTIFIERS ;
-	
-argumentList:
-		expression (SEPARATORS_PUNCTUATORS_COMMA expression)* ;
-		
-		
-typeLiteralArguments:
-		OPERATORS_LESSTHAN keywordsType OPERATORS_GREATERTHAN;
-		
-expressionName:
-		IDENTIFIERS
-		|	expressionName SEPARATORS_PUNCTUATORS_DOT IDENTIFIERS ;		  
-
-switchStatement:	
-			KEYWORDS_SWITCH SEPARATORS_DELIMITERS_LEFTPARENTHESIS expression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS 
-			SEPARATORS_DELIMITERS_LEFTCURLYBRACKET 
-				( (switchLabel switchLabel) blockStatement+ )* switchLabel* 
-			SEPARATORS_DELIMITERS_LEFTCURLYBRACKET ;
-			
-switchLabel:
-		  KEYWORDS_CASE expression OPERATORS_ELSE
-		  |	KEYWORDS_CASE IDENTIFIERS OPERATORS_ELSE
-		  |	KEYWORDS_DEFAULT OPERATORS_ELSE ;
-
-blockStatement:
-		  localVariableDeclaration SEPARATORS_PUNCTUATORS_SEMICOLON
-	      |	classDeclaration
-		  |	statement ;
-		  
-localVariableDeclaration:
-		  KEYWORDS_FINAL? unannType variableDeclaratorList ;
-		  
-variableDeclaratorList:
-		  variableDeclarator (SEPARATORS_PUNCTUATORS_COMMA variableDeclarator)* ;
-
-variableDeclarator:
-		  variableDeclaratorId (OPERATORS_ASSIGNMENT variableInitializer)? ;
-
-variableDeclaratorId:
-		  IDENTIFIERS dims? ;
-
-variableInitializer:
-		  expression
-		  | arrayInitializer ;
-	
-arrayInitializer:
-		  SEPARATORS_DELIMITERS_LEFTCURLYBRACKET variableInitializerList? SEPARATORS_PUNCTUATORS_COMMA? SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
-	
-variableInitializerList:
-		  variableInitializer (SEPARATORS_PUNCTUATORS_COMMA variableInitializer)* ;
-
-dims:
-		/* annotation* */ SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET ( /* annotation* */ SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET)* ;
-		
-unannType:
-		  unannPrimitiveType
-		  | unannReferenceType ;
-		  
-unannPrimitiveType:
-		  KEYWORDS_BYTE
-		  |	KEYWORDS_SHORT
-		  |	KEYWORDS_INT
-		  |	KEYWORDS_LONG
-		  | KEYWORDS_CHAR
-		  |	KEYWORDS_FLOAT
-		  | KEYWORDS_DOUBLE 
-		  | KEYWORDS_BOOLEAN;
-		  //| KEYWORDS_CLASS_STRING//ZMIANA ale bez sensu na razie proba 1
-         //| KEYWORDS_CLASS_LONG;//ZMIANA ale bez sensu na razie proba 1
-
-unannReferenceType:	
-		  unannClassOrInterfaceType
-		  |	/* unannTypeVariable */ IDENTIFIERS
-		  |	unannArrayType ;
-		  
-unannClassOrInterfaceType:
-		  (unannClassType_lfno_unannClassOrInterfaceType
-		  |	unannInterfaceType_lfno_unannClassOrInterfaceType )
-		  (	unannClassType_lf_unannClassOrInterfaceType
-		  |	unannInterfaceType_lf_unannClassOrInterfaceType  )* ;
-
-unannClassType_lfno_unannClassOrInterfaceType:
-			IDENTIFIERS /* typeArguments? */ typeLiteralArguments? ;
-	
-unannInterfaceType_lfno_unannClassOrInterfaceType:
-			unannClassType_lfno_unannClassOrInterfaceType ;
-	
-unannClassType_lf_unannClassOrInterfaceType:
-			SEPARATORS_PUNCTUATORS_DOT /* annotation* */ IDENTIFIERS /* typeArguments? */ typeLiteralArguments? ;
-	
-unannInterfaceType_lf_unannClassOrInterfaceType:
-			unannClassType_lf_unannClassOrInterfaceType ;
-			
-unannArrayType:
-		  unannPrimitiveType dims
-		  |	unannClassOrInterfaceType dims
-		  |	/*unannTypeVariable*/ IDENTIFIERS dims ;
-
-loopStatement:
-                statement
-             |  breakStatement
-             |  continueStatement
-             ;
-
-comparisonOperator:
-      OPERATORS_GREATERTHAN
-    | OPERATORS_LESSTHAN
-    | OPERATORS_GREATERTHANOREQUAL
-    | OPERATORS_LESSTHANOREQUAL
-    | OPERATORS_LOGICALEQUAL
+methodBody
+    : block
+    | ';'
     ;
 
-number:
-      LITERALS_NUMERIC_INT
-    | LITERALS_NUMERIC_DOUBLE
+typeTypeOrVoid
+    : typeType
+    | KEYWORDS_VOID
     ;
 
-numberEquivalent:
-      number
-    | IDENTIFIERS
+
+genericMethodDeclaration
+    : typeParameters methodDeclaration
     ;
 
-logicalConst:
-      LITERALS_LOGICAL_BOOLEAN
-    | LITERALS_LOGICAL_BOOLEAN
+genericConstructorDeclaration
+    : typeParameters constructorDeclaration
     ;
 
-logicalEquivalent:
-      logicalConst
-    | IDENTIFIERS ;
-
-arithmeticExpression:
-       OPERATORS_SUBTRACTION arithmeticExpression
-     | arithmeticExpression OPERATORS_MULTIPLICATION arithmeticExpression
-     | arithmeticExpression OPERATORS_DIVISION arithmeticExpression
-     | arithmeticExpression OPERATORS_ADDITION arithmeticExpression
-     | arithmeticExpression OPERATORS_SUBTRACTION arithmeticExpression
-     | SEPARATORS_DELIMITERS_LEFTPARENTHESIS arithmeticExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-     | numberEquivalent
-     ;
-
-comparisonExpression:
-       arithmeticExpression comparisonOperator arithmeticExpression
-     | SEPARATORS_DELIMITERS_LEFTPARENTHESIS comparisonExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-     ;
-
-logicalExpression:
-       logicalExpression OPERATORS_LOGICALAND logicalExpression
-     | logicalExpression OPERATORS_LOGICALOR logicalExpression
-     | logicalExpression OPERATORS_BITWISEAND logicalExpression
-     | logicalExpression OPERATORS_BITWISEOR logicalExpression
-     | comparisonExpression
-     | SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
-     | logicalEquivalent
-     ;
-
-block: 
-		SEPARATORS_DELIMITERS_LEFTCURLYBRACKET (blockStatement+)? SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
-		
-loopBlock:
-      SEPARATORS_DELIMITERS_LEFTCURLYBRACKET loopStatement* SEPARATORS_DELIMITERS_RIGHTCURLYBRACKET ;
-
-
-ifStatement:
-    KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (block | statement)
-    ( KEYWORDS_ELSE KEYWORDS_IF SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (block | statement))*
-    (KEYWORDS_ELSE (block | statement))?
+constructorDeclaration
+    : IDENTIFIERS formalParameters (KEYWORDS_THROWS qualifiedNameList)? constructorBody=block
     ;
 
-doWhileStatement:
-    KEYWORDS_DO (loopBlock | loopStatement) KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS
+fieldDeclaration
+    : typeType variableDeclarators ';'
     ;
 
-whileDoStatement:
-    KEYWORDS_WHILE SEPARATORS_DELIMITERS_LEFTPARENTHESIS logicalExpression SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (loopBlock | loopStatement)
+interfaceBodyDeclaration
+    : modifier* interfaceMemberDeclaration
+    | ';'
     ;
 
-expression:
-        arithmeticExpression
-      | logicalExpression
-      | assignmentExpression
-      | preIncrementationExpression
-      | postIncrementationExpression
-      | preDecrementationExpression
-      | postDecrementationExpression ;
-
-assignment:
-        assignmentExpression
-        SEPARATORS_PUNCTUATORS_SEMICOLON ;
-
-
-assignmentExpression:
-        IDENTIFIERS assignmentOperator (IDENTIFIERS | expression)
-      | IDENTIFIERS (OPERATORS_ASSIGNMENT IDENTIFIERS)+ expression? ;
-
-assignmentOperator:
-        OPERATORS_ASSIGNMENT
-	  | OPERATORS_MULTIPLICATIONANDASSIGNMENT
-	  | OPERATORS_DIVISIONANDASSIGNMENT
-	  | OPERATORS_MODULOANDASSIGMENT
-	  | OPERATORS_ADDITIONANDASSIGNMENT
-	  | OPERATORS_SUBTRACTIONANDASSIGNMENT
-	  | OPERATORS_SHIFTLEFTASSIGNMENT
-	  | OPERATORS_SHIFTRIGHTASSIGNMENT
-	  | OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT
-	  | OPERATORS_BITWISEANDASSIGNMENT
-	  | OPERATORS_BITWISEXORASSIGNMENT
-	  | OPERATORS_BITWISEORASSIGNMENT ;
-
-forInit:
-        variableDeclaration (OPERATORS_ASSIGNMENT IDENTIFIERS)+ (OPERATORS_ASSIGNMENT (numberEquivalent | LITERALS_TEXTUAL_CHAR | LITERALS_TEXTUAL_STRING))?
-      | IDENTIFIERS (OPERATORS_ASSIGNMENT IDENTIFIERS)+ (OPERATORS_ASSIGNMENT (numberEquivalent | LITERALS_TEXTUAL_CHAR | LITERALS_TEXTUAL_STRING | IDENTIFIERS))?
-      | variableDeclaration OPERATORS_ASSIGNMENT (numberEquivalent | LITERALS_TEXTUAL_CHAR | LITERALS_TEXTUAL_STRING | IDENTIFIERS)
-      ;
-
-forUpdate:
-        assignmentExpression+ (SEPARATORS_PUNCTUATORS_COMMA assignmentExpression)*
-      ;
-
-enhancedForStatement:
-        KEYWORDS_FOR SEPARATORS_DELIMITERS_LEFTPARENTHESIS keywordsType IDENTIFIERS OPERATORS_ELSE IDENTIFIERS SEPARATORS_DELIMITERS_RIGHTPARENTHESIS (block | statement)
-      ;
-
-returnStatement:
-        KEYWORDS_RETURN expression? SEPARATORS_PUNCTUATORS_SEMICOLON
-      ;
-
-breakStatement:
-        KEYWORDS_BREAK IDENTIFIERS? SEPARATORS_PUNCTUATORS_SEMICOLON
-      ;
-
-continueStatement:
-      KEYWORDS_CONTINUE IDENTIFIERS? SEPARATORS_PUNCTUATORS_SEMICOLON
+interfaceMemberDeclaration
+    : constDeclaration
+    | interfaceMethodDeclaration
+    | genericInterfaceMethodDeclaration
+    | interfaceDeclaration
+    | annotationTypeDeclaration
+    | classDeclaration
     ;
 
-parameterList:
-        //( variableType IDENTIFIERS (SEPARATORS_PUNCTUATORS_COMMA parameterList)* ) ;
-        receiverParameter
-        | formalParameters  SEPARATORS_PUNCTUATORS_COMMA lastFormalParameter
-        | lastFormalParameter
-        ;
+constDeclaration
+    : typeType constantDeclarator (',' constantDeclarator)* ';'
+    ;
+
+constantDeclarator
+    : IDENTIFIERS ('[' ']')* '=' variableInitializer
+    ;
+
+// see matching of [] comment in methodDeclaratorRest
+// methodBody from Java8
+interfaceMethodDeclaration
+    : interfaceMethodModifier* (typeTypeOrVoid | typeParameters annotation* typeTypeOrVoid)
+      IDENTIFIERS formalParameters ('[' ']')* (KEYWORDS_THROWS qualifiedNameList)? methodBody
+    ;
+
+// Java8
+interfaceMethodModifier
+    : annotation
+    | KEYWORDS_PUBLIC
+    | KEYWORDS_ABSTRACT
+    | KEYWORDS_DEFAULT
+    | KEYWORDS_STATIC
+    | KEYWORDS_STRICTFP
+    ;
+
+genericInterfaceMethodDeclaration
+    : typeParameters interfaceMethodDeclaration
+    ;
+
+variableDeclarators
+    : variableDeclarator (',' variableDeclarator)*
+    ;
+
+variableDeclarator
+    : variableDeclaratorId ('=' variableInitializer)?
+    ;
+
+variableDeclaratorId
+    : IDENTIFIERS ('[' ']')*
+    ;
+
+variableInitializer
+    : arrayInitializer
+    | expression
+    ;
+
+arrayInitializer
+    : '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    ;
+
+classOrInterfaceType
+    : IDENTIFIERS typeArguments? ('.' IDENTIFIERS typeArguments?)*
+    ;
+
+typeArgument
+    : typeType
+    | '?' ((KEYWORDS_EXTENDS | KEYWORDS_SUPER) typeType)?
+    ;
+
+qualifiedNameList
+    : qualifiedName (',' qualifiedName)*
+    ;
 
 formalParameters
-	:	KEYWORDS_FINAL* unannType variableDeclaratorId (SEPARATORS_PUNCTUATORS_COMMA KEYWORDS_FINAL* unannType variableDeclaratorId)*
-	|	receiverParameter (SEPARATORS_PUNCTUATORS_COMMA formalParameter)*
-	;
+    : '(' formalParameterList? ')'
+    ;
 
-lastFormalParameter
-	:	KEYWORDS_FINAL* unannType '...' variableDeclaratorId
-	|	formalParameter
-;
+formalParameterList
+    : formalParameter (',' formalParameter)* (',' lastFormalParameter)?
+    | lastFormalParameter
+    ;
 
 formalParameter
-	:	KEYWORDS_FINAL* unannType variableDeclaratorId
-;
+    : variableModifier* typeType variableDeclaratorId
+    ;
 
-receiverParameter
-	:	unannType (IDENTIFIERS SEPARATORS_PUNCTUATORS_DOT)? KEYWORDS_THIS
-;
+lastFormalParameter
+    : variableModifier* typeType '...' variableDeclaratorId
+    ;
 
-operatorsBitwise:
-		OPERATORS_BITWISENOT
-      | OPERATORS_BITWISEAND
-      | OPERATORS_BITWISEOR
-      | OPERATORS_BITWISEXOR
-      | OPERATORS_BITWISEANDASSIGNMENT
-      | OPERATORS_BITWISEORASSIGNMENT
-      | OPERATORS_BITWISEXORASSIGNMENT
-      | OPERATORS_SHIFTRIGHTUNSIGNED
-      | OPERATORS_SHIFTLEFT
-      | OPERATORS_SHIFTRIGHT
-      | OPERATORS_SHIFTRIGHTUNSIGNEDASSIGNMENT
-      | OPERATORS_SHIFTLEFTASSIGNMENT
-      | OPERATORS_SHIFTRIGHTASSIGNMENT ;
+qualifiedName
+    : IDENTIFIERS ('.' IDENTIFIERS)*
+    ;
 
-expressionBitwise:
-        (IDENTIFIERS | LITERALS_NUMERIC_INT) (operatorsBitwise (IDENTIFIERS | LITERALS_NUMERIC_INT))+ 
-        ;
+literal
+    : integerLiteral
+    | floatLiteral
+    | LITERALS_TEXTUAL_CHAR
+    | LITERALS_TEXTUAL_STRING
+    | LITERALS_LOGICAL_BOOLEAN
+    | LITERALS_REFERENCE_NULL
+    ;
 
-//stringNullAssignment:
-      //  KEYWORDS_CLASS_STRING IDENTIFIERS OPERATORS_ASSIGNMENT LITERALS_REFERENCE_NULL 
-       // ;
+integerLiteral
+	: LITERALS_NUMERIC_INT
+    ;
 
-preIncrementationExpression:
-        OPERATORS_INCREMENT IDENTIFIERS 
-        ;
+floatLiteral
+    : LITERALS_NUMERIC_DOUBLE
+    ;
 
-postIncrementationExpression:
-        IDENTIFIERS OPERATORS_INCREMENT 
-        ;
+// ANNOTATIONS
 
-preDecrementationExpression:
-        OPERATORS_DECREMENT IDENTIFIERS 
-        ;
+annotation
+    : '@' qualifiedName ('(' ( elementValuePairs | elementValue )? ')')?
+    ;
 
-postDecrementationExpression:
-        IDENTIFIERS OPERATORS_DECREMENT 
-        ;
+elementValuePairs
+    : elementValuePair (',' elementValuePair)*
+    ;
 
-variableType:
-		keywordsType
-		| keywordsType SEPARATORS_DELIMITERS_LEFTSQUAREBRACKET LITERALS_NUMERIC_INT? SEPARATORS_DELIMITERS_RIGHTSQUAREBRACKET ;
+elementValuePair
+    : IDENTIFIERS '=' elementValue
+    ;
 
-keywordsType:
-        KEYWORDS_BOOLEAN
-      | KEYWORDS_BYTE
-      | KEYWORDS_CHAR
-      | KEYWORDS_INT
-      | KEYWORDS_SHORT
-      | KEYWORDS_LONG
-      | KEYWORDS_FLOAT
-      | KEYWORDS_DOUBLE ;
-    //  | KEYWORDS_CLASS_STRING
-    //  | KEYWORDS_CLASS_LONG;
-      
- 
+elementValue
+    : expression
+    | annotation
+    | elementValueArrayInitializer
+    ;
+
+elementValueArrayInitializer
+    : '{' (elementValue (',' elementValue)*)? (',')? '}'
+    ;
+
+annotationTypeDeclaration
+    : '@' KEYWORDS_INTERFACE IDENTIFIERS annotationTypeBody
+    ;
+
+annotationTypeBody
+    : '{' (annotationTypeElementDeclaration)* '}'
+    ;
+
+annotationTypeElementDeclaration
+    : modifier* annotationTypeElementRest
+    | ';' // this is not allowed by the grammar, but apparently allowed by the actual compiler
+    ;
+
+annotationTypeElementRest
+    : typeType annotationMethodOrConstantRest ';'
+    | classDeclaration ';'?
+    | interfaceDeclaration ';'?
+    | annotationTypeDeclaration ';'?
+    ;
+
+annotationMethodOrConstantRest
+    : annotationMethodRest
+    | annotationConstantRest
+    ;
+
+annotationMethodRest
+    : IDENTIFIERS '(' ')' defaultValue?
+    ;
+
+annotationConstantRest
+    : variableDeclarators
+    ;
+
+defaultValue
+    : KEYWORDS_DEFAULT elementValue
+    ;
+
+// STATEMENTS / BLOCKS
+
+block
+    : '{' blockStatement* '}'
+    ;
+
+blockStatement
+    : localVariableDeclaration ';'
+    | statement
+    | localTypeDeclaration
+    ;
+
+localVariableDeclaration
+    : variableModifier* typeType variableDeclarators
+    ;
+
+localTypeDeclaration
+    : classOrInterfaceModifier*
+      (classDeclaration | interfaceDeclaration)
+    | ';'
+    ;
+
+statement
+    : blockLabel=block
+    | KEYWORDS_ASSERT expression (':' expression)? ';'
+    | KEYWORDS_IF parExpression statement (KEYWORDS_ELSE statement)?
+    | KEYWORDS_FOR '(' forControl ')' statement
+    | KEYWORDS_WHILE parExpression statement
+    | KEYWORDS_DO statement KEYWORDS_WHILE parExpression ';'
+    | KEYWORDS_TRY block (catchClause+ finallyBlock? | finallyBlock)
+    | KEYWORDS_TRY resourceSpecification block catchClause* finallyBlock?
+    | KEYWORDS_SWITCH parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+    | KEYWORDS_SYNCHRONIZED parExpression block
+    | KEYWORDS_RETURN expression? ';'
+    | KEYWORDS_THROW expression ';'
+    | KEYWORDS_BREAK IDENTIFIERS? ';'
+    | KEYWORDS_CONTINUE IDENTIFIERS? ';'
+    | statementExpression=expression ';'
+    | identifierLabel=IDENTIFIERS ':' statement
+    ;
+
+catchClause
+    : KEYWORDS_CATCH '(' variableModifier* catchType IDENTIFIERS ')' block
+    ;
+
+catchType
+    : qualifiedName ('|' qualifiedName)*
+    ;
+
+finallyBlock
+    : KEYWORDS_FINALLY block
+    ;
+
+resourceSpecification
+    : '(' resources ';'? ')'
+    ;
+
+resources
+    : resource (';' resource)*
+    ;
+
+resource
+    : variableModifier* classOrInterfaceType variableDeclaratorId '=' expression
+    ;
+
+/** Matches cases then statements, both of which are mandatory.
+ *  To handle empty cases at the end, we add switchLabel* to statement.
+ */
+switchBlockStatementGroup
+    : switchLabel+ blockStatement+
+    ;
+
+switchLabel
+    : KEYWORDS_CASE (constantExpression=expression) ':'
+    | KEYWORDS_DEFAULT ':'
+    ;
+
+forControl
+    : enhancedForControl
+    | forInit? ';' expression? ';' forUpdate=expressionList?
+    ;
+
+forInit
+    : localVariableDeclaration
+    | expressionList
+    ;
+
+enhancedForControl
+    : variableModifier* typeType variableDeclaratorId ':' expression
+    ;
+
+// EXPRESSIONS
+
+parExpression
+    : '(' expression ')'
+    ;
+
+expressionList
+    : expression (',' expression)*
+    ;
+
+methodCall
+    : IDENTIFIERS '(' expressionList? ')'
+    ;
+
+expression
+    : primary
+    | expression bop='.'
+      ( IDENTIFIERS
+      | methodCall
+      | KEYWORDS_THIS
+      | KEYWORDS_NEW nonWildcardTypeArguments? innerCreator
+      | KEYWORDS_SUPER superSuffix
+      | explicitGenericInvocation
+      )
+    | expression '[' expression ']'
+    | methodCall
+    | KEYWORDS_NEW creator
+    | '(' typeType ')' expression
+    | expression postfix=('++' | '--')
+    | prefix=('+'|'-'|'++'|'--') expression
+    | prefix=('~'|'!') expression
+    | expression bop=('*'|'/'|'%') expression
+    | expression bop=('+'|'-') expression
+    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression
+    | expression bop=('<=' | '>=' | '>' | '<') expression
+    | expression bop=KEYWORDS_INSTANCEOF typeType
+    | expression bop=('==' | '!=') expression
+    | expression bop='&' expression
+    | expression bop='^' expression
+    | expression bop='|' expression
+    | expression bop='&&' expression
+    | expression bop='||' expression
+    | expression bop='?' expression ':' expression
+    | <assoc=right> expression
+      bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
+      expression
+    | lambdaExpression // Java8
+
+    // Java 8 methodReference
+    | expression '::' typeArguments? IDENTIFIERS
+    | typeType '::' (typeArguments? IDENTIFIERS | KEYWORDS_NEW)
+    | classType '::' typeArguments? KEYWORDS_NEW
+    ;
+
+// Java8
+lambdaExpression
+    : lambdaParameters '->' lambdaBody
+    ;
+
+// Java8
+lambdaParameters
+    : IDENTIFIERS
+    | '(' formalParameterList? ')'
+    | '(' IDENTIFIERS (',' IDENTIFIERS)* ')'
+    ;
+
+// Java8
+lambdaBody
+    : expression
+    | block
+    ;
+
+primary
+    : '(' expression ')'
+    | KEYWORDS_THIS
+    | KEYWORDS_SUPER
+    | literal
+    | IDENTIFIERS
+    | typeTypeOrVoid '.' KEYWORDS_CLASS
+    | nonWildcardTypeArguments (explicitGenericInvocationSuffix | KEYWORDS_THIS arguments)
+    ;
+
+classType
+    : (classOrInterfaceType '.')? annotation* IDENTIFIERS typeArguments?
+    ;
+
+creator
+    : nonWildcardTypeArguments createdName classCreatorRest
+    | createdName (arrayCreatorRest | classCreatorRest)
+    ;
+
+createdName
+    : IDENTIFIERS typeArgumentsOrDiamond? ('.' IDENTIFIERS typeArgumentsOrDiamond?)*
+    | primitiveType
+    ;
+
+innerCreator
+    : IDENTIFIERS nonWildcardTypeArgumentsOrDiamond? classCreatorRest
+    ;
+
+arrayCreatorRest
+    : '[' (']' ('[' ']')* arrayInitializer | expression ']' ('[' expression ']')* ('[' ']')*)
+    ;
+
+classCreatorRest
+    : arguments classBody?
+    ;
+
+explicitGenericInvocation
+    : nonWildcardTypeArguments explicitGenericInvocationSuffix
+    ;
+
+typeArgumentsOrDiamond
+    : '<' '>'
+    | typeArguments
+    ;
+
+nonWildcardTypeArgumentsOrDiamond
+    : '<' '>'
+    | nonWildcardTypeArguments
+    ;
+
+nonWildcardTypeArguments
+    : '<' typeList '>'
+    ;
+
+typeList
+    : typeType (',' typeType)*
+    ;
+
+typeType
+    : annotation? (classOrInterfaceType | primitiveType) ('[' ']')*
+    ;
+
+primitiveType
+    : KEYWORDS_BOOLEAN
+    | KEYWORDS_CHAR
+    | KEYWORDS_BYTE
+    | KEYWORDS_SHORT
+    | KEYWORDS_INT
+    | KEYWORDS_LONG
+    | KEYWORDS_FLOAT
+    | KEYWORDS_DOUBLE
+    ;
+
+typeArguments
+    : '<' typeArgument (',' typeArgument)* '>'
+    ;
+
+superSuffix
+    : arguments
+    | '.' IDENTIFIERS arguments?
+    ;
+
+explicitGenericInvocationSuffix
+    : KEYWORDS_SUPER superSuffix
+    | IDENTIFIERS arguments
+    ;
+
+arguments
+    : '(' expressionList? ')'
+    ;
+
 // Lexer Rules-------------------------------------------------------------------------------------------
 
 // Sztuczne, pomocnicze literaly
@@ -722,7 +767,7 @@ fragment DIGIT:
                 | NONZERODIGIT;
                 
 fragment NONZERODIGIT:
-				[1-9];
+				[1-9$_];
                 
 fragment LETTER:
                 LOWERCASE_LETTER | UPPERCASE_LETTER 
@@ -732,10 +777,10 @@ fragment LETTER:
 					{ Character.isJavaIdentifierStart(  Character.toCodePoint( (char)_input.LA(-2), (char)_input.LA(-1))  ) }? ;
                 
 fragment LOWERCASE_LETTER:
-				[a-z];
+				[a-z$_];
 				
 fragment UPPERCASE_LETTER:
-				[A-Z];
+				[A-Z$_];
 
 //Tokeny ( literaly ) rzeczywiste
 
