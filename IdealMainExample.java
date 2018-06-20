@@ -4,10 +4,10 @@ import java.util.Objects;
 public class IdealMainExample {
 	
 	public static void main(String[] args) {
-		clearScreen();														/** remove from matlab example ??? **/
+		clearScreen();
 		int intVar = 1;
-		double doubleVar1 = 0.0001; 									/** edit in matlab example **/
-		double doubleVar2 = 1.0001; 									/** add in matlab example **/
+		double doubleVar1 = 0.0001;
+		double doubleVar2 = 1.0001;
 		char charVar = 'a';
 		String stringVar = "a string";
 		boolean functionReturnedValue = functionName1( -22 );

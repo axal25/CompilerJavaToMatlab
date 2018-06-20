@@ -121,6 +121,13 @@ public void staticInputTesting() {
 		Thread.sleep(100);
 		attacher.pubPrintIdentifiers( vListenerContent );
 		Thread.sleep(100);
+		
+		System.out.println("\n\t--------------------------- IdealMainExample.java ---------------------------");
+		System.out.println("\t\t-------------- Ideal example ---------------");
+		String idealContent = new FileOperations().readFile("IdealMainExample.java", Charset.defaultCharset() );
+		System.out.println( idealContent );
+		attacher.pubPrintJavaGrammar( idealContent );
+		Thread.sleep(100);
 	}
 
 }
