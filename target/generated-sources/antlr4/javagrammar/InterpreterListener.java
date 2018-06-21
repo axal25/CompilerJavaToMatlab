@@ -111,11 +111,27 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 		for(int i=0; i<parseTree.getChildCount(); i++) { 
 			if( parseTree.getChild(i) instanceof TerminalNode ) { 
 				System.out.println("\t\tThis is terminal node: " + parseTree.getChild(i).getText() );
-				buffer = buffer + parseTree.getChild(i).getText() + " ";
+				
+				reactToTerminalNode( parseTree.getChild(i) );
 			}
 			else {
 				recursive( parseTree.getChild(i) );
 			}
+		}
+	}
+	
+	public void reactToTerminalNode( ParseTree childParseTree ) {
+		String childString = childParseTree.getText();
+		switch( childString ) {
+			case "main":
+				buffer = buffer + "ClassName" + " ";
+				break;
+			case ")":
+				buffer = buffer + ")\n";
+				break;
+			default:
+				buffer = buffer + childString + " ";
+				break;
 		}
 	}
 	
@@ -133,6 +149,9 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 		// publiczna metoda zwracajaca zintepretowany String (z Javy na Matlaba)
 		// inputFileContent -> outputFileContent
 		if( Objects.equals(buffer,"") ) {
+			//DO NOTHING
+		}
+		else {
 			outputFileContent = buffer;
 		}
 		return outputFileContent;
