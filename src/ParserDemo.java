@@ -6,7 +6,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class ParserDemo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		System.out.println("---------------------------------- LatestTestMethod ----------------------------------");
 		String[] st = {"0", "1"};
 		latestTestMethod( 1, st);
@@ -17,12 +17,14 @@ public class ParserDemo {
 		
 		try {
 			tests.fileTesting();
+			System.out.println("Tests successful!");
 		}
 		catch( Exception e ) {
-			System.out.println("Exception cought in ParserDemo pd.fileTesting(): \n" + e.toString() );
+			System.out.println("Exception cought in ParserDemo tests.fileTesting(): \n" + e.toString() );
+			throw e;
 		}
 		finally {
-			System.out.println("Meh... easy~!");
+			System.out.println("\n\n\n\tEnd Of Tests!");
 		}
 	}
 	

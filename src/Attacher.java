@@ -8,6 +8,7 @@ import javagrammar.JavaGrammarParser;
 import javagrammar.InterpreterListener;
 
 public class Attacher {
+	InterpreterListener lastListener;
 
 	Attacher() {}
 	
@@ -66,7 +67,18 @@ public class Attacher {
 	    // Specify our entry point
 	    JavaGrammarParser.CompilationUnitContext compilationUnit_ctx = parser.compilationUnit();
 	   
-        ParseTreeWalker.DEFAULT.walk(new InterpreterListener(), compilationUnit_ctx);
+	    InterpreterListener listener = new InterpreterListener();
+        ParseTreeWalker.DEFAULT.walk(listener, compilationUnit_ctx);
+        lastListener = listener; //
+	}
+	
+	public String getOutputFileContent() {
+		if( this.lastListener != null ) {
+			return this.lastListener.getOutputFileContent();
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public void pubPrintMethodDeclaration( String inputSentence )

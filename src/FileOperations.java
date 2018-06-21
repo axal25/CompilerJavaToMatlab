@@ -5,42 +5,97 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import exceptions.AlreadyExistsFileException;
 import exceptions.NoSuchFileException;
 import exceptions.UnforseenException;
+import javagrammar.InterpreterListener;
 
 public class FileOperations {
 	
-	public void scanFile(String inFileName, String outFileName) throws Exception 
-	{
+	private String getFileNameWithoutExtention( String fileName ) {
+		String fileNameWithoutExtention = null;
+		
+		int position = fileName.lastIndexOf(".");
+		if (position > 0) {
+			fileNameWithoutExtention = fileName.substring(0, position);
+		}
+		
+		return fileNameWithoutExtention;
+	}
+	
+	public void pubInterpretFile( String inputPath ) throws Exception {
+		Path path = Paths.get( inputPath );
+		if( Files.exists( path ) ) {
+			String fileNameWithoutExtention = getFileNameWithoutExtention( path.getFileName().toString() );
+			String outputPath = fileNameWithoutExtention + "-GenOutput.m";
+			privIntepretFile( inputPath, outputPath );
+		}
+	}
+	
+	private void privIntepretFile( String inputPath, String outputPath ) throws Exception {
 		try 
 		{
-			//if( Files.isReadable(inFileName)==false ) throws new IOException();
-			BufferedReader buffer = new BufferedReader( new InputStreamReader( new FileInputStream(inFileName), Charset.forName("UTF-8") ) );
-
-			if( Files.notExists(Paths.get(outFileName), LinkOption.NOFOLLOW_LINKS) ) 
-			{
-				Files.createFile(Paths.get(outFileName));
+			String inputFileContent = readFile( inputPath, Charset.defaultCharset() );
+			Attacher attacher = new Attacher();
+			attacher.pubPrintIdentifiers( inputFileContent );
+			if( attacher.getOutputFileContent()!=null ) {
+				String outputFileContent = attacher.getOutputFileContent();
+				String outputFilePath = outputPath;
+				writeFile( outputFileContent, outputFilePath, Charset.defaultCharset() );
 			}
-			Files.write(Paths.get(outFileName), "".getBytes()); //nadpisuje plik - to samo co:
-			//Files.write(Paths.get(outFileName), "".getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING );
-			
-			int c = 0;
-        	while( (c = buffer.read()) != -1 )
-	        {
-        		
-	        }
-        	if( c==-1 )
-        	{
-        		c = (char) 0;
-        	}
-		}
-		catch( IOException e ) 
+			else throw new UnforseenException("OutputFileContent is null!!!");
+		} 
+		catch (NoSuchFileException e) 
 		{
-			e.getMessage();
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		} 
+		catch (UnforseenException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void writeFile( String outputFileContent, String outputFilePath, Charset encoding ) throws UnforseenException {
+		try 
+		{
+			outputFileContent = thisPrivWriteFile( outputFileContent, outputFilePath, encoding );
+			if( outputFileContent == null ) {
+				throw new UnforseenException("Exception in FileOperations.writeFile()");
+			}
+		} 
+		catch (AlreadyExistsFileException e) 
+		{
+			e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	private String thisPrivWriteFile( String outputFileContent, String path, Charset encoding) throws AlreadyExistsFileException, IOException 
+	{
+		byte[] encoded = null;
+		String decoded = null;
+		
+		if( !Files.exists(Paths.get(path)) ) 
+		{
+			decoded = outputFileContent;
+			encoded = decoded.getBytes( encoding );
+			Files.write( Paths.get(path), outputFileContent.getBytes());
+			return decoded; 
+		}
+		else
+		{
+			throw new AlreadyExistsFileException(path);
 		}
 	}
 	
@@ -87,5 +142,4 @@ public class FileOperations {
 			throw new NoSuchFileException(path);
 		}
 	}
-
 }

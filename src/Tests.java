@@ -128,6 +128,13 @@ public void staticInputTesting() {
 		System.out.println( idealContent );
 		attacher.pubPrintJavaGrammar( idealContent );
 		Thread.sleep(100);
+		
+		attacher.pubPrintIdentifiers( idealContent );
+		Thread.sleep(100);
+		System.out.println("OutputFileContent:\n" + attacher.getOutputFileContent() );
+		Thread.sleep(100);
+		new FileOperations().pubInterpretFile("IdealMainExample.java");
+		Thread.sleep(100);
 	}
 
 }
