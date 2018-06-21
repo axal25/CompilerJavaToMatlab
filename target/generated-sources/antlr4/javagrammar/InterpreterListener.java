@@ -12,9 +12,11 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class InterpreterListener extends JavaGrammarBaseListener{
 	String buffer;
+	String className;
 	
 	public InterpreterListener() {
 		buffer = "";
+		className = null;
 	}
     
 	@Override 
@@ -64,9 +66,9 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 		//	      (KEYWORDS_THROWS qualifiedNameList)?
 		//	      methodBody
 		//	    ;
-		String methodPermissionModifier = getTextVersion( ctx.methodPermissionModifier() );
-		String methodTypeModifier = getTextVersion( ctx.methodTypeModifier() );
-		String typeTypeOrVoid = getTextVersion( ctx.typeTypeOrVoid() );
+//		String methodPermissionModifier = getTextVersion( ctx.methodPermissionModifier() );
+//		String methodTypeModifier = getTextVersion( ctx.methodTypeModifier() );
+//		String typeTypeOrVoid = getTextVersion( ctx.typeTypeOrVoid() );
 		
 //		for(int i=0; i<ctx.getChildCount(); i++) {
 //			System.out.println("\n\tchild#"+i+": "+ ctx.getChild(i).getText() );
@@ -80,7 +82,7 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 //			}
 //		}
 		
-		System.out.println("ctx.getText(): "+ctx.getText());
+//		System.out.println("ctx.getText(): "+ctx.getText());
 		try {
 			ParseTree parseTreeMethodDeclaration = getParseTreeReference( ctx );
 			recursive( parseTreeMethodDeclaration );
@@ -94,10 +96,10 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 		ParseTree parent = prCtx.getParent();
 		ParseTree thisNode = null;
 		for( int i=0; i<parent.getChildCount(); i++ ) {
-			System.out.println("parent.getChild("+i+"): " + parent.getChild(i).getText());
+//			System.out.println("parent.getChild("+i+"): " + parent.getChild(i).getText());
 			if( Objects.equals(parent.getChild(i).getText() , prCtx.getText()) ) {
 				ParseTree parseTreeMethodDeclaration = parent.getChild(i);
-				System.out.println("\n\n\t\t\tFOUND PARSE TREE REF\n");
+//				System.out.println("\n\n\t\t\tFOUND PARSE TREE REF\n");
 				thisNode = parseTreeMethodDeclaration;
 			}
 		}
@@ -111,8 +113,12 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 		for(int i=0; i<parseTree.getChildCount(); i++) { 
 			if( parseTree.getChild(i) instanceof TerminalNode ) { 
 				System.out.println("\t\tThis is terminal node: " + parseTree.getChild(i).getText() );
-				
-				reactToTerminalNode( parseTree.getChild(i) );
+				if( isThisMethodOfClass( parseTree ) ) {
+					
+				}
+				else {
+					reactToTerminalNode( parseTree.getChild(i) );
+				}
 			}
 			else {
 				recursive( parseTree.getChild(i) );
@@ -123,16 +129,61 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 	public void reactToTerminalNode( ParseTree childParseTree ) {
 		String childString = childParseTree.getText();
 		switch( childString ) {
-			case "main":
-				buffer = buffer + "ClassName" + " ";
-				break;
-			case ")":
-				buffer = buffer + ")\n";
-				break;
-			default:
-				buffer = buffer + childString + " ";
-				break;
+		case "main":
+			buffer = buffer + getClassName() + " ";
+			break;
+		case ";":
+			buffer = buffer + ";\n";
+			break;
+		case "{":
+			buffer = buffer + "\n";
+			break;
+		case "}":
+			buffer = buffer + "end" + " " + "\n";
+			break;
+		//zamiana typow zmiennych
+		case "String":
+			break;
+		case "boolean":
+			break;				
+		case "int":
+			break;
+		case "double":
+			break;
+		case "float":
+			break;
+		case "char":
+			break;
+		case "!=":
+			buffer = buffer + "~=" + " ";
+			break;
+
+		default:
+			buffer = buffer + childString + " ";
+			break;
 		}
+		//Objects.equals->strcmp
+		//IdealClassExample aClass = new IdealClassExample();->aClass = IdealClassExample;
+		//System.out.println->fprintf
+		//private static boolean functionName1( int inputValue ) -> function [ returnValue ] = functionName1( inputValue )
+		//int[] aValue2 = {1, 2, inputValue}; ->  aValue2 = [1, 2, inputValue];
+		//return returnValue;-> ""
+			
+			//private static void clearScreen() {                                       
+			//try {
+			//new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			//} catch (InterruptedException e) {
+			//e.printStackTrace();
+			//} catch (IOException e) {
+			//e.printStackTrace();
+			//}
+			//}
+		//ZAMIANA NA
+			//function [] = clearScreen()
+			//close all;
+			//clearvars;
+			//clc;
+			//end
 	}
 	
 	public String getTextVersion( ParserRuleContext prCtx ) {
@@ -156,4 +207,33 @@ public class InterpreterListener extends JavaGrammarBaseListener{
 		}
 		return outputFileContent;
 	}
+	
+	public String getClassName() {
+		if( this.className==null ) {
+			return "ClassName";
+		}
+		else {
+			return this.className;
+		}
+	}
+	
+	@Override public void enterClassDeclaration(JavaGrammarParser.ClassDeclarationContext ctx) 
+	{ 
+		if( ctx.IDENTIFIERS() != null ) {
+			this.className = ctx.IDENTIFIERS().getText();
+		}
+	}
+	
+	public boolean isThisMethodOfClass( ParseTree parentParseTree ) {
+		boolean response = false;
+		int goalForTrue = 0;
+		for(int i=0; i<parentParseTree.getChildCount(); i++) {
+			if( parentParseTree.getChild(i) instanceof TerminalNode ) {
+				goalForTrue++;
+			}
+		}
+		//to be continued
+		return response;
+	}
+	
 }
